@@ -1,0 +1,34 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <h1><%= @query.name %><br/>
+    <small><%= @query.label %></small>
+    <small> |</small>
+    <small><%= @query.count %></small>
+  </h1>
+  <hr>
+  <% tmp_arry_attributes = %w(name label description count conditions) %>
+  <% tmp_arry_attributes.each do |attribute| %>
+      <p>
+        <b><%= attribute %>:</b>
+        <%= @query.send(attribute.to_sym) %>
+      </p>
+  <% end %>
+  <p>
+    <b> Inserted Sql:</b>
+    <%= "Select count(*) from #{@query.sql}"%>
+  </p>
+  <p>
+    <b> Complete Query:</b>
+    <%= @query.complete_query%>
+  </p>
+
+  <div class="break_smaller">
+    <%= link_to activities_path, {:style => 'color:white', class: "btn btn-primary", id: 'orderOverview'} do %>
+        <span class="fa fa-home"></span> Home
+    <% end %>
+    <%= link_to edit_query_path(@query), {:style => 'color:white', class: "btn btn-success manage-chemicals"}, data: {disable_with: "Thinking.."} do %>
+        <span class="fa fa-pencil-square-o"></span> Edit
+    <% end %>
+  </div>
+
+</div>
+

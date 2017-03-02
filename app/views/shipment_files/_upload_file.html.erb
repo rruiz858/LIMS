@@ -1,0 +1,35 @@
+<%= form_for @shipment_file, :html => {:class => "upload_file_form", :multipart => true} do |f| %>
+    <div class="alert alert-info alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <strong>Note!</strong> Only the first sheet in file will be processed. Also, please select an order id or insert
+      an order number.
+    </div>
+    <div class="fileinput fileinput-new input-group break_smaller" data-provides="fileinput">
+      <div class="form-control" data-trigger="fileinput"><i class="fa fa-file-excel-o fileinput-exists"></i>
+        <span class="fileinput-filename"></span></div>
+      <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span> <%= f.file_field :file_url, class: "file-input" %></span>
+      <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+    </div>
+    <p class="help-block">Must be .xls/xlsx/csv file</p>
+    <div class="checkbox break_smaller"><label>
+      <%= f.check_box :mixture %> Mixture Shipment File</label>
+    </div>
+    <div class="control-group break_smaller">
+      <%= f.label :vendor_id, 'Vendor', class: 'control-group' %>
+      <%= f.collection_select :vendor_id, @vendors, :id, :name, {prompt: "Select a Vendor"}, {class: "form-control"} %>
+    </div>
+    <div class="control-group break_smaller">
+      <%= f.label :order_id, 'Order ID', class: 'control-group' %>
+      <%= f.collection_select :order_id, @order, :id, :id, {prompt: "Select an Order ID"}, {class: "form-control"} %>
+    </div>
+    <div class="control-group break_smaller">
+      <%= f.label :order_number, 'Internal EPA Order Number', class: 'control-group' %><br>
+      <%= f.number_field :order_number, :placeholder => "Order Number", :class => "form-control" %>
+    </div>
+    <div class="actions">
+      <button type="submit" class="btn btn-success" id="uploadShipment" , name="add_shipment">
+        <i class="fa fa-upload" aria-hidden="true"></i> Create
+      </button>
+    </div>
+<% end %>

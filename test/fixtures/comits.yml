@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#<%=File.open(Rails.root.join("test/fixtures/files/EPAReport_20150702129999.xls"))%>
+one:
+  filename: 'MyString'
+  file_url: '1439912095_short_EPA_report.xls'
+  file_kilobytes: 1
+  file_record_count: 1
+  added_by_user_id: 1
+  file_app_name: 'MyString'
+  user: 'superadmin' #defining a reference node between two different nodes
+  deletes: 1
+  updates: 1
+  inserts: 1
+
+
+
+
+

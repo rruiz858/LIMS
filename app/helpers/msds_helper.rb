@@ -1,0 +1,2 @@
+module MsdsHelper
+end

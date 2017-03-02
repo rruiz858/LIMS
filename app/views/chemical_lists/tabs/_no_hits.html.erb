@@ -1,0 +1,32 @@
+<div class='row'>
+<h4>Not Hits</h4>
+<table id="no-hits-table" class="table display table-condensed table-hover table-striped table-bordered " cellspacing="0" width="100%">
+  <thead>
+  <tr>
+    <th></th>
+    <th nowrap>Source Substance ID</th>
+    <th nowrap>External ID</th>
+    <th nowrap>Created by</th>
+    <th nowrap>Created_at</th>
+    <th nowrap></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @no_hits.each do |ss| %>
+      <tr>
+        <td></td>
+        <td class="ss-id"><%= ss.id %>
+        <td><%= ss.dsstox_record_id %></td>
+        <td><%= ss.created_at %></td>
+        <td><%= ss.created_by %></td>
+        <td align="center">
+          <%= link_to source_substance_path(ss.id), method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button class="btn btn-danger btn-xs btn-sty">Delete
+                <i class="fa fa-trash"></i></button>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>

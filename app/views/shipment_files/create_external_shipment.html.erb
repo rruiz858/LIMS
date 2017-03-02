@@ -1,0 +1,84 @@
+<div class="top-page container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <h2 class="break_top">Initiate Shipment</h2>
+
+  <div class="break"><%= render 'shipment_files/status_step_bar' %></div>
+  <%= form_tag({controller: "shipment_files", action: "create_external_shipment"}, method: "post", :remote => false, id: 'createShipment', class: "stepClass") do %>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="control-group break_smaller">
+            <%= label_tag :vendor_id, ' Select Vendor', class: 'control-group' %>
+            <%= select_tag :vendor_id, options_from_collection_for_select(@vendors, :id, :name), :prompt => "Select a Vendor", class: "form-control" %>
+
+          </div>
+          <div class="control-group break_smaller">
+            <%= label_tag :task_order_id, ' Select Task Order', class: 'control-group' %>
+            <%= select_tag :task_order_id, options_from_collection_for_select([], "id", "id"),
+                           "data-option-dependent" => true,
+                           "data-option-observed" => "vendor_id",
+                           "data-option-url" => "#{tasks_path(':vendor_id:')}",
+                           "data-option-key-method" => :id,
+                           "data-option-value-method" => :id, class: "form-control shipment-form" %>
+          </div>
+          <div class="control-group break_smaller">
+            <%= label_tag :address_id, ' Select an Address', class: 'control-group' %>
+            <%= select_tag :address_id, options_from_collection_for_select([], "address_1", "id"),
+                           "data-option-dependent" => true,
+                           "data-option-observed" => "vendor_id",
+                           "data-option-url" => "#{addresses_path(':vendor_id:')}",
+                           "data-option-key-method" => :id,
+                           "data-option-value-method" => :address1, class: "form-control shipment-form" %>
+          </div>
+
+          <div class="control-group break_smaller">
+            <%= label_tag :order_concentration_id, 'Target Concentration', class: 'control-group' %>
+            <%= select_tag :order_concentration_id, options_from_collection_for_select(@order_concentration, :id, :concentration), prompt: "Select a Concentration", class: "form-control shipment-form", id: "orderConcentation" %>
+          </div>
+
+          <div class="control-group break_smaller">
+            <%= label_tag :amount, 'Amount', class: 'control-group' %>
+            <%= number_field_tag :amount, nil, min: 1, class: "form-control shipment-form", prompt: "Amount", id: "amountShipment" %>
+          </div>
+          <div class="control-group break_smaller">
+            <%= label_tag :amount_unit, "Amount Unit", class: "control-group" %>
+            <%= text_field_tag :amount_unit, nil, class: "form-control"%>
+          </div>
+          <div class="control-group break_smaller">
+            <%= label_tag :plate_detail, 'Select Plate/Vial', class: 'control-group' %>
+            <%= select_tag :plate_detail, options_from_collection_for_select(@plate_types, "last", "last"), :prompt => "Select Plate Type", class: "form-control shipment-form", id: "plateDetailShipment" %>
+          </div>
+          <div class="actions">
+            <button type="submit" class="btn btn-primary styleWhite" id="initiateShipment" , name="add_shipment" , onclick="updateBar(this.id)">
+              <i class="fa fa-arrow-circle-right"></i> Add Bottles
+            </button>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#initiateShipment").attr("disabled", "true");
+        $('#orderConcentation, #amountShipment, #plateDetailShipment').bind('blur', function () {
+            if (allFilled()) {
+                $('#initiateShipment').removeAttr("disabled");
+            } else {
+                $("#initiateShipment").attr("disabled", "true");
+            }
+
+        });
+        function allFilled() {
+            var filled = true;
+            $(".shipment-form").each(function () {
+                if ($(this).val() == "") {
+                    filled = false;
+
+                }
+            });
+            return filled;
+        }
+    });
+</script>

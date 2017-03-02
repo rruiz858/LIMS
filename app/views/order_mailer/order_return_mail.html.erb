@@ -1,0 +1,4 @@
+Hello there <%= @cor.f_name %>,
+<p> An order has been returned by <%= @chemadmin.username %> </p>
+<p><%= @comment.body %></p>
+<p>To revise order, click <%= link_to "HERE", show_plate_order_url(@order.id) %></p>

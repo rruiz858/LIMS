@@ -1,0 +1,31 @@
+<% unless @bottle.nil? %>
+<h4>Mapped Bottle</h4>
+<table  class="table table-bordered table-condensed table-hover table-striped">
+  <thead>
+  <tr>
+    <th>barcode</th>
+    <th>status</th>
+    <th>name</th>
+    <th>casrn</th>
+    <th>vendor</th>
+    <th>sam</th>
+    <th>cpd</th>
+    <th>lot_number</th>
+    <th>form</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @bottle.stripped_barcode %></td>
+    <td><%= @bottle.status %></td>
+    <td><%= @bottle.compound_name %></td>
+    <td><%= @bottle.cas %></td>
+    <td><%= @bottle.vendor %></td>
+    <td><%= @bottle.sam %></td>
+    <td><%= @bottle.cpd %></td>
+    <td><%= @bottle.lot_number %></td>
+    <td><%= @bottle.form%></td>
+  </tr>
+  </tbody>
+</table>
+<%end%>

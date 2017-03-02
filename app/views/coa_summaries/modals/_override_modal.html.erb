@@ -1,0 +1,58 @@
+<div id="overrideModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">
+          <% if @name_other%>
+              Validate | Override
+          <%else%>
+              Override
+          <%end%>
+          </h3>
+      </div>
+      <div class="modal-body">
+        <% if @name_other %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <span class="fa fa-check-circle-o"></span> Possible Mapped Options
+          </div>
+          <div class="panel-body" id="curateMutlitpleGsidDiv">
+            <table class="table table-condensed " id="curateMultipleGsid">
+              <tr>
+                <th>Identifier</th>
+                <th>Preferred Name</th>
+                <th>CASRN</th>
+                <th>GSID</th>
+                <th>Validate</th>
+              </tr>
+              <tbody>
+              <% @potential_matches.each do |i| %>
+                  <tr id="<%=i.attributes["GSID"] %>">
+                    <td><%= i.attributes["IDENTIFIER"] %></td>
+                    <td><%= i.attributes["PREFERRED_NAME"] %></td>
+                    <td><%= i.attributes["CASRN"] %></td>
+                    <td><%= i.attributes["GSID"] %></td>
+                    <td>
+                      <button class="curate-coa btn btn-xs btn-success" id=<%= i.attributes["SSID"] %>>
+                        <span class="glyphicon glyphicon-ok"></span>
+                      </button>
+
+                    </td>
+                  </tr>
+              <% end%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <%end%>
+        <div id = "overrideDiv">
+        <%= render 'coa_summaries/modals/override_panel', :coa_summary => @coa_summary %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<table id="external-shipment-files-table" class="table-bordered table-condensed table-hover table-striped " cellspacing="0" width="100%">
+  <thead>
+  <tr>
+    <th nowrap>Created at</th>
+    <th nowrap>Added By</th>
+    <th>Location</th>
+    <th nowrap>Status</th>
+    <th nowrap> Plate Details</th>
+    <% if can? :manage, ShipmentFile %>
+    <th nowrap>Update</th>
+    <th></th>
+    <%end%>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @external_shipments.each do |shipment_file| %>
+      <tr>
+        <td><%= shipment_file.created_at.strftime("%Y/%m/%d %l:%m%p") %></td>
+        <td><%= shipment_file.user.f_name %></td>
+        <td><%= link_to "#{shipment_file.vendor.name}", vendor_path(shipment_file.vendor) %></td>
+        <td><%= shipment_file.status %></td>
+        <td><%= link_to 'Show', shipment_file, type: 'button', class: 'btn btn-primary btn-sm', style: 'color:white' %></td>
+        <% if can? :manage, ShipmentFile %>
+        <td>
+          <% if shipment_file.status == "In Progress" %>
+              <%= link_to add_bottles_shipment_file_path(shipment_file), {:style => 'color:white', class: "btn btn-success btn-sm"} do %>
+                  <i class="fa fa-pencil-square-o">Edit Plate</i>
+              <% end %>
+          <% end %>
+        </td>
+        <td><%= link_to shipment_file, method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button class="btn btn-danger btn-sm" style='color:white'>Delete
+                <i class="fa fa-trash"></i></button>
+          <% end %>
+        </td>
+        <%end%>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

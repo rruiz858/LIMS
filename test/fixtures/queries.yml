@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: bottle count
+  label: bottle count
+  description: MyText
+  created_by: MyString
+  updated_by: MyString
+  conditions: ''
+  sql: bottles
+  complete_query: Select count(*) from bottles;
+
+two:
+  name: coa summary count
+  label: coa summary count
+  description: MyText
+  created_by: MyString
+  updated_by: MyString
+  conditions: ''
+  sql: coa_summaries
+  complete_query: Select count(*) from coa_summaries;

@@ -1,0 +1,62 @@
+<div id="order-return-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">Comments</h3>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <span class="fa fa-commenting-o"></span>
+            <small>Order was last updated <%= time_ago_in_words(@order.updated_at) %> ago by <%= @order.user.username%></small>
+          </div>
+          <div class="panel-body">
+            <h3>Comments</h3>
+            <% if @order.rejected && plate_details? %>   <!--if the order has been rejected, user (cor) will use the review_order action-->
+                <hr>
+                <% @order.order_comments.each do |comment| %>
+                    <p>
+                     <%=comment.body%>
+                    </p>
+                    <small>Comment added <%= time_ago_in_words(comment.updated_at) %> ago by <%= comment.created_by%></small>
+                    <hr>
+                <%end%>
+                <%= form_tag review_order_order_path(@order), method: :post, remote: true do %>
+                    <div class="break_smaller" id="reviewRejectedOrder">
+                    <%= text_area_tag :body, nil, class: "form-control" ,id:"commentBody", placeholder: "Add Comment", rows: 10 %>
+                      <div id="commentErrorMessage"></div>
+                    <%= hidden_field_tag :rejected, @order.rejected %>
+                    </div>
+                    <%= button_tag(type: "submit", class: "btn btn-success", name: nil, 'data-toggle' => "popover",
+                                   "data-content" => "Email will be sent to all Admins upon the placing order in review", 'data-trigger' => "hover", 'data-placement' => "bottom") do %>
+                        <span class='fa fa-envelope' aria-hidden="true"></span> Place in Review
+                    <% end %>
+                <% end %>
+          <%else%> <!--if the order is in review, user (admin) will be able to return the order-->
+            <%= simple_form_for :orders, {url: order_return_patch_order_path(@order), method: :patch, remote: true} do |f| %>
+                    <% unless @order.order_comments.blank? %>
+                    <hr>
+                    <% @order.order_comments.each do |comment| %>
+                        <p>
+                          <%=comment.body%>
+                        </p>
+                        <small>Comment added <%= time_ago_in_words(comment.updated_at) %> ago by <%= comment.created_by%></small>
+                        <hr>
+                     <%end%>
+                    <%end%>
+                <%= f.input :body, as: :text, input_html: {name: "body", :rows => 10, id: "commentBody"}, required: false, label: false %><br/>
+                <div id="commentErrorMessage"></div>
+                <%= submit_tag "Return Order", :name => 'return_order', data: {disable_with: "Email is being generated..."}, class: "btn btn-success", id: "return-order-button" %>
+            <% end %>
+            <%end%>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

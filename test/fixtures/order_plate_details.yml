@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 'one'
+  order: 'two'
+  plate_type: 96 plate
+  empty: MyText
+  solvent: MyText
+  control: MyText
+  plate_type: 'one'
+
+two:
+  user: 'one'
+  order: 'three'
+  empty: MyText
+  solvent: MyText
+  control: MyText
+  plate_type: 'one'
+
+three:
+  user: 'cor'
+  order: 'four'
+  plate_type: 96 plate
+  empty: MyText
+  solvent: MyText
+  control: MyText
+  plate_type: 'one'
+
+four:
+  user: 'cor'
+  order: 'eight'
+  plate_type: 96 plate
+  empty: MyText
+  solvent: MyText
+  control: MyText
+  plate_type: 'one'

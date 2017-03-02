@@ -1,0 +1,49 @@
+<div align="right" class="break_smaller">
+  <a title='Add New Address' :rel='tooltip' , href="<%= new_vendor_address_path(@vendor) %>">
+    <button class="btn btn-success" id='newAddress' style='color:white'>Add Address
+      <i class="fa fa-plus-circle"></i>
+    </button>
+  </a>
+</div>
+<table id="address" class="table table-bordered table-condensed table-hover" cellspacing="0" width="100%">
+  <caption>Addresses:</caption>
+  <thead>
+  <th>Address1</th>
+  <th>Address2</th>
+  <th>City</th>
+  <th>State</th>
+  <th>Zip</th>
+  <th></th>
+  <th></th>
+  <th></th>
+  </thead>
+
+  <% @vendor.addresses.each do |address| %>
+      <tr>
+        <td><%= address.address1 %></td>
+        <td><%= address.address2 %></td>
+        <td><%= address.city %></td>
+        <td><%= address.state %></td>
+        <td><%= address.zip %></td>
+        <td>
+          <%= link_to vendor_address_path(@vendor, address),
+                      type: 'button',
+                      class: 'btn btn-primary btn-xs',
+                      style: 'color:white' do %>
+              Show
+          <% end %>
+        </td>
+        <td>
+          <%= link_to [:edit, @vendor, address] do %>
+              <button class="btn btn-warning btn-xs" id='editAddress' style='color:white'>Edit
+                <span class=" fa fa-pencil"></span></button>
+          <% end %>
+        </td>
+        <td> <%= link_to [@vendor, address], method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button class="btn btn-danger btn-xs" id='deleteAddress' style='color:white'>Delete
+                <span class=" fa fa-trash-o"></span></button>
+          <% end %></td>
+      </tr>
+  <% end %>
+
+</table>

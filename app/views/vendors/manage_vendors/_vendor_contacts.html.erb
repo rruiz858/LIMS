@@ -1,0 +1,59 @@
+<% if can? :manage, Contact %>
+<div align="right" class="break_smaller">
+  <a title='Add New Contact' :rel='tooltip' , href="<%= new_vendor_contact_path(@vendor) %>">
+    <button class="btn btn-success" id='newContact' style='color:white'>Add Contact
+      <i class="fa fa-plus-circle"></i>
+    </button>
+  </a>
+</div>
+<% end %>
+<table id="contacts" class="table table-bordered table-condensed table-hover" cellspacing="0" width="100%">
+  <caption>Contacts:</caption>
+  <thead>
+  <th nowrap>Name</th>
+  <th nowrap>Last Name</th>
+  <th nowrap>Email</th>
+  <th nowrap>Title</th>
+  <th nowrap>Department</th>
+  <th nowrap>Phone</th>
+  <th nowrap>Details</th>
+  <th nowrap>Address</th>
+  <% if can? :manage, Contact %>
+  <th></th>
+  <% if can? :destroy, Contact %>
+  <th></th>
+  <% end %>
+  <% end %>
+  </thead>
+  <% @vendor.contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.first_name %></td>
+        <td><%= contact.last_name %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.title %></td>
+        <td><%= contact.department %></td>
+        <td><%= contact.phone1 %></td>
+        <td><%= contact.other_details %></td>
+        <td>
+          <%= link_to address_vendor_contact_path(vendor_id: @vendor.id, id: contact.id), remote: true, class: "btn btn-info btn-xs" do %>
+              Show <i class="fa fa-eye"></i>
+          <% end %>
+        </td>
+        <% if can? :manage, Contact %>
+        <td>
+          <%= link_to [:edit, @vendor, contact] do %>
+              <button class="btn btn-warning btn-xs" id='editContact' style='color:white'>Edit
+                <i class=" fa fa-pencil"></i></button>
+          <% end %>
+        </td>
+        <% if can? :destroy, Contact %>
+        <td> <%= link_to [@vendor, contact], method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button class="btn btn-danger btn-xs" id='deleteContact' style='color:white'>Delete
+                <i class=" fa fa-trash-o"></i></button>
+          <% end %>
+        </td>
+        <% end %>
+        <% end %>
+      </tr>
+  <% end %>
+</table>

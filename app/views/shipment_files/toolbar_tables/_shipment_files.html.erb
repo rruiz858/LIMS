@@ -1,0 +1,47 @@
+<table id="shipment_files_index_id" class="table-bordered table-condensed table-hover table-striped">
+  <thead>
+  <tr>
+    <th>Created at</th>
+    <th>Filename</th>
+    <th>Location</th>
+    <th>Order ID</th>
+    <th> Evotech Shipping Number</th>
+    <th> Aliquot Date</th>
+    <th> Shipment Date</th>
+    <th> Number of Plates</th>
+    <th> Number of Samples</th>
+    <th> Vial/Plate</th>
+    <th>Details</th>
+    <% if can? :manage, ShipmentFile %>
+    <th></th>
+    <th></th>
+    <%end%>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @shipment_files.each do |shipment_file| %>
+      <tr>
+        <td><%= shipment_file.created_at.strftime("%Y/%m/%d %l:%m%p") %></td>
+        <td><%= if_legacy?(shipment_file) %></td>
+        <td><%= link_to "#{shipment_file.vendor.name}", vendor_path(shipment_file.vendor), class: 'link_to' %></td>
+        <td><%= shipment_file.order_id %></td>
+        <td><%= shipment_file.evotech_shipment_num %></td>
+        <td><%= shipment_file.aliquot_date %></td>
+        <td><%= shipment_file.shipped_date %></td>
+        <td><%= shipment_file.plate_details.select(:aliquot_plate_barcode).distinct.count %></td>
+        <td id="plates_<%= shipment_file.id%>"><%= number_of_vials_plates(shipment_file)%></td>
+        <td id="samples_<%= shipment_file.id%>"><%= vial_plate(shipment_file.vial) %> <%= mixture(shipment_file.mixture) %></td>
+        <td><%= link_to 'Show', shipment_file, type: 'button', class: 'btn btn-primary btn-xs', style: 'color:white' %></td>
+        <% if can? :manage, ShipmentFile %>
+        <td><%= link_to 'Edit', edit_shipment_file_path(shipment_file), type: 'button', class: 'btn btn-warning btn-xs', style: 'color:white' %></td>
+        <td><%= link_to shipment_file, method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button class="btn btn-danger btn-xs" style='color:white'>Delete
+                <i class=" glyphicon glyphicon-trash"></i></button>
+          <% end %>
+        </td>
+        <%end%>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

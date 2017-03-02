@@ -1,0 +1,7 @@
+<%= form_tag({controller: "source_substances", action: "new"}, method: "post", :remote =>true, class: 'add-to-list')   do  %>
+<%= label_tag :new_chemical_list_id, 'ToxCast Chemical Lists', class: 'control-group' %>
+    <%= select_tag :new_chemical_list_id, options_from_collection_for_select(@lists, "id", "list_name"), class: "form-control", id: "chemical-lists" %>
+<%= hidden_field_tag "fk_chemical_list_id", @chemical_list.id %>
+    <br>
+<%= submit_tag "Save", :name => 'add_list', data: {disable_with: "Processing..."}, class: "btn btn-success", id: "add-list" %>
+<%end%>

@@ -1,0 +1,68 @@
+// Place all the styles related to the orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.nopadding {
+  padding-right: 0 !important;
+  margin: 0 !important;
+}
+.noleftpadding {
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+.modal-dialog{
+  overflow-y: initial;
+}
+
+.modal-body{
+  height: 450px;
+  overflow-y: auto;
+}
+
+.reviewOrder{
+  float: left;
+}
+
+button.reviewOrder{
+  float: right;
+
+}
+a.reviewOrder{
+  float: right;
+}
+
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum .statusText {color: #595959; font-size: 12px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step .statusText {color: #999; font-size: 12px;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot-order {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 25px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot-order:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; }
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot-order {background-color: #f5f5f5;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot-order:after {opacity: 0;}
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot-order{ pointer-events: none; }
+
+ul.barList > li{
+  white-space: nowrap;
+  display: inline;
+}
+
+.errorComment{
+  border: 1px solid red;
+  box-shadow: none !important;
+}
+
+#commentIcon{
+ margin-left: 80px;
+ margin-top: -105px;
+}
+
+
+.panel-order{
+  height : 300px;
+  overflow-y: auto;
+}
+
+.panel-order-footer{
+  height : 40px;
+}
+
+.exportOrder{
+ margin-top: -7px;
+}

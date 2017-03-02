@@ -1,0 +1,20 @@
+<%= simple_form_for([@vendor, @agreement, @task_order]) do |f| %>
+    <div class="control-group">
+      <%= f.input :name, required: false  %>
+      <%= f.input :description, as: :text, required: false %>
+      <%= f.hidden_field :vendor_id, :value => @vendor.id %>
+      <%= f.hidden_field :agreement_id, :value => @agreement.id %>
+    </div>
+
+    <%= button_tag(type: 'submit', class: "btn btn-success submitButton",  id: "submitTaskOrder" ) do %>
+        <i class=" fa fa-plus-circle"></i> <%=@button_text%>
+    <%end%>
+    <%= link_to vendor_path(id: @vendor), :title => 'Back to Vendor',
+                :rel => 'tooltip',
+                type: 'button',
+                class: 'btn btn-primary',
+                style: 'color:white' do %>
+        <i class="fa fa-arrow-circle-left"> Back</i>
+        <div class="loading_modal"></div>
+    <% end %>
+<% end %>

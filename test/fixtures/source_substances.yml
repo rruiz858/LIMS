@@ -1,0 +1,246 @@
+
+two:
+  chemical_list: 'two'
+  fk_chemical_list_id:
+  dsstox_record_id: not nul 1
+  casrn: 50-00-0
+  name:
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: me
+  updated_by: me
+
+
+three:
+  chemical_list: 'three'
+  fk_chemical_list_id:
+  dsstox_record_id: not null 2
+  casrn: 1-1-1
+  name: ChemicalX
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: you
+  updated_by: you
+
+
+four:
+  chemical_list: 'three'
+  fk_chemical_list_id:
+  dsstox_record_id: not null 3
+  casrn: 60-00-0
+  name:
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: her
+  updated_by: her
+
+five:
+  chemical_list: 'four'
+  dsstox_record_id: not null 2
+  casrn: 60-00-0
+  name:
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: him
+  updated_by: him
+
+six:
+  chemical_list: 'four'
+  dsstox_record_id: not null 2
+  casrn: 60-00-1
+  name:
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: that guy
+  updated_by: that guy
+
+seven:
+  chemical_list: 'two'
+  dsstox_record_id: not null 2
+  casrn: 60-00-5
+  name:
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: your mom
+  updated_by: your mom
+
+eight:
+  chemical_list: 'nine'
+  dsstox_record_id: not null 2
+  casrn: Llamas
+  name: Mom
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: jpearc03
+  updated_by: jpearc03
+
+nine:
+  chemical_list: 'ten'
+  dsstox_record_id: not null 2
+  casrn: Llamas
+  name: Mom
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: jsmith09
+  updated_by: jsmith09
+
+ten:
+  chemical_list: 'seven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+no_hits:
+   chemical_list: 'four'
+   dsstox_record_id: not null 2
+   casrn: mom
+   name: dad
+   structure:
+   external_id:
+   name_inchikey:
+   structure_inchikey:
+   warnings:
+   created_by: that guy's mom
+   updated_by: that guy's mom
+
+
+no_order_hits:
+   chemical_list: 'four'
+   dsstox_record_id: not null 2
+   casrn: mom
+   name: dad
+   structure:
+   external_id:
+   name_inchikey:
+   structure_inchikey:
+   warnings:
+   created_by: that guy's mom
+   updated_by: that guy's mom
+
+eleven:
+  chemical_list: 'eleven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+twelve:
+  chemical_list: 'eleven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+thirteen:
+  chemical_list: 'eleven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvevuizvev
+
+fourteen:
+  chemical_list: 'eleven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+fifteen:
+  chemical_list: 'eleven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+sixteen:
+  chemical_list: 'eleven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+seventeen:
+  chemical_list: 'eleven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+eighteen:
+  chemical_list: 'eleven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+nineteen:
+  chemical_list: 'eleven'
+  dsstox_record_id: not null 2
+  structure:
+  external_id:
+  name_inchikey:
+  structure_inchikey:
+  warnings:
+  created_by: rruizvev
+  updated_by: rruizvev

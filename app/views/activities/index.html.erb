@@ -1,0 +1,310 @@
+<div class="container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12 top-page">
+  <div class="row">
+    <% if can? :read, Query %>
+        <div class='col-md-8'>
+          <div class="jumbotron">
+            <div class="center-title">
+              <h1>ChemTrack</h1>
+
+              <div id="epa-main-image"><%= image_tag('epa_seal_medium.gif', alt: 'ChemTrack', class: 'inline') %></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="col-md-12">
+            <div class="panel panel-primary saved-query-panel">
+              <div class="panel-heading">
+                <div class="fontBlack">
+                  <span class="fa fa-star iconBlack"></span>
+                  Saved Queries
+                </div>
+              </div>
+              <div class="panel-body query-panel-body">
+                <div id="updateAllRoute" data-update="<%= update_all_queries_path %>"></div>
+                <div class="query-content">
+                  <div id="queryResultsTable">
+                    <% if @queries.present? %>
+                        <table id="queryTable" class="table-bordered table-condensed table-hover table-striped" cellspacing="0" width="100%">
+                          <thead>
+                          <tr>
+                            <th>Label</th>
+                            <th>Count</th>
+                            <% if can? :manage, Query %>
+                                <th id='editQueryColumn'></th>
+                            <% end %>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <% @queries.each do |query| %>
+                              <tr>
+                                <td><span class="fa fa-info-circle fa-lg fontAwesomeToggle" data-toggle="popover" data-content="<%= query.complete_query %>"
+                                          data-trigger="hover" data-placement="bottom"></span> <%= query.label %>
+                                </td>
+                                <td><%= query.count %></td>
+                                <% if can? :manage, Query %>
+                                    <td>
+                                      <%= link_to edit_query_path(query), {:style => 'color:white', class: "btn btn-primary btn-xs"}, data: {disable_with: "Thinking.."} do %>
+                                          <span class="fa fa-pencil-square-o"></span> Edit
+                                      <% end %>
+                                    </td>
+                                <% end %>
+                              </tr>
+                          <% end %>
+                          </tbody>
+                        </table>
+                    <% else %>
+                        <p>No query features found</p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer fixed-panel-height">
+                <div>
+                  <% if can? :create, Query %>
+                      <%= link_to new_query_path, method: :get, class: 'btn btn-success btn-sm pull-right', style: 'color:white',
+                                  'data-toggle' => "popover",
+                                  "data-content" => "Add new query feature",
+                                  'data-trigger' => "hover", 'data-placement' => "bottom" do %>
+                          <span class="fa fa-plus-circle"></span> Add Feature
+                      <% end %>
+                  <% end %>
+                  <% if @queries.present? %>
+                      <button type="button" class="btn btn-primary btn-sm pull-left " onclick="updateAllCounts()" id='updateQueries' style='color:white'
+                              data-toggle="popover" data-content="Update all saved queries"
+                              data-trigger="hover" data-placement="bottom">
+                        <span class="fa fa-refresh"></span> Update Counts
+                      </button>
+                  <% end %>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+    <% else %>
+        <div class='col-md-12'>
+          <div class="jumbotron">
+            <div class="center-title">
+              <h1>ChemTrack</h1>
+
+              <div id="epa-main-image"><%= image_tag('epa_seal_medium.gif', alt: 'ChemTrack', class: 'inline') %></div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="well text-center">
+        <span class="fa fa-info-circle fa-lg"></span>
+        There are <%= number_with_precision(@total_bottles, :precision => 0, :delimiter => ',') %> samples in the
+        chemical inventory
+        with <%= number_with_precision(@total_unique_compounds, :precision => 0, :delimiter => ',') %>
+        distinct chemicals.The inventory was last updated <%= @last_updated %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-4">
+      <div class="row">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-tasks fa-4x iconBlack"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="largeFont">Inventory</div>
+              </div>
+            </div>
+          </div>
+          <a data-toggle="collapse" href="#collapse1">
+            <div class="panel-footer">
+              <span class="pull-left">View Options</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span>
+
+              <div class="clearfix"></div>
+            </div>
+          </a>
+
+          <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul>
+                <li><%= link_to "View COMIT History", comits_path %></li>
+                <% if can? :manage, CoaSummary %>
+                    <li><%= link_to "Coa Summary Management", coa_summaries_path %></li>
+                <% end %>
+                <li><%= link_to "View all COAS/MSDS Files", coas_path %></li>
+              </ul>
+            </div>
+            <div class="panel-footer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-handshake-o fa-4x iconBlack"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="largeFont"> Orders and Partnerships</div>
+              </div>
+            </div>
+          </div>
+          <a data-toggle="collapse" href="#collapse2">
+            <div class="panel-footer">
+              <span class="pull-left">View Options</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span>
+
+              <div class="clearfix"></div>
+            </div>
+          </a>
+
+          <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul>
+                <li><%= link_to "View all Vendors", vendors_path %></li>
+                <li><%= link_to "View Agreements", agreements_path %></li>
+                <li><%= link_to "View Shipment File History", shipment_files_path %></li>
+                <li><%= link_to "View Orders", orders_path %></li>
+              </ul>
+            </div>
+            <div class="panel-footer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i class="fa fa-search fa-4x iconBlack"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="largeFont">Browse</div>
+              </div>
+            </div>
+          </div>
+          <a data-toggle="collapse" href="#collapse3">
+            <div class="panel-footer">
+              <span class="pull-left">View Options</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span>
+
+              <div class="clearfix"></div>
+            </div>
+          </a>
+
+          <div id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul>
+                <li><%= link_to "Bottle Inventory", bottles_path %></li>
+                <li><%= link_to 'Multi-Chemical Search', bottles_multiple_results_path %></li>
+              </ul>
+            </div>
+            <div class="panel-footer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="row" id="activity-stream">
+        <div class="col-md-12">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-primary">
+              <div class="panel-heading" role="tab" id="headingTen">
+                <h1 class="panel-title accordion-toggle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
+                  <span class="fa fa-clock-o fa-fw fa-2x iconBlack"></span>
+                  <span class="pull-right"><i class="fa fa-arrow-circle-up"></i></span>
+                  Activity Stream
+                </h1>
+              </div>
+              <div id="collapseTen" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTen">
+                <div class="panel-body accordion-content">
+                  <h3>Inventory History</h3>
+                  <% if @activities.blank? %>
+                      <h2>No COMIT has been updated yet.</h2>
+                  <% else %>
+                      <table class="table table-hover">
+                        <tbody>
+                        <% @activities.each do |activity| %>
+                            <tr>
+                              <% unless activity.user.picture.blank? %>
+                                  <td><%= image_tag("#{activity.user.picture}") %>
+                                    <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
+                                  </td>
+                              <% else %>
+                                  <td>
+                                    <%= image_tag("default.png") %>
+                                    <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
+                                  <td>
+                              <% end %>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    function updateAllCounts() {
+        var updateRoute = $("#updateAllRoute").data('update');
+        var img = "<image src='<%= asset_path('loading.gif') %>' style= 'display: block; margin: 0 auto; clear:both;'>";
+        $('#queryResultsTable').html(img);
+        $.ajax({
+            type: 'POST',
+            url: updateRoute,
+            dataType: 'json',
+            success: function (response) {
+                if (response.valid) {
+                    $('#queryResultsTable').html(response.html);
+                    $('.query-content').css('overflowY', 'auto');
+                    $('[data-toggle="popover"]').popover(
+                            {container: 'body'}
+                    )
+                }
+                else {
+                    $('#queryResultsTable').html(response.error_string);
+                    $(function () {
+                        new PNotify({
+                            title: 'Error',
+                            text: response.error_string,
+                            type: 'error',
+                            animation: 'show',
+                            buttons: {
+                                sticker: false
+                            }
+                        });
+                    });
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#queryResultsTable').html(xhr.responseText);
+                $(function () {
+                    new PNotify({
+                        title: 'Error',
+                        text: xhr.responseText,
+                        type: 'error',
+                        animation: 'show',
+                        buttons: {
+                            sticker: false
+                        }
+                    });
+                });
+            }
+
+        })
+
+    }
+</script>

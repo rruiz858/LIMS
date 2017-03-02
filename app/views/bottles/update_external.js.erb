@@ -1,0 +1,39 @@
+<% if !(@errors.blank?) %>
+$(document).ready(function () {
+    var error_message = '<%=escape_javascript @errors%>';
+    $(function () {
+        new PNotify({
+            title: 'Error',
+            text: error_message,
+            type: 'error',
+            animation: 'show',
+            hide: false,
+            buttons: {
+                sticker: false
+            }
+
+        });
+    });
+});
+<%else%>
+
+$("#bottleTabs").html("<%= escape_javascript(render 'bottles/tab_contents') %>");
+$("#edit-external-bottle-modal").modal('hide');
+$(document).ready(function () {
+    $(function () {
+        new PNotify({
+            title: 'Success',
+            text: "Bottle was successfully updated",
+            type: 'success',
+            animation: 'show',
+            hide: false,
+            buttons: {
+                sticker: false
+            }
+
+        });
+    });
+  $('.navbar li.active').removeClass('active');
+  $('.nav-tabs a[href="#external-bottles-form"]').tab('show');
+});
+<%end%>

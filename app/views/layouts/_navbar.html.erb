@@ -1,0 +1,93 @@
+<nav class="navbar navbar-fixed-top navbar-default navbar-inverse main-navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_path %>">
+        <%= image_tag('epa-logo.png', alt: 'CHEMTRACK') %>
+      </a>
+      <a class="navbar-brand brand-title" href="<%= root_path %>">
+        ChemTrack
+      </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <% if user_signed_in? %>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventory
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'COMIT Uploads', comits_path %></li>
+                <li><%= link_to 'Bottle Inventory', bottles_path %></li>
+                <li><%= link_to 'MSDS & COA', coas_path %></li>
+                <% if can? :manage, CoaSummary %>
+                <li><%= link_to 'COA Summaries', coa_summaries_path %></li>
+                <% end %>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Partnerships
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Vendors', vendors_path %></li>
+                <li><%= link_to 'Agreements', agreements_path %></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordering
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Orders', orders_path %></li>
+                <% if can? :read, ShipmentFile %>
+                <li><%= link_to 'Shipments', shipment_files_path %></li>
+                <%end%>
+              </ul>
+            </li>
+            <% if current_page?(view_files_vendors_path) %>
+                <li class="active" id="dataNavButton"><%= link_to 'Data', view_files_vendors_path %></li>
+            <% else %>
+                <li><%= link_to 'Data', view_files_vendors_path %></li>
+            <% end %>
+          </ul>
+      <% end %>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi <%= current_user.f_name %>!
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if can? :manage, User %>
+                    <li><%= link_to 'Users', users_path %></li>
+                <% end %>
+                <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+              </ul>
+            </li>
+        <% else %>
+            <li><%= link_to 'Sign in', new_user_session_path %></li>
+        <% end %>
+      </ul>
+      <div class="col-sm-3 col-md-3 pull-right">
+
+        <%= form_tag(bottles_single_results_path, :method => "get", id: "nav-search-form") do %>
+            <div class="input-group search-bottles">
+              <%= text_field_tag :search, params[:search], class: "form-control" ,id:"bottle-search-bar", placeholder: "Single Chemical Search" %>
+              <span class="input-group-btn">
+                <%= button_tag(type: "submit", class: "btn btn-default", id:"bottle-search-button", name: nil,'data-toggle' => "popover",
+                    "data-content" => "Single Chemical Search can search by CAS, GSID,Name, DTXSID, SMILES, InChIKey, InChI String & Barcode", 'data-trigger' => "hover", 'data-placement' => "bottom" ) do %>
+                        <span class='fa fa-search' aria-hidden="true"></span>
+                    <% end %>
+                   <%= link_to bottles_multiple_results_path, class: 'btn btn-default', 'data-toggle' => "popover",
+                       "data-content" => "Multiple Chemical Search", 'data-trigger' => "hover", 'data-placement' => "bottom" do %>
+                       <span class ="fa fa-rocket"></span>
+                   <%end%>
+            </span>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

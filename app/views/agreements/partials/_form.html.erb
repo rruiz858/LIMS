@@ -1,0 +1,22 @@
+<%= simple_form_for([@vendor, @agreement]) do |f| %>
+    <div class="control-group">
+      <%= f.input :name, required: false  %>
+      <%= f.label :user_id, "Select COR" %>
+      <%= f.select :user_id, @cors.map { |i| [i.full_name, i.id] }, {}, id: 'agreement-user-id', class: "form-control" %>
+      &nbsp
+      <%= f.input :description, as: :text, required: false %>
+    </div>
+    <%= f.hidden_field :vendor_id, :value => @vendor.id %>
+    <%= button_tag(type: 'submit', class: "btn btn-success submitButton",  id: "submitAgreement" ) do %>
+        <i class=" fa fa-plus-circle"></i> <%=@button_text%>
+    <%end%>
+    <%= link_to vendor_path(id: @vendor.id), :title => 'Back to Vendor',
+                :rel => 'tooltip',
+                id: 'backAgreement',
+                type: 'button',
+                class: 'btn btn-primary',
+                style: 'color:white' do %>
+        <i class="fa fa-arrow-circle-left"> Back</i>
+    <% end %>
+    <div class="loading_modal"></div>
+<% end %>

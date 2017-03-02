@@ -1,0 +1,15 @@
+
+one:
+  status: New
+
+two:
+  status: In Progress
+
+three:
+  status: Active
+
+four:
+  status: Complete
+
+five:
+  status: Revoked

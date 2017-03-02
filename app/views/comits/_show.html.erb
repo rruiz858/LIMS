@@ -1,0 +1,34 @@
+<%= form_for(@comit, remote: false) do |f| %>
+
+    <p>
+      <strong>Download File:</strong>
+      <%= link_to @comit.filename[11,40],  @comit.file_url_url   %>
+    </p>
+
+    <p>
+      <strong>File kilobytes:</strong>
+      <%= @comit.file_kilobytes %>
+    </p>
+
+    <p>
+      <strong>Added by user:</strong>
+      <%= @comit.user.f_name%>
+    </p>
+
+    <p>
+      <strong>Number of Bottle updates:</strong>
+      <%= @comit.updates %>
+    </p>
+
+    <p>
+      <strong>Number of Bottles inserted:</strong>
+      <%= @comit.inserts %>
+    </p>
+
+    <p>
+      <strong>Number of Bottles Reduced to Zero:</strong>
+      <%= @comit.deletes %>
+    </p>
+
+
+<%end%>

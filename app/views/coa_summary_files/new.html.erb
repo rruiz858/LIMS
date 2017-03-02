@@ -1,0 +1,29 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="col-xs-6">
+    <h1>New COA Summary File</h1>
+    <%= form_for @coa_summary_file, :html => {:class => "upload_file_form", :multipart => true} do |f| %>
+        <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <strong>Note!</strong> Only the first sheet in file will be processed.
+        </div>
+        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+          <div class="form-control" data-trigger="fileinput"><i class="fa fa-file-excel-o fileinput-exists"></i>
+            <span class="fileinput-filename"></span></div>
+          <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span> <%= f.file_field :file_url, class: "file-input" %></span>
+          <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+        </div>
+        <p class="help-block">Must be .xls file</p>
+
+        <div class="actions">
+          <%= button_tag  type: 'submit', :class => "btn btn-success", data: {disable_with: "Processing..."}, style: "color:white", id: "upload-btn" do%>
+          <span class="fa fa-upload"></span> Upload
+          <%end%>
+        </div>
+        <div class="loading_modal"></div>
+    <% end %>
+    <a href="<%= coa_summaries_path %>" class="btn btn-primary" style='color:white' title="File Index">
+      <span class="fa fa-arrow-circle-left"></span> Back
+    </a>
+  </div>
+</div>

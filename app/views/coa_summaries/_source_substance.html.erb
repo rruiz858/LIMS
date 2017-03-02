@@ -1,0 +1,21 @@
+<h4>Source Substance Record</h4>
+<table  class="table table-bordered table-condensed table-hover table-striped">
+  <thead>
+  <tr>
+    <th>Identifier</th>
+    <th>Identifier Type</th>
+    <th>Created by</th>
+    <th>Updated by</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @identifiers.each do |identifier| %>
+  <tr>
+    <td><%= identifier.identifier %></td>
+    <td><%= identifier.identifier_type %></td>
+    <td><%= identifier.created_by %></td>
+    <td><%= identifier.updated_by %></td>
+  </tr>
+  <%end%>
+  </tbody>
+</table>

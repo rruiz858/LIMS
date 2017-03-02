@@ -1,0 +1,187 @@
+<div>
+<table id="multipleResultsTable" class="table-bordered table-condensed table-hover" cellspacing="0" width="100%">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Searched By</th>
+    <th>Found By</th>
+    <th>GSID</th>
+    <th>Name</th>
+    <th>CASRN</th>
+    <th>Neat(mg)</th>
+    <th>0-24mM Stock(ul)</th>
+    <th>24-100mM Stock(ul)</th>
+    <th>Number of Bottles</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @query_results.each do |j| %>
+      <tr>
+        <td></td>
+        <td><%= j["searched_term"] %></td>
+        <td><%= j["kind"] %></td>
+        <td class="resultGsid" id="bottle-<%= j["gsid"] %>"> <%= j["gsid"] %></td>
+        <td><%= j["preferred_name"] %></td>
+        <td><%= j["casrn"] %></td>
+        <td class="resultNeat" id="neat-<%= j["gsid"] %>"><%= j["neat"] %></td>
+        <td class="result20mM" id="20mM-<%= j["gsid"] %>"><%= j["20mM"] %></td>
+        <td class="result100mM" id="100mM-<%= j["gsid"] %>"><%= j["100mM"] %></td>
+        <td class="resultTotalCount" id="totalCount-<%= j["gsid"] %>"><%= j["total_count"] %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+<div class="break_top">
+  <% unless @query_results.blank? %>
+    <div id="getBottleInfo" data-bottle="<%= show_bottle_results_path %>"></div>
+    <div id="exportBottle" data-export="<%= export_chemicals_bottles_path %>"></div>
+    <div id="bottleResults" data-results="<%= @query_results %>"></div>
+    <div id="openBottleFile" data-openfile="<%= open_bottle_file_path %>"></div>
+    <div id="getUserParams" data-params="<%= @formatted_params.to_json %>"></div>
+    <div class="col-sm-8">
+        <button type="button" class="btn btn-success" onclick="exportBottlesInfo()" id='exportChemicalButton' style='color:white'
+                data-toggle="popover" data-content="Export method creates two worksheets within the workbook. The first worksheet contains chemicals as shown in the table above while the second worksheet contains all chemicals"
+                data-trigger="hover" data-placement="bottom">
+          Export Chemicals <span class="fa fa-download"></span>
+        </button>
+    </div>
+  <% else %>
+  <div class="col-sm-8"></div>
+  <% end %>
+  <div class="alert alert-info alert-dismissible col-xs-4" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Notice!</strong> Green: available bottles, Yellow: found in DssTox but no bottle qty was found, Red: no
+    hits.
+    <ul>
+      <li><strong> Neat:</strong> High >5 mg, Low 0-5 mg</li>
+      <li><strong>0-24mM Stock:</strong> High >500 ul, Low 0-500 ul</li>
+      <li><strong>24-100mM Stock:</strong> High >500 ul, Low 0-500 ul</li>
+    </ul>
+  </div>
+  <div class="loading_modal"></div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var params = $("#getUserParams").data('params');
+        var multiResults = $('#multipleResultsTable').DataTable({
+            "paging": true,
+            "order": [[2, "desc"]],
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: 'tr'
+                }
+            },
+            columnDefs: [{
+                "className": 'details-control',
+                "orderable": false,
+                "sortable": false,
+                "targets": 0
+            }],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                var availability = 'NONE';
+                if ((aData[6] !=  availability) || (aData[7] != availability )  || (aData[8] != availability))  {
+                    $(nRow).css('background-color', '#e5ffec');
+                } else if (aData[3].length === 0) {
+                    $(nRow).css('background-color', '#ffe6e6');
+                } else {
+                    $(nRow).css('background-color', '#ffffe5');
+                }
+            }
+        });
+        $('#multipleResultsTable tbody').on('click', 'td.details-control', function () {
+            var bottleRoute = $("#getBottleInfo").data('bottle');
+            var tr = $(this).parents('tr');
+            var row = multiResults.row(tr);
+            var gsid = $(this).closest('tr').find('.resultGsid').text();
+            $.ajax({
+                type: "GET",
+                url: bottleRoute,
+                data: {gsid: gsid, params: params},
+                dataType: "json",
+                success: function (data) {
+                    if (row.child.isShown()) {
+                        // This row is already open - close it
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    }
+                    else {
+                        row.child(data.html).show();
+                        tr.addClass('shown');
+                    }
+                },
+                error: function (status) {
+                    console.log(status);
+                    $(function () {
+                        new PNotify({
+                            title: 'Error',
+                            text: "No hit",
+                            type: 'error',
+                            animation: 'show',
+                            buttons: {
+                                sticker: false
+                            }
+                        });
+                    });
+                }
+            });
+        });
+        $(function () {
+            $('[data-toggle="popover"]').popover(
+                    {container: 'body'}
+            )
+        });
+    });
+    function exportBottlesInfo() {
+        var params = $("#getUserParams").data('params');
+        var exportBottles = $("#exportBottle").data('export');
+        var bottles =   $("#bottleResults").data('results');
+        var openFileRoute = $("#openBottleFile").data('openfile');
+        $('body').addClass('loading');
+        $.ajax({
+            type: 'POST',
+            url: exportBottles,
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'json',
+            data: {"data": JSON.stringify(bottles), "params": params},
+            success: function (response) {
+                var href = response;
+                var completeRoute = openFileRoute + '?path=' + href;
+                $body.removeClass('loading');
+                if (href != '#') {
+                    window.location = completeRoute;
+                } else {
+                    $(function () {
+                        new PNotify({
+                            title: 'Error',
+                            text: 'Excel file was not uploaded correctly',
+                            type: 'error',
+                            animation: 'show',
+                            buttons: {
+                                sticker: false
+                            }
+                        });
+                    });
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $body.removeClass('loading');
+                $(function () {
+                    new PNotify({
+                        title: 'Error',
+                        text: xhr.responseText,
+                        type: 'error',
+                        animation: 'show',
+                        buttons: {
+                            sticker: false
+                        }
+                    });
+                });
+            }
+
+        });
+    }
+</script>

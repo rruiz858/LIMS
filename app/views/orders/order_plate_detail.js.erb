@@ -1,0 +1,33 @@
+<% if !(@errors.blank?) %>
+$(function () {
+    new PNotify({
+        title: 'Error',
+        text: "<%=@errors%>",
+        type: 'error',
+        animation: 'show',
+        hide: false,
+        buttons: {
+            sticker: false
+        }
+
+    });
+});
+<%else%>
+$("#detailsTablePartial").html("<%= j render :partial => 'orders/partials/detail_table', :object => @order %>");
+$("#detailsPartial").html("<%= j render :partial => 'orders/partials/details_form', :object => [@order = @order, @plate_types = @plate_types] %>");
+
+$(function () {
+    new PNotify({
+        title: 'Success',
+        text: "Plate Detail information was successfully updated",
+        type: 'success',
+        animation: 'show',
+        hide: false,
+        buttons: {
+            sticker: false
+        }
+
+    });
+});
+
+<%end%>

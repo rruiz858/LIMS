@@ -1,0 +1,40 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+
+  <p>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </p>
+
+  <p>
+    <strong>First Name:</strong>
+    <%= @user.f_name %>
+  </p>
+
+  <p>
+    <strong>Last Name:</strong>
+    <%= @user.l_name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <strong>Role:</strong>
+    <%= @user.role.role_type %>
+  </p>
+
+  <% if postdoc? %>
+      <%= render 'assigned_cors' %>
+  <% end %>
+
+  <%= link_to users_path, class: 'btn btn-primary default-color ' do %>
+      All Users <span class="fa fa-arrow-circle-left"></span>
+  <% end %>
+
+  <%= link_to edit_user_path(@user), class: 'btn btn-default ' do %>
+      Edit <span class="fa fa-pencil"></span>
+  <% end %>
+
+</div>

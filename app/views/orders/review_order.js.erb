@@ -1,0 +1,48 @@
+<%if @errors.blank? %>
+    <%if @rejected %>
+        $("#order-return-modal").modal('hide');
+    <%end%>
+    $("#orderStep4").addClass("inReview");
+    $(".orderStepBar").html("<%= escape_javascript(render 'orders/partials/order_step_bar') %>");
+    $("#orderOptions").html("<%= escape_javascript(render 'orders/partials/order_options')%>");
+    $(".order-link").each(function(){
+       $(this).hide();
+    });
+    $(function () {
+        new PNotify({
+            title: 'Success',
+            text: 'Order was successfully placed into review. Email was also sent to all Admins',
+            type: 'success',
+            animation: 'show',
+            buttons: {
+                sticker: false
+            }
+        });
+    });
+<%else%>
+var error = "<%=@errors %>";
+var rejected = "<%= @rejected%>";
+    <%if @rejected %>
+        var modal = "<%= escape_javascript(render 'orders/partials/order_return_modal', :locals => {:order => @order}) %>";
+        $("#order-return-modal").html($(modal).html());
+        $("#commentBody").addClass('errorComment errorClass');
+        $("#commentErrorMessage").append('<p>' + error + '</p>');
+    <%else%>
+        $(function () {
+            new PNotify({
+                title: 'Error',
+                text: error,
+                type: 'error',
+                animation: 'show',
+                buttons: {
+                    sticker: false
+                }
+            });
+        });
+    <%end%>
+<%end%>
+
+
+
+
+

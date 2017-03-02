@@ -1,0 +1,30 @@
+<div class= "top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div>
+    <h1 id="agreements_title">Agreements</h1>
+  </div>
+  <br>
+  <table id="users_index_id" class= "table table-bordered table-condensed table-hover table-striped">
+    <thead>
+    <tr>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Vendor</th>
+      <th>Last Updated</th>
+      <th>Updated By</th>
+      <th>Expiration Date</th>
+
+    </tr>
+    </thead>
+
+    <% @agreements.each do |agreement| %>
+        <tr>
+          <td><%= agreement.agreement_status.status %></td>
+          <td id="name_<%= agreement.id%>"><%= agreement.name %></td>
+          <td><%= agreement.vendor.name %></td>
+          <td><%= agreement.updated_at.strftime("%Y/%m/%d %l:%m%p") %></td>
+          <td><%= agreement.updated_by %></td>
+          <td><%= agreement.expiration_date %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>

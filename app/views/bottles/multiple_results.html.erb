@@ -1,0 +1,17 @@
+<div class='top-page'>
+  <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+    <div>
+      <div align="right">
+        <button type="button" class="btn btn-success btn-lg create-bottle", style='color:white' , data-toggle="modal" data-target='#findChemicalModal'>
+        Find Chemicals <span class="fa fa-search-plus"></span>
+        </button>
+      </div>
+      <%= render 'bottles/multiple_results_partials/find_chemicals_modal' %>
+      <h1 class='break'>Multiple Chemical Search  </h1>
+    </div>
+    <div id='multipleResults'>
+      <%= render partial: 'bottles/multiple_results_partials/mutliple_results_table' %>
+    </div>
+  </div>
+  <div class="loading_modal"></div>
+</div>

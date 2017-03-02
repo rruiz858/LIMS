@@ -1,0 +1,89 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div>
+    <div align="right">
+      <% if can? :create, Order %>
+          <a title='Add New Order' :rel='tooltip' , href="<%= new_order_path %>">
+            <button class="btn btn-success" id='new-order-button' style='color:white'>Add New Order
+              <i class="fa fa-plus-circle"></i>
+            </button>
+          </a>
+      <% end %>
+    </div>
+    <h1 id="order_title">Listing Orders</h1>
+  </div>
+  <br>
+  <table id="orders_index_id" class="table table-bordered table-condensed" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+      <th>Created at</th>
+      <th>COR</th>
+      <th>Vendor</th>
+      <th>Concentration (mM)</th>
+      <th>Amount</th>
+      <th>Unit</th>
+      <th>Current Order Step Progress</th>
+      <% if can? :delete, Order %>
+          <th></th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <% @orders.each do |order| %>
+        <tr id="order_count">
+          <td><%= order.created_at.strftime("%Y/%m/%d %l:%m%p") %></td>
+          <td><%= order.user.username %></td>
+          <td><%= order.vendor.name %></td>
+          <td><%= order.order_concentration.concentration %></td>
+          <td><%= order.amount %></td>
+          <td><%= order.order_concentration.unit %></td>
+          <td>
+            <div class="stepClass" id="order-<%= order.id %>-<%= order.order_status.step_number %>">
+              <% @order = order %>
+              <%= render 'orders/partials/table_step_bar', :order => @order %>
+            </div>
+          </td>
+          <% if can? :delete, Order %>
+            <% if !submitted? %>
+            <td>
+              <%= link_to order, method: :delete, data: {confirm: 'Are you sure?'} do %>
+                  <button class="btn btn-danger btn-xs" id="delete_order-<%=@order.id%>" style='color:white'>Delete
+                    <i class=" fa fa-trash"></i></button>
+              <% end %>
+            </td>
+            <% else %>
+            <td></td>
+            <% end %>
+          <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="loading_modal"></div>
+</div>
+
+<script>
+    $('.stepClass').each(function () {
+        var currentDot = $(this).attr("id");
+        var currentStep = currentDot.match(/([^-]*$)/)[1];
+        var currentOrder = currentDot.match(/-(.*?)-/)[1];
+        var currentId = '#step-' + currentStep + '-' + currentDot;
+        $(currentId).removeClass("disabled").addClass("active");
+        var firstStep = '#step-1' + '-' + currentDot;
+        if (currentStep == 4 || currentStep == 5) {
+            $(firstStep).removeClass("active").find('a')
+            for (var i = 1; i < currentStep; i++) {
+                var stepId = '#step-' + i + '-' + currentDot;
+                $(stepId).removeClass('disabled').addClass("complete").find('a')
+                if ($(stepId).find('a').hasClass('manage-chemicals')) {
+                    $(stepId).find('a').removeClass('manage-chemicals');
+                }
+            }
+        } else {
+            $(firstStep).removeClass("active");
+            for (var j = 1; j < currentStep; j++) {
+                var orderStepId = '#step-' + j + '-' + currentDot;
+                $(orderStepId).removeClass('disabled').addClass("complete");
+            }
+        }
+    });
+</script>

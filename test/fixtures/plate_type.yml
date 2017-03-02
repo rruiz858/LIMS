@@ -1,0 +1,11 @@
+one:
+  label: '96 plate'
+  numeric_value: 96
+
+two:
+  label: '384 plate'
+  numeric_value: 384
+
+three:
+  label: 'vials'
+  numeric_value: 0

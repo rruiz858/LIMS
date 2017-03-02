@@ -1,0 +1,26 @@
+<%if @errors.blank? %>
+    $("#order-return-modal").modal('hide');
+    $("#optionPulldown").html("<%= escape_javascript(render 'orders/partials/review_order_button')%>");
+    $("#orderStep4").removeClass("inReview");
+    $(".orderStepBar").html("<%= escape_javascript(render 'orders/partials/order_step_bar') %>");
+    $('[data-toggle="popover"]').popover(
+            {container: 'body'}
+    );
+    $(function () {
+        new PNotify({
+            title: 'Success',
+            text: 'Order was successfully updated. Email was also sent to COR',
+            type: 'success',
+            animation: 'show',
+            buttons: {
+                sticker: false
+            }
+        });
+    });
+<%else%>
+    var modal = "<%= escape_javascript(render 'orders/partials/order_return_modal', :locals => {:order => @order_comments.errors}) %>";
+    var error = "<%=@errors %>";
+    $("#order-return-modal").html($(modal).html());
+    $("#commentBody").addClass('errorComment errorClass');
+    $("#commentErrorMessage").append('<p>' + error + '</p>');
+<%end%>

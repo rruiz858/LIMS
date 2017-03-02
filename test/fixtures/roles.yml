@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  role_type: "admin"
+
+two:
+  role_type: "chemadmin"
+
+three:
+  role_type: "chemcurator"
+
+four:
+  role_type: "cor"
+
+five:
+  role_type: "postdoc"
+
+six:
+  role_type: "contractadmin"

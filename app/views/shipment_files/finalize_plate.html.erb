@@ -1,0 +1,63 @@
+<div class="top-page container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <%= form_tag({controller: "shipment_files", action: "finalize_plate"}, method: "post", id: 'finalizePlate', class: 'stepClass', remote: false) do %>
+      <h1 class="break_top"><%= "Shipment Overview" %><br/>
+        <small><%= @shipment_file.user.username %></small>
+        <small> |</small>
+        <small><%= @shipment_file.plate_detail %> Plate Type</small></h1>
+        <div class="right" >
+          <button type="submit" class="btn btn-success btn-lg style" , name="finalize_shipment">
+            <i class="fa fa-check-circle"></i> Finalize
+          </button>
+        </div><br>
+      <div class="break"><%= render 'shipment_files/status_step_bar' %></div>
+      <p><span class="fa fa-info-circle fa-lg"></span> There are <%= @total_count %> added records for this shipment.
+      </p>
+      <table class=" table table-bordered .table-condensed">
+        <h3>Shipment Details</h3>
+        <thead>
+        <tr>
+          <th>Vendor</th>
+          <th>Task Order</th>
+          <th>Concentration (mM)</th>
+          <th>Concentration Unit</th>
+          <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td> <%= @shipment_file.vendor.name %></td>
+          <td> <%= @shipment_file.task_order_id %></td>
+          <td> <%= @shipment_file.order_concentration.concentration %></td>
+          <td> <%= @shipment_file.order_concentration.unit %></td>
+          <td>  <%= @shipment_file.amount %></td>
+        </tr>
+        </tbody>
+      </table>
+     <hr>
+      <h3>Plate Overview</h3>
+      <%= render 'shipment_files/plate_partials/overview_table' %>
+  <% end %>
+  <%= link_to show_plate_shipment_file_path(@shipment_file), {:style => 'color:white', class: "btn btn-primary"} do %>
+      <i class="fa fa-arrow-circle-left">Edit Plate</i>
+  <% end %>
+</div>
+<script>
+    $('.stepClass').each(function(){
+        var currentDot = "";
+        var currentClass = ($(this).attr('class'));
+        if ($(this).is(":visible")) {
+            currentDot= $(this).attr("id");
+        }
+        var formId = currentDot;
+        $('.bs-wizard-step').each(function () {
+            var dotId = $(this).find(".bs-wizard-dot").attr("id");
+            var combinedId = formId +"Dot";
+            if (combinedId == dotId) {
+                $(this).removeClass("disabled").addClass("active");
+                $('#wizard-step-1').removeClass("active").addClass("complete");
+                $('#wizard-step-2').removeClass("disabled").addClass("complete");
+                $('#wizard-step-3').removeClass("disabled").addClass("complete");
+            }
+        });
+    });
+</script>

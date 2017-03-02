@@ -1,0 +1,55 @@
+<div class="break_top">
+  <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+
+      <h1><%= @resolver_params[:name] %><br />
+        <small><%= @resolver_params[:casrn] %></small>
+        <small> | </small>
+        <small><%= @resolver_params[:dsstox_substance_id] %></small>
+      </h1>
+    <p><span class="fa fa-info-circle fa-lg"></span>  Found <%= @bottles.count %> bottles for '<%= @search_term %>'.</p>
+  <table id="bottle-search" class="table-bordered table-condensed table-hover" cellspacing="0" width="100%" >
+    <thead>
+    <tr>
+      <th>Barcode</th>
+      <th>COA Summary</th>
+      <th>GSID</th>
+      <th>CASRN</th>
+      <th>Preferred Name</th>
+      <th>Concentration (mM)</th>
+      <th>QTY</th>
+      <th>Units</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @bottles.each do |j| %>
+        <tr id=<%= "#{j.attributes["gsid"]}" %>>
+          <td class="resultsBarcode">
+            <%= link_to bottle_path(id: j.attributes["bottle_id"]), remote: true, class: "btn btn-default btn-xs" do %>
+                <%= j.attributes["stripped_barcode"]%> <span class="fa fa-list-ul"></span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to coa_summary_path(id: j.attributes["COA"]), remote: true, class: "btn btn-default btn-xs" do %>
+                <%= j.attributes["COA"]%> <span class="fa fa-list-ul"></span>
+            <% end %>
+          </td>
+          <td><%= j.attributes["gsid"] %></td>
+          <td><%= j.attributes["casrn"] %></td>
+          <td><%= j.attributes["preferred_name"] %></td>
+          <td id = "conc_<%= j.attributes["concentration_mm"] %>"><%= j.attributes["concentration_mm"] %></td>
+          <td><%= j.attributes["qty_available_mg_ul"] %></td>
+          <td><%= j.attributes["units"] %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+    <div class ="row break_top">
+      <div class="alert alert-danger alert-dismissible col-lg-3 col-md-3 col-sm-6 col-xs-12 col-md-offset-9 col-sm-offset-6" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Notice!</strong> Bottles in red are completely depleted.
+    </div>
+   </div>
+  </div>
+</div>
+<div id="show-bottle-modal" class="modal fade"></div>
+<div id="show-coa-summary-modal" class="modal fade"></div>

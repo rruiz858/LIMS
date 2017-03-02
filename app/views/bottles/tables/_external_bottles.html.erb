@@ -1,0 +1,42 @@
+<table id="external-bottles-table" class="bottle-table table-bordered table-condensed table-hover table-striped" cellspacing="0" width="100%">
+  <thead>
+  <tr>
+    <th nowrap>Barcode</th>
+    <th nowrap>Compound Name</th>
+    <th>CAS</th>
+    <th nowrap>QTY Available</th>
+    <th nowrap>Units</th>
+    <th nowrap>Concentration (mM)</th>
+    <th nowrap>Vendor</th>
+    <% if can? :manage, Bottle %>
+        <th nowrap>Comment</th>
+        <th>Edit</th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% @external_bottles.each do |bottle| %>
+      <tr>
+        <td>
+          <%= link_to bottle_path(id: bottle.id), remote: true, class: "btn btn-default btn-xs" do %>
+              <%= bottle.stripped_barcode%> <span class="fa fa-list-ul"></span>
+          <% end %>
+        </td>
+        <td><%= bottle.compound_name %></td>
+        <td><%= bottle.cas %></td>
+        <td><%= bottle.qty_available_mg_ul %></td>
+        <td><%= bottle.units %></td>
+        <td><%= bottle.concentration_mm %></td>
+        <td><%= bottle.vendor %></td>
+        <% if can? :manage, Bottle %>
+            <td><%= bottle.comment %></td>
+            <td>
+              <%= link_to edit_external_bottle_bottle_path(id: bottle.id), remote: true, class: "btn btn-primary btn-xs" do %>
+                  <i class="fa fa-pencil-square-o">Edit</i>
+              <% end %>
+            </td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,105 @@
+<div id="findChemicalModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title"><%= "Find Chemicals" %> <span class="fa fa-search-plus"></span></h3>
+      </div>
+      <%= form_tag({controller: "bottles", action: "multiple_results"}, method: "post", :remote => true) do %>
+          <div class="modal-body">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="alert alert-info">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <p>
+                    <strong>Info!</strong>
+                    Find by multiple bottles by entering valid GSID, DTXSID, CASRN, Name, or Bottle ID with one entry
+                    per
+                    line.
+                  </p>
+                </div>
+                <div class="break_smaller">
+                  <%= text_area_tag :chemical_search, nil, :class => "input-large", :id => "each-chemical-bottle", :size => "60x10", style: 'width:100%' %>
+                </div>
+              </div>
+              <div class="row">
+                <h4><span class='fa fa-filter'></span> Additional Filters</h4>
+
+                <div class="btn-group break_smaller" role="group" aria-label="advance_search_options">
+                  <button type="button" class="btn btn-default active" id="allBottleOptions">All</button>
+                  <button type="button" class="btn btn-default " id="solutionFilter">Solution</button>
+                  <button type="button" class="btn btn-default " id="neatFilter">Neat</button>
+                </div>
+              </div>
+              <div id="concentrationOptions" class="field">
+                <div class="row break_smaller ">
+                  <div class="col-lg-6 nopadding">
+                    <div class="input-group">
+                      <span class="input-group-addon"><small>Concentration</small></span>
+                      <%= number_field_tag('min_conc', nil, placeholder: 'Minimum', class: 'form-control inputValue') %>
+                      <span class="input-group-addon" style="border-left: 0; border-right: 0;"><small>and</small></span>
+                      <%= number_field_tag('max_conc', nil, placeholder: 'Maximum', class: 'form-control inputValue') %>
+                      <span class="input-group-addon"><small>mM</small></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="inputAmount" class="field">
+                <div class="row break_smaller">
+                  <div class="col-lg-4 nopadding">
+                    <div class="input-group">
+                      <span class="input-group-addon"><small>Minimum Amount</small></span>
+                      <%= number_field_tag('amount', nil, placeholder: "Amount", class: 'form-control inputValue') %>
+                      <span class="input-group-addon amountUnit"><small>ul/mg</small></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <%= submit_tag "Search Chemicals", :name => 'find_results', data: {disable_with: "ChemTrack is doing its thing..."}, id: 'text-chemicals', class: "btn btn-success" %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $(".btn-group > .btn").click(function () {
+            $("input.inputValue[type=number]").val('');
+            $(this).addClass("active").siblings().removeClass("active");
+            var btnId = this.id;
+            if (btnId == 'solutionFilter') {
+                $('#concentrationOptions, #inputAmount').show();
+                $('.amountUnit').text("ul");
+                $("#text-chemicals").prop("disabled", true);
+            } else if (btnId == 'neatFilter') {
+                $('#inputAmount').show();
+                $('#concentrationOptions:visible').hide();
+                $('.amountUnit').text("mg");
+                $("#text-chemicals").prop("disabled", true);
+            } else if (btnId == 'allBottleOptions') {
+                $('#concentrationOptions:visible, #inputAmount:visible').hide();
+                $("#text-chemicals").prop("disabled", false);
+            }
+        });
+        $('.field input').bind('keyup mouseup', function () {
+            var empty = false;
+            $('.field:visible input').each(function () {
+                if ($(this).val().length == 0) {
+                    empty = true;
+                }
+            });
+            if (empty) {
+                $("#text-chemicals").prop("disabled", true);
+            } else {
+                $("#text-chemicals").prop("disabled", false);
+            }
+        });
+    });
+
+</script>

@@ -1,0 +1,42 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="break_smaller">
+    <h2>Vendor Data Files</h2>
+  </div>
+  <div class="myScrollbarBlock">
+    <div id="vendorInfo" style="margin-top:2em;"></div>
+  </div>
+  <div id="jstreeRoute" data-jstreedata="<%= jstree_data_path %>"></div>
+  <div id="openFile" data-openfile="<%= open_file_path %>"></div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        var jstreeRoute = $("#jstreeRoute").data('jstreedata');
+        var openFileRoute = $("#openFile").data('openfile');
+        $('#vendorInfo').jstree({
+            'core': {
+                "plugins": ["wholerow"],
+                'animation': 1,
+                'themes': {
+                    "stripes": true,
+                    "variant": 'large'
+                },
+                'data': {
+                    'url': jstreeRoute,
+                    'datatype': 'json',
+                    'data': function (node) {
+                        return {'id': node.id === '#' ? '1' : node.id};
+                    }
+                }
+            }
+        }).on("select_node.jstree", function (e, data) {
+            var href = data.node.a_attr.href;
+            var name = data.node.text;
+            var completeRoute = openFileRoute + '?path=' + href;
+            if (href != '#') {
+                window.location = completeRoute;
+            }
+        });
+    });
+
+</script>

@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  action: MyString
+  location_a: MyString
+  location_b: MyString
+  trackable_id: 
+  trackable_type: Trackable
+  order_number:
+two:
+  user_id: 
+  action: MyString
+  location_a: MyString
+  location_b: MyString
+  trackable_id: 
+  trackable_type: Trackable
+  order_number:

@@ -1,0 +1,32 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: My First Agreement
+  agreement_status: 'one'
+  vendor: 'vendor1'
+  description: The best agreement in the planet
+  created_by: User1
+  expiration_date: 02-01-1991
+  active: 0
+  user: 'chemadmin'
+
+two:
+  name: MyString
+  agreement_status: 'four'
+  vendor: 'vendor1'
+  description: MyText
+  created_by: User1
+  expiration_date: 02-01-1991
+  active: 1
+  user: 'chemadmin'
+
+
+three:
+  name: MyString
+  agreement_status: 'four'
+  vendor: 'vendor2'
+  description: MyText
+  created_by: User1
+  expiration_date: 02-01-1991
+  active: 1
+  user: 'cor'

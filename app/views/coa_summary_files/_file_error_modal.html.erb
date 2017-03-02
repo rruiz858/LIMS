@@ -1,0 +1,62 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h3 class="modal-title"><%= "COA Summary File Errors "%></h3>
+    </div>
+    <div class="modal-body">
+      <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+        <div class= "col-md-12">
+          <div class="panel-group break_top" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingErrorOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseErrorOne" aria-expanded="true" aria-controls="collapseErrorOne">
+                    Duplicate barcodes present in file  <span class="badge"><%= @error_a_count %></span>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseErrorOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingErrorOne">
+                <div class="panel-body">
+                  <%= @error_a_array %>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingErrorTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseErrorTwo" aria-expanded="false" aria-controls="collapseErrorTwo">
+                    Non unique barcodes already in database <span class="badge"><%= @error_b_count %></span>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseErrorTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingErrorTwo">
+                <div class="panel-body">
+                  <%= @error_b_array %>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingErrorThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseErrorThree" aria-expanded="false" aria-controls="collapseErrorThree">
+                    Barcodes not found in Bottle inventory <span class="badge"><%= @error_c_count %></span>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseErrorThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingErrorThree">
+                <div class="panel-body">
+                  <%= @error_c_array %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="col-sm-12">
+  <div class="right">
+    <h4>Export XLS Plate Maps</h4>
+    <%= link_to unblinded_shipment_file_plate_details_path(@shipment_file), method: :get, class: 'btn btn-success excelFile', id: 'unblinded', style: 'color:white',
+                'data-toggle' => "popover",
+                "data-content" => "Download unblinded plate details file",
+                'data-trigger' => "hover", 'data-placement' => "top" do %>
+        <span class="fa fa-download"></span> Unblinded
+    <% end %>
+
+    <%= link_to blinded_shipment_file_plate_details_path(@shipment_file), method: :get, class: 'btn btn-success excelFile', id: 'blinded', style: 'color:white',
+                'data-toggle' => "popover",
+                "data-content" => "Download blinded plate details file",
+                'data-trigger' => "hover", 'data-placement' => "top" do %>
+        <span class="fa fa-download"></span> Blinded
+    <% end %>
+  </div>
+</div>
+
+<div class="break_smaller">
+  <h4>Plate Details</h4>
+</div>
+<table class="details table table-bordered table-condensed table-hover table-striped">
+  <thead>
+  <tr>
+    <th>Plate_Barcode</th>
+    <th>Well_ID</th>
+    <th>Barcode</th>
+    <th>ISM</th>
+    <th>Blinded Sample ID</th>
+    <th>Sample ID</th>
+    <th>Structure ID</th>
+    <th>Concentration</th>
+    <th>CAS_REGNO</th>
+    <th>Supplier_Sample_ID</th>
+    <th>More</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @shipment_file.plate_details.each do |plate_detail| %>
+      <tr>
+        <td id="plate-barc-<%= plate_detail.id%>"><%= plate_detail.aliquot_plate_barcode %></td>
+        <td><%= plate_detail.aliquot_well_id %></td>
+        <td><%= plate_detail.bottle.stripped_barcode %></td>
+        <td><%= plate_detail.ism %></td>
+        <td><%= plate_detail.blinded_sample_id %></td>
+        <td><%= plate_detail.sample_id %></td>
+        <td><%= plate_detail.structure_id %></td>
+        <td><%= plate_detail.aliquot_conc %></td>
+        <td><%= plate_detail.cas_regno %></td>
+        <td><%= plate_detail.supplier_sample_id %></td>
+        <td>
+          <a href="<%= shipment_file_plate_detail_path(@shipment_file, plate_detail) %>">
+            <button class="btn btn-primary btn-xs" style='color:white'>show</button>
+          </a>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="loading_modal"></div>

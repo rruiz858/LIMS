@@ -1,0 +1,47 @@
+<div class='row'>
+<h4>Not Available</h4>
+<table id="not-available-table" class="table display table-condensed table-hover table-striped table-bordered " cellspacing="0" width="100%">
+  <thead>
+  <tr>
+    <th></th>
+    <th nowrap>Source Substance ID</th>
+    <th nowrap>Mapped GSID</th>
+    <th nowrap>CASRN</th>
+    <th nowrap>Name</th>
+    <th nowrap>DTXSID</th>
+    <th nowrap>Created At</th>
+    <th nowrap>Created By</th>
+    <th nowrap>Mutiple</th>
+    <th nowrap></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @not_available_results.each do |ss| %>
+      <tr>
+        <td></td>
+        <td class="ss-id"> <%= ss.attributes["id"] %></td>
+        <td><%= ss.attributes["gsid"] %></td>
+        <td><%= ss.attributes["cas"] %></td>
+        <td><%= ss.attributes["name"] %></td>
+        <td><%= ss.attributes["dtxsid"] %></td>
+        <td><%= ss.attributes["created_at"] %></td>
+        <td><%= ss.attributes["created_by"] %></td>
+        <td>
+          <% if ss.attributes["multiple"] == "1" %>
+              <%= link_to "Curate", show_gsids_source_substance_path(ss.attributes["id"]), type: 'button', class: 'btn btn-info btn-xs manage-chemicals', style: 'color:white', id: "multiple-gsids" %>
+          <% else %>
+              <%= ss.attributes["multiple"] %>
+          <% end %>
+        </td>
+
+        <td align="center">
+          <%= link_to source_substance_path(ss.attributes["id"]), method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button class="btn btn-danger btn-xs btn-sty">Delete
+                <i class="fa fa-trash"></i></button>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,51 @@
+<div id="coaSummaryIndex">
+  <%= render 'coa_summaries/toolbar' %>
+  <div id="curate-coas-div" data-curateroute="<%= curate_coas_url %>"></div>
+  <div id="coa-matches-div" data-coamatchesroute="<%= coa_matches_url %>"></div>
+  <div id="uncuratedCountsDiv" data-countroute="<%= uncurated_counts_coa_summaries_path %>"></div>
+  <div id="totalCountDiv" data-totalcountroute="<%= total_uncurated_count_coa_summaries_path %>"></div>
+
+  <div class ="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12" id="tables-url" data-matchtables="<%= table_types_url %>">
+
+  <div id="coa-summary-files-form" class="coa-form">
+    <h3>Coa Summary Files</h3>
+    <%= render "coa_summary_files/coa_summary_file_table" %>
+  </div>
+
+  <div id="curated-coa-summaries-form" class="coa-form hidden">
+    <h3>Curated Coa Summaries</h3>
+    <%= render "coa_summaries/curated_records" %>
+  </div>
+
+  <div id="casrn-name-match-form" class="coa-form hidden">
+    <h3>CASRN AND NAME MATCH</h3>
+    <%= render "coa_summaries/tables/table_partial", :object_id => [@id = 'casrn-name'] %>
+  </div>
+
+  <div id="name-other-match-form" class="coa-form hidden">
+    <h3>CASRN MATCHED, NAME MATCHED OTHER</h3>
+    <%= render "coa_summaries/tables/table_partial", :object_id => [@id = 'name-other'] %>
+  </div>
+
+  <div id="casrn-match-form" class="coa-form hidden">
+    <h3>CASRN MATCHED</h3>
+    <%= render "coa_summaries/tables/table_partial", :object_id => [@id = 'casrn'] %>
+  </div>
+
+  <div id="name-match-form" class="coa-form hidden">
+    <h3>NAME MATCHED</h3>
+    <%= render "coa_summaries/tables/table_partial", :object_id => [@id = 'name'] %>
+  </div>
+
+  <div id="no-hits-match-form" class="coa-form hidden">
+    <h3>NO HITS</h3>
+    <%= render "coa_summaries/tables/table_partial", :object_id => [@id = 'no-hits'] %>
+  </div>
+</div>
+<div class="loading_modal"></div>
+<div id="show-coa-summary-modal" class="modal fade"></div>
+<div id="show-bottle-modal" class="modal fade"></div>
+<div id="coa-summary-error-modal" class="modal fade"></div>
+<div id="overrideModalDiv"></div>
+
+</div>

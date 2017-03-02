@@ -1,0 +1,30 @@
+<%= form_tag({controller: "shipment_files", action: "edit_record"}, method: "post", :remote => true) do %>
+    <h1><%= "Plate Detail" %><br />
+      <small><%= @record.barcode %></small>
+      <small> | </small>
+      <small><%= @record.well_id %></small>
+    </h1>
+        <div class="control-group break_smaller">
+          <%= label_tag :concentration, "Concentration (mM)", class: "control-group" %>
+          <%= number_field_tag :concentration, "#{@record.concentration}", class: "form-control" %>
+        </div>
+        <div class="control-group break_smaller">
+          <%= label_tag :concentration_unit, "Concentration Unit", class:"control-group" %>
+          <%= text_field_tag :concentration_unit,  "#{@record.concentration_unit}", class: "form-control"%>
+        </div>
+        <div class="control-group break_smaller">
+          <%= label_tag :amount, "Amount", class: "control-group" %>
+          <%= number_field_tag :amount,  "#{@record.amount}", class: "form-control"%>
+        </div>
+        <div class="control-group break_smaller">
+          <%= label_tag :amount_unit, "Amount Unit", class: "control-group" %>
+          <%= text_field_tag :amount_unit,  "#{@record.amount_unit}", class: "form-control"%>
+        </div>
+    <div class="actions">
+      <button type="submit" class="btn btn-primary" id="updatePlateRecord" name="update_record">
+        <i class ="fa fa-pencil-square-o"></i> Update
+      </button>
+    </div>
+<% end %>
+
+

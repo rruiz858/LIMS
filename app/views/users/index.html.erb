@@ -1,0 +1,55 @@
+<div class= "top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+<div>
+  <div align="right">
+    <% if can? :create, User %>
+        <a title='Add New User' :rel='tooltip' , href="<%= new_user_path %>">
+          <button class="btn btn-success" style='color:white'>Add New User <i class="fa fa-plus-circle"></i>
+          </button>
+        </a>
+    <% end %>
+  </div>
+  <h1 id="user_title">Users</h1>
+</div>
+<br>
+<table id="users_index_id" class= "table table-bordered table-condensed table-hover table-striped">
+  <thead>
+  <tr>
+    <th>Username</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= user.f_name %></td>
+        <td><%= user.l_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role.role_type %></td>
+        <td>
+          <%= link_to user, class: 'btn btn-primary btn-xs default-color' do %>
+              Show
+          <% end %>
+        </td>
+        <td><%= link_to edit_user_path(user), class: 'btn btn-default btn-xs ' do %>
+              Edit <span class="fa fa-pencil"></span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to user, method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button class="btn btn-danger btn-xs default-color">Delete
+                <span class="fa fa-trash"></span>
+              </button>
+          <% end %>
+        </td>
+  <% end %>
+  </tbody>
+</table>
+</div>

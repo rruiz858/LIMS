@@ -1,0 +1,78 @@
+<%= simple_form_for([@vendor, @contact]) do |f| %>
+    <div class="control-group">
+      <%= f.input :first_name, required: false %>
+      <%= f.input :last_name, required: false  %>
+      <%= f.input :email, required: false%>
+      <%= f.input :phone1, as: :tel, input_html: {class: 'form-control'}, required: false  %>
+      <%= f.input :phone2, required: false  %>
+      <%= f.input :fax, required: false  %>
+      <%= f.input :cell, required: false %>
+      <%= f.input :title, required: false %>
+      <%= f.input :other_details, as: :text, required: false %>
+      <%= f.input :department, required: false  %>
+      <%= f.input :contact_type_id, :collection => @contact_types, :label_method => :kind, :value_method => :id, :include_blank => false, required: false%>
+      <hr>
+      <%= f.simple_fields_for :address do |a| %>
+          <h2>Address</h2>
+          <%= a.label :country, 'Country' %>
+          <div class="control-group break_smaller">
+          <%= a.select :country, @countries, {prompt: "Select Country"}, id: 'countries_id', class: 'form-control' %>
+          </div>
+          <div class="control-group break_smaller">
+            <%= label_tag :state, ' Select State/Subdivision', class: 'control-group' %>
+            <%= a.select(:state, options_from_collection_for_select([], [], [], params[:state]), {:prompt => "Select State"},
+                         {"data-option-dependent" => true,
+                          "data-option-observed" => "countries_id",
+                          "data-option-url" => "#{states_path(":country:")}",
+                          "data-option-key-method" => :state,
+                          "data-option-value-method" => :state, :class => "form-control", :id => "countryStates"}) %>
+          </div>
+          <%= a.input :city, required: false %>
+          <%= a.label :override_city, 'Override City Validation?' %>
+          <%= a.input :override_city, as: :radio_buttons, checked: ['No', false], item_label_class: "radio-inline", item_wrapper_tag: false, required: false, label: false %>
+          <%= a.input :address1, required: false %>
+          <%= a.input :address2, required: false %>
+          <%= a.input :zip, required: false %>
+          <%= a.input :other_details %>
+      <%end%>
+    </div>
+    <%= f.hidden_field :vendor_id, :value => @vendor.id %>
+    <%= button_tag(type: 'submit', class: "btn btn-success",  id: "submitContact" ) do %>
+        <i class=" fa fa-plus-circle"></i> <%=@button_text%>
+    <%end%>
+    <%= link_to vendor_path(id: @vendor.id), :title => 'Back to Vendor',
+                :rel => 'tooltip',
+                id: 'backContact',
+                type: 'button',
+                class: 'btn btn-primary',
+                style: 'color:white' do %>
+        <i class="fa fa-arrow-circle-left"> Back</i>
+    <% end %>
+
+<% end %>
+
+
+<% unless @contact.address.state.blank? %>
+    <div id="countryState" data-country="<%= states_path(@contact.address.country) %>"></div>
+    <script>
+        $(document).ready(function () {
+            var countryStateRoute = $("#countryState").data('country');
+            var country = '<%=escape_javascript @contact.address.country%>';
+            var currentState = '<%=escape_javascript @contact.address.state%>';
+            $.ajax({
+                url: countryStateRoute,
+                data: country,
+                dataType: "JSON",
+                success: function (hash) {
+                    var html = [];
+                    var results = hash;
+                    results[0].state = currentState;
+                    for (var i = 0, len = results.length; i < len; ++i) {
+                        html.push('<option value="' + results[i]['state'] + '">' + results[i]['state'] + '</option>');
+                    }
+                    $('#countryStates').append(html)
+                }
+            });
+        });
+    </script>
+<% end %>

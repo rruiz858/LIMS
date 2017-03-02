@@ -1,0 +1,26 @@
+<%= form_for(@coa_summary_file, remote: false) do |f| %>
+<p>
+  <strong>User:</strong>
+  <%= @coa_summary_file.user.f_name %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @coa_summary_file.filename %>
+</p>
+
+<p>
+  <strong>File url:</strong>
+  <%= @coa_summary_file.file_url %>
+</p>
+
+<p>
+  <strong>File kilobytes:</strong>
+  <%= @coa_summary_file.file_kilobytes %>
+</p>
+
+    <p>
+      <strong>Count:</strong>
+      <%= @coa_summary_file.coa_summary_count %>
+    </p>
+<%end%>

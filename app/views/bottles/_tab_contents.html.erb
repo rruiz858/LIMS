@@ -1,0 +1,35 @@
+<div id="all-bottles-form" class="tab-pane fade in active" role="tabpanel">
+  <h3>Mapped & Available Bottles</h3>
+  <%= render "bottles/tables/all_bottles" %>
+</div>
+
+<div id="unmapped-bottles-form" class="tab-pane fade" role="tabpanel">
+  <h3>Unmapped Bottles</h3>
+  <%= render "bottles/tables/unmapped_bottles" %>
+</div>
+<div id="external-bottles-form" class="tab-pane fade" role="tabpanel">
+  <h3>External Bottles</h3>
+  <%= render "bottles/tables/external_bottles" %>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+            $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+        } );
+        $('#bottles').DataTable({
+            "processing": true,
+            "paging": true,
+            "scrollY": true,
+            "scrollX": true,
+            "serverSide": true,
+            "sAjaxSource": $('#bottles').data('source')
+        });
+        $('table.bottle-table').DataTable({
+            "paging": true,
+            "scrollY": 600,
+            "scrollX": true
+        });
+    });
+</script>

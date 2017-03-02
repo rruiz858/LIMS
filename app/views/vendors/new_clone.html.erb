@@ -1,0 +1,17 @@
+<div class=" top-page col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-8 col col-xs-offset-1">
+  <%= form_for :vendor, :url => url_for(:controller => 'vendors', :action => 'create'), :html => {:class => "upload_file_form"} do |f| %>
+      <h1>Clone Vendor<br/>
+        <small><%= @old_vendor.name %></small>
+        <small> |</small>
+        <small><%= @old_vendor.label%></small>
+      </h1>
+      <%= render 'form', :f => f %>
+  <% end %>
+  <%= link_to vendors_path, :title => 'Back to Vendors',
+              :rel => 'tooltip',
+              type: 'button',
+              class: 'btn btn-primary',
+              style: 'color:white' do %>
+      <i class="fa fa-arrow-circle-left"> Back</i>
+  <% end %>
+</div>

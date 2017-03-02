@@ -1,0 +1,14 @@
+<% if @order.rejected %>
+    <%= link_to order_comments_show_order_path(@order), remote: true, method: :get, class: "btn btn-default reviewOrder ", id: "reviewOrderButton",
+                'data-toggle' => "popover", 'data-content' => 'Email will be sent to all Admins upon the placing order in review. Comment is required to re-submit order ',
+                'data-trigger' => 'hover', 'data-placement '=> 'bottom' do %>
+        <span class='fa fa-envelope'></span> Place in Review
+    <% end %>
+<%else%>
+    <%= form_tag review_order_order_path(@order), method: :post, remote: true do %>
+        <%= button_tag(type: "submit", class: "btn btn-default reviewOrder", id: "reviewOrderButton", name: nil, 'data-toggle' => "popover",
+                       "data-content" => "Email will be sent to all Admins upon the placing order in review", 'data-trigger' => "hover", 'data-placement' => "bottom") do %>
+            <span class='fa fa-envelope' aria-hidden="true"></span> Place in Review
+        <% end %>
+    <% end %>
+<%end%>

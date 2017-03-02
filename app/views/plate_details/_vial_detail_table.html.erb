@@ -1,0 +1,64 @@
+ <% if can? :blinded, ShipmentFile %>
+<div class="col-sm-12">
+  <div class="right">
+    <h4>Export XLS Plate Maps</h4>
+    <%= link_to unblinded_vial_shipment_file_plate_details_path(@shipment_file), method: :get, class: 'btn btn-success excelFile', id: 'unblinded', style: 'color:white',
+                'data-toggle' => "popover",
+                "data-content" => "Download unblinded vial details file",
+                'data-trigger' => "hover", 'data-placement' => "top" do %>
+        <span class="fa fa-download"></span> Unblinded
+    <% end %>
+
+    <%= link_to blinded_vial_shipment_file_plate_details_path(@shipment_file), method: :get, class: 'btn btn-success excelFile', id: 'blinded', style: 'color:white',
+                'data-toggle' => "popover",
+                "data-content" => "Download blinded vial details file",
+                'data-trigger' => "hover", 'data-placement' => "top" do %>
+        <span class="fa fa-download"></span> Blinded
+    <% end %>
+  </div>
+</div>
+<%end%>
+
+<div class="break_smaller">
+  <h4>Vial Details</h4>
+</div>
+<table class="details table table-bordered table-condensed table-hover table-striped">
+  <thead>
+  <tr>
+    <th>Barcode</th>
+    <th>Vial_Barcode</th>
+    <th>Well_ID</th>
+    <th>ISM</th>
+    <th>Blinded Sample ID</th>
+    <th>Sample ID</th>
+    <th>Structure ID</th>
+    <th>Amount(mg)</th>
+    <th>CAS_REGNO</th>
+    <th>Supplier_Sample_ID</th>
+    <th>More</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @shipment_file.vial_details.each do |vial_detail| %>
+      <tr>
+        <td><%= vial_detail.bottle.stripped_barcode %></td>
+        <td><%= vial_detail.aliquot_vial_barcode %></td>
+        <td><%= vial_detail.aliquot_well_id %></td>
+        <td><%= vial_detail.ism %></td>
+        <td><%= vial_detail.blinded_sample_id %></td>
+        <td><%= vial_detail.sample_id %></td>
+        <td><%= vial_detail.structure_id %></td>
+        <td><%= vial_detail.aliquot_amount %></td>
+        <td><%= vial_detail.cas_regno %></td>
+        <td><%= vial_detail.supplier_sample_id %></td>
+        <td>
+          <a href="<%= show_vial_path(shipment_file_id: @shipment_file.id, vial_detail_id: vial_detail.id) %>">
+            <button class="btn btn-primary btn-xs" style='color:white'>Show</button>
+          </a>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="loading_modal"></div>

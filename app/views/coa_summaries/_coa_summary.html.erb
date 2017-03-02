@@ -1,0 +1,34 @@
+<h4>COA Summary Record</h4>
+<table  class="table table-bordered table-condensed table-hover table-striped">
+  <thead>
+  <tr>
+    <th>barcode</th>
+    <th>product no</th>
+    <th>lot number</th>
+    <th>Coa chemical name</th>
+    <th>Coa casrn</th>
+    <th>Coa molecular weight</th>
+    <th> purity %</th>
+    <th>methods</th>
+    <th>test date</th>
+    <th>expiration date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @coa_summary.bottle_barcode %></td>
+    <td><%= @coa_summary.coa_product_no %></td>
+    <td><%= @coa_summary.coa_lot_number %></td>
+    <td><%= @coa_summary.coa_chemical_name %></td>
+    <td><%= @coa_summary.coa_casrn %></td>
+    <td><%= @coa_summary.coa_molecular_weight %></td>
+    <td><%= @coa_summary.coa_purity_percentage %></td>
+    <td><%= @coa_summary.coa_methods %></td>
+    <td><%= @coa_summary.coa_test_date %></td>
+    <td><%= @coa_summary.coa_expiration_date %></td>
+  </tr>
+  </tbody>
+</table>
+
+
+

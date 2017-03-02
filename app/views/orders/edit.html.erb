@@ -1,0 +1,55 @@
+<div class="top-page container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="top-page"><%= render 'orders/partials/order_step_bar' %></div>
+  <%= simple_form_for @order do |f| %>
+      <h2>Order Basics</h2>
+      <%= render 'orders/partials/form', :f => f %>
+      <%= link_to order_chemical_list_path(@order, @order.order_chemical_list.chemical_list_id), {:style => 'color:white', class: "btn btn-primary manage-chemicals"}, data: {disable_with: "Loading Chemicals.."} do %>
+          <span class="fa fa-arrow-circle-right"></span> Add Chemicals
+      <% end %>
+  <% end %>
+  <div id="taskOrderRoute" data-task="<%= tasks_path(@order.vendor_id) %>"></div>
+  <div id="addressRoute" data-address="<%= addresses_path(@order.vendor_id) %>"></div>
+
+  <div class="loading_modal"></div>
+</div>
+
+    <script>
+        $(document).ready(function () {
+            var taskRoute = $("#taskOrderRoute").data('task');
+            var currentTask = '<%=escape_javascript @order.task_order_id.to_s%>';
+            var currentAddressId = '<%=escape_javascript @order.address_id.to_s%>';
+            var currentAddress = '<%=escape_javascript @order.address.address1%>';
+            var addressRoute = $("#addressRoute").data('address');
+             var vendor_id = '<%=escape_javascript @order.vendor_id.to_s %>';
+            $.ajax({
+                url: taskRoute,
+                dataType: "JSON",
+                success: function (hash) {
+                    var html = [];
+                    var results = hash;
+                    results[0].id = currentTask;
+                    for (var i = 0, len = results.length; i < len; ++i) {
+                        console.log(results[i]);
+                        html.push('<option value="' + results[i]['id'] + '">' + results[i]['id'] + '</option>');
+                    }
+                    $('#order_task_order_id').append(html)
+                }
+
+            });
+            $.ajax({
+                url: addressRoute,
+                dataType: "JSON",
+                success: function (hash) {
+                    var html = [];
+                    var results = hash;
+                    results[0].id = currentAddressId;
+                    results[0].address1 = currentAddress;
+                    for (var i = 0, len = results.length; i < len; ++i) {
+                        console.log(results[i]);
+                        html.push('<option value="' + results[i]['id'] + '">' + results[i]['address1'] + '</option>');
+                    }
+                    $('#order_address_id').append(html)
+                }
+            });
+        });
+    </script>

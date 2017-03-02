@@ -1,0 +1,1 @@
+$('#chemical-list').html("<%=escape_javascript  render :partial => 'chemical_lists/tables', :object=> [ @available_results = @results_hash["available"] , @not_available_results = @results_hash["not_available"], @duplicate_results = @results_hash["duplicates"], @no_hits = @results_hash["no_hits"] ]%>");

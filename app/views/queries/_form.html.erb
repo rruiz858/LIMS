@@ -1,0 +1,61 @@
+<%= simple_form_for @query do |f| %>
+    <% tmp_arry_attributes = %w(name label description) %>
+    <% tmp_arr_labels = %w(Name Label Description) %>
+    <% tmp_arry_attributes.zip(tmp_arr_labels).each do |attribute, label| %>
+        <div class="control-groups break_smaller">
+          <%= f.label attribute.to_sym, "#{label}" %><br>
+          <%= f.input attribute.to_sym, :placeholder => "#{label}", :class => "form-control", required: false, label: false %>
+        </div>
+    <% end %>
+
+    <div id="sqlDiv">
+    <label for="queryTextArea"> <span class="fa fa-info-circle fa-lg"
+                                      data-toggle="popover"
+                                      data-content="Please enter sql after FROM. Place ? when defining any search condition. Characters like ' ; DROP etc. are not allowed!
+                                                    Example of valid input: bottles where units = ? and qty_available_mg_ul > ?"
+                                      data-trigger="hover" data-placement="bottom">
+                                </span>Query
+    </label>
+    <div class="well">
+      SELECT COUNT (*) FROM
+    </div>
+    <div class="inner break_smaller">
+      <%= f.input :sql, as: :text, :class => "form-control", :input_html => {:rows => 15, :id => "sqlTextBox"}, required: false, label: false %>
+    </div>
+    </div>
+
+    <div class="break_smaller" id="conditionsDiv">
+      <label for="conditionsTextArea"> <span class="fa fa-info-circle fa-lg fontAwesomeToggle"
+                                             data-toggle="popover"
+                                             data-content="Enter one condition per line. Every ? from the query textbox should contain condition"
+                                             data-trigger="hover" data-placement="bottom">
+                                        </span>Conditions
+      </label>
+      <%= f.input :conditions, as: :text, :class => "form-control", :id => "coditionsTextBox", :input_html => {:rows => 5}, required: false, label: false %>
+    </div>
+
+    <div class="actions">
+      <%= link_to activities_path, {:style => 'color:white', class: "btn btn-primary", id: 'orderOverview'} do %>
+          <span class="fa fa-home"></span> Home
+      <% end %>
+      <%= f.submit class: "btn btn-success", id: "submitQuery"%>
+    </div>
+
+<% end %>
+
+<script>
+    var re = /delete+|drop+|update+|create+|truncate+|insert+|["';]+/gi;
+    $('#sqlTextBox').bind('onload keyup', function () {
+        var value = $(this).val();
+        var matched = value.match(re);
+        if (matched) {
+            $("#submitQuery").prop("disabled", true);
+            $("#sqlTextBox").addClass('errorClass')
+        } else {
+            $("#submitQuery").prop("disabled", false);
+            if ($('#sqlTextBox').is('.errorClass')) {
+                $("#sqlTextBox").removeClass('errorClass')
+            }
+        }
+    });
+</script>

@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ism: MyString
+  sample_id: MyString
+  structure_id: MyString
+  structure_real_amw: 9.99
+  sample_supplier: MyString
+  supplier_structure_id: MyString
+  aliquot_plate_barcode: MyString
+  aliquot_well_id: 1
+  aliquot_vial_barcode: 1
+  aliquot_amount: 9.99
+  aliquot_amount_unit: mg
+  sample_appearance: MyString
+  structure_name: MyString
+  cas_regno: MyString
+  supplier_sample_id: MyString
+  aliquot_date: MyString
+  solubilized_barcode: MyString
+  lts_barcode: MyString
+  source_barcode: MyString
+  purity:
+  bottle: 'one'
+  shipment_file: 'vial'  #reference node
+  blinded_sample_id: MyString_1
+
+two:
+  ism: MyString
+  sample_id: MyString
+  structure_id: MyString
+  structure_real_amw: 9.99
+  sample_supplier: MyString
+  supplier_structure_id: MyString
+  aliquot_plate_barcode: VIAL0001111
+  aliquot_well_id: 1
+  aliquot_vial_barcode: A111
+  aliquot_amount: 9.99
+  aliquot_amount_unit: mg
+  sample_appearance: MyString
+  structure_name: MyString
+  cas_regno: MyString
+  supplier_sample_id: MyString
+  aliquot_date: MyString
+  solubilized_barcode: MyString
+  lts_barcode: MyString
+  source_barcode: MyString
+  purity:
+  bottle: 'one'
+  shipment_file: 'vial'  #reference node
+  blinded_sample_id: MyString_1

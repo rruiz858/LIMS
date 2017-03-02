@@ -1,0 +1,325 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bottle_barcode: "V1"
+  coa_table_entry: 1
+  coa: MyString
+  msds: MyString
+  inventory_source: MyString
+  coa_product_no: MyString
+  coa_lot_number: MyString
+  coa_chemical_name: ChemicalX
+  coa_casrn: 1-1-1
+  coa_molecular_weight: 1
+  coa_density: 1
+  coa_purity_percentage: MyString
+  coa_methods: MyString
+  coa_test_date: MyString
+  coa_expiration_date: MyString
+  msds_cautions: MyText
+  coa_review_notes: MyText
+  reviewer_initials: MyString
+  commercial_source: MyString
+  generic_substance: 'four'
+  source_substance: 'three'
+
+two:
+  bottle_barcode: "TX016151"
+  coa_table_entry: 1
+  coa: MyString
+  msds: MyString
+  inventory_source: MyString
+  coa_product_no: MyString
+  coa_lot_number: MyString
+  coa_chemical_name: MyString
+  coa_casrn: MyString
+  coa_molecular_weight: 1
+  coa_density: 1
+  coa_purity_percentage: MyString
+  coa_methods: MyString
+  coa_test_date: MyString
+  coa_expiration_date: MyString
+  msds_cautions: MyText
+  coa_review_notes: MyText
+  gsid:
+  reviewer_initials: MyString
+  commercial_source: MyString
+
+three:
+  bottle_barcode: "llamas"
+  coa_table_entry: 1
+  coa: MyString
+  msds: MyString
+  inventory_source: MyString
+  coa_product_no: MyString
+  coa_lot_number: MyString
+  coa_chemical_name: ChemicalX
+  coa_casrn: 1-1-1
+  coa_molecular_weight: 1
+  coa_density: 1
+  coa_purity_percentage: MyString
+  coa_methods: MyString
+  coa_test_date: MyString
+  coa_expiration_date: MyString
+  msds_cautions: MyText
+  coa_review_notes: MyText
+  reviewer_initials: MyString
+  commercial_source: MyString
+  gsid: 1234
+  source_substance: 'four'
+  generic_substance: 'one'
+
+four:
+  bottle_barcode: TX015880
+  coa_table_entry: 1
+  coa: MyString
+  msds: MyString
+  inventory_source: MyString
+  coa_product_no: MyString
+  coa_lot_number: MyString
+  coa_chemical_name: ChemicalX
+  coa_casrn: 1-1-1
+  coa_molecular_weight: 1
+  coa_density: 1
+  coa_purity_percentage: MyString
+  coa_methods: MyString
+  coa_test_date: MyString
+  coa_expiration_date: MyString
+  msds_cautions: MyText
+  coa_review_notes: MyText
+  reviewer_initials: MyString
+  commercial_source: MyString
+  source_substance: 'no_hits'
+
+five:
+  bottle_barcode: TX016151
+  coa_table_entry: 1
+  coa: MyString
+  msds: MyString
+  inventory_source: MyString
+  coa_product_no: MyString
+  coa_lot_number: MyString
+  coa_chemical_name: somethingdangerous
+  coa_casrn: 70-00-6
+  coa_molecular_weight: 1
+  coa_density: 1
+  coa_purity_percentage: MyString
+  coa_methods: MyString
+  coa_test_date: MyString
+  coa_expiration_date: MyString
+  msds_cautions: MyText
+  coa_review_notes: MyText
+  reviewer_initials: MyString
+  commercial_source: MyString
+  gsid: 'three'
+
+six:
+  bottle_barcode: TX01618954
+  coa_table_entry: 1
+  coa: MyString
+  msds: MyString
+  inventory_source: MyString
+  coa_product_no: MyString
+  coa_lot_number: MyString
+  coa_chemical_name: somethingdangerous
+  coa_casrn: 70-00-6
+  coa_molecular_weight: 1
+  coa_density: 1
+  coa_purity_percentage: MyString
+  coa_methods: MyString
+  coa_test_date: MyString
+  coa_expiration_date: MyString
+  msds_cautions: MyText
+  coa_review_notes: MyText
+  reviewer_initials: MyString
+  commercial_source: MyString
+
+
+seven:
+  bottle_barcode: TX0THISAVAILABLE
+  coa_table_entry: 1
+  coa: MyString
+  msds: MyString
+  inventory_source: MyString
+  coa_product_no: MyString
+  coa_lot_number: MyString
+  coa_chemical_name: somethingdangerous
+  coa_casrn: 70-00-6
+  coa_molecular_weight: 1
+  coa_density: 1
+  coa_purity_percentage: MyString
+  coa_methods: MyString
+  coa_test_date: MyString
+  coa_expiration_date: MyString
+  msds_cautions: MyText
+  coa_review_notes: MyText
+  reviewer_initials: MyString
+  commercial_source: MyString
+  generic_substance: 'five'
+
+
+eight:
+  bottle_barcode: TX0THISGROSS
+  coa_table_entry: 1
+  coa: MyString
+  msds: MyString
+  inventory_source: MyString
+  coa_product_no: MyString
+  coa_lot_number: MyString
+  coa_chemical_name: somethingdangerous
+  coa_casrn: 70-00-6
+  coa_molecular_weight: 1
+  coa_density: 1
+  coa_purity_percentage: MyString
+  coa_methods: MyString
+  coa_test_date: MyString
+  coa_expiration_date: MyString
+  msds_cautions: MyText
+  coa_review_notes: MyText
+  reviewer_initials: MyString
+  commercial_source: MyString
+  generic_substance: 'six'
+
+
+nine:
+   bottle_barcode: TXASPIRIN
+   coa_table_entry: 1
+   coa: MyString
+   msds: MyString
+   inventory_source: MyString
+   coa_product_no: MyString
+   coa_lot_number: MyString
+   coa_chemical_name: ASPIRIN
+   coa_casrn: 50-78-2
+   coa_molecular_weight: 1
+   coa_density: 1
+   coa_purity_percentage: MyString
+   coa_methods: MyString
+   coa_test_date: MyString
+   coa_expiration_date: MyString
+   msds_cautions: MyText
+   coa_review_notes: MyText
+   reviewer_initials: MyString
+   commercial_source: MyString
+   gsid: 20108
+   generic_substance: 'seven'
+
+
+ten:
+   bottle_barcode: 7654454
+   coa_table_entry: 1
+   coa: MyString
+   msds: MyString
+   inventory_source: MyString
+   coa_product_no: MyString
+   coa_lot_number: MyString
+   coa_chemical_name: ChemicalX
+   coa_casrn: 50-78-2
+   coa_molecular_weight: 1
+   coa_density: 1
+   coa_purity_percentage: MyString
+   coa_methods: MyString
+   coa_test_date: MyString
+   coa_expiration_date: MyString
+   msds_cautions: MyText
+   coa_review_notes: MyText
+   reviewer_initials: MyString
+   commercial_source: MyString
+   gsid: 20108
+   generic_substance: 'four'
+
+eleven:
+   bottle_barcode: V40TX016151
+   coa_table_entry: 1
+   coa: MyString
+   msds: MyString
+   inventory_source: MyString
+   coa_product_no: MyString
+   coa_lot_number: MyString
+   coa_chemical_name:
+   coa_casrn: Llamas
+   coa_molecular_weight: 1
+   coa_density: 1
+   coa_purity_percentage: MyString
+   coa_methods: MyString
+   coa_test_date: MyString
+   coa_expiration_date: MyString
+   msds_cautions: MyText
+   coa_review_notes: MyText
+   reviewer_initials: MyString
+   commercial_source: MyString
+   gsid:
+   generic_substance:
+   source_substance: 'eight'
+
+twelve:
+   bottle_barcode: V40TX016151
+   coa_table_entry: 1
+   coa: MyString
+   msds: MyString
+   inventory_source: MyString
+   coa_product_no: MyString
+   coa_lot_number: MyString
+   coa_chemical_name:
+   coa_casrn: Llamas
+   coa_molecular_weight: 1
+   coa_density: 1
+   coa_purity_percentage: MyString
+   coa_methods: MyString
+   coa_test_date: MyString
+   coa_expiration_date: MyString
+   msds_cautions: MyText
+   coa_review_notes: MyText
+   reviewer_initials: MyString
+   commercial_source: MyString
+   gsid:
+   generic_substance:
+   source_substance: 'nine'
+
+thirteen:
+   bottle_barcode: V40TX016151
+   coa_table_entry: 1
+   coa: MyString
+   msds: MyString
+   inventory_source: MyString
+   coa_product_no: MyString
+   coa_lot_number: MyString
+   coa_chemical_name:
+   coa_casrn: Llamas
+   coa_molecular_weight: 1
+   coa_density: 1
+   coa_purity_percentage: MyString
+   coa_methods: MyString
+   coa_test_date: MyString
+   coa_expiration_date: MyString
+   msds_cautions: MyText
+   coa_review_notes: MyText
+   reviewer_initials: MyString
+   commercial_source: MyString
+   gsid:
+   generic_substance:
+   source_substance: 'ten'
+
+fourteen:
+   bottle_barcode: 7654454
+   coa_table_entry: 1
+   coa: MyString
+   msds: MyString
+   inventory_source: MyString
+   coa_product_no: MyString
+   coa_lot_number: MyString
+   coa_chemical_name: ChemicalX
+   coa_casrn: 50-78-2
+   coa_molecular_weight: 1
+   coa_density: 1
+   coa_purity_percentage: MyString
+   coa_methods: MyString
+   coa_test_date: MyString
+   coa_expiration_date: MyString
+   msds_cautions: MyText
+   coa_review_notes: MyText
+   reviewer_initials: MyString
+   commercial_source: MyString
+   gsid: 20108
+   generic_substance:
+   source_substance:

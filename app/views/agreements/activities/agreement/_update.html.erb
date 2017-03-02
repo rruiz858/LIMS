@@ -1,0 +1,11 @@
+<div class="timeline-heading">
+  <h5 class="timeline-title">Agreement was updated</h5>
+  <p><small class="text-muted"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(activity.updated_at) %> </small>
+  </p>
+</div>
+<div class="timeline-body">
+  <i class = "fa fa-pencil"></i>
+  <%= activity.updated_at.strftime("%m/%d/%Y %l:%m%p" )   %>
+  Agreement was
+  updated by <%= activity.user.username %>
+</div>

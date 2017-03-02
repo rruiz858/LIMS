@@ -1,0 +1,66 @@
+<div class="top-page container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <h1 class="break">Shipment File <br/>
+    <small><%= @shipment_file.vendor.name %></small>
+    <small> |</small>
+    <% if @shipment_file.vial %>
+        <small>Vial Details</small>
+    <% else %>
+        <small>Plate Details</small>
+    <% end %>
+  </h1>
+
+  <table class=" table table-bordered .table-condensed">
+    <h4>Shipment File Details</h4>
+    <thead>
+    <tr>
+      <th nowrap>File name</th>
+      <th nowrap>File Size</th>
+      <th nowrap>Comment</th>
+      <th nowrap>Vendor Name</th>
+      <th nowrap>Order ID</th>
+      <th nowrap>EPA Internal Order ID</th>
+      <th nowrap>Evotec Order ID</th>
+      <th nowrap>Evotec Shipment ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>  <%= if_legacy?(@shipment_file) %></td>
+      <td>  <%= @shipment_file.file_kilobytes %></td>
+      <td>   <%= @shipment_file.comment %></td>
+      <td>  <%= @shipment_file.vendor.name %></td>
+      <td> <%= @shipment_file.order_id %></td>
+      <td><%= @shipment_file.order_number %></td>
+      <td> <%= @shipment_file.evotech_order_num %></td>
+      <td> <%= @shipment_file.evotech_shipment_num %></td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <div class="break">
+    <%= link_to shipment_files_path, :title => 'Back',
+                :rel => 'tooltip',
+                type: 'button',
+                class: 'btn btn-primary',
+                style: 'color:white' do %>
+        <span class="fa fa-arrow-circle-left"></span> Back to index page
+    <% end %>
+    <% if can? :manage, ShipmentFile %>
+        <%= link_to edit_shipment_file_path(@shipment_file), :title => 'Update',
+                    :rel => 'tooltip',
+                    type: 'button',
+                    class: 'btn btn-success',
+                    id: 'Update',
+                    style: 'color:white' do %>
+            <span class="fa fa-pencil"></span> Update
+        <% end %>
+    <% end %>
+  </div>
+  <hr>
+  <% if @shipment_file.vial %>
+      <%= render :partial => 'plate_details/vial_detail_table' %>
+  <% else %>
+      <%= render :partial => 'plate_details/plate_detail_table' %>
+  <% end %>
+</div>

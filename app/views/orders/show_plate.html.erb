@@ -1,0 +1,12 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="stepClass" id="orderStep3"></div>
+  <div class="top-page"><%= render 'orders/partials/order_step_bar' %></div>
+  <div class="detailInfo" id="detailsTablePartial">
+    <% if plate_details? || in_review? %>
+        <%= render 'orders/partials/detail_table' %>
+    <% end %>
+  </div>
+    <div class='orderPlateDetail' id="detailsPartial">
+      <%= render 'orders/partials/details_form' %>
+    </div>
+</div>

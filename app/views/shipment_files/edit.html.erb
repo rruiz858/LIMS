@@ -1,0 +1,37 @@
+<div class="top-page container col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="col-xs-6">
+    <h3>Edit Information</h3>
+    <%= form_for(@shipment_file) do |f| %>
+        <br>
+
+        <div class="form-group break_smaller">
+          <label for="comment">Comment</label>
+          <%= f.text_area :comment, class: 'form-control' %>
+        </div>
+        <div class="control-group break_smaller">
+          <%= f.label :vendor_id, class: 'control-group' %>
+          <%= f.collection_select :vendor_id, Vendor.all, :id, :name, {prompt: "Select a Vendor"}, {class: "form-control"} %>
+        </div>
+        <div class="control-group break_smaller">
+          <%= f.label :order_id, 'Order ID', class: 'control-group' %>
+          <%= f.collection_select :order_id, @order, :id, :id, {prompt: "Select an Order ID"}, {class: "form-control"} %>
+        </div>
+        <div class="control-group break_smaller">
+          <%= f.label :order_number, 'Internal EPA Order Number', class: 'control-group' %><br>
+          <%= f.number_field :order_number, :placeholder => "Order Number", :class => "form-control" %>
+        </div>
+        <div class="actions brea_smaller">
+          <%= f.submit "Update", :class => "btn btn-success", style: "color:white" %>
+        </div>
+    <% end %>
+    <%= link_to shipment_files_path, :title => 'Back',
+                :rel => 'tooltip',
+                type: 'button',
+                class: 'btn btn-primary',
+                style: 'color:white' do %>
+        <i class="fa fa-arrow-circle-left"> Back</i>
+    <% end %>
+
+  </div>
+</div>
+

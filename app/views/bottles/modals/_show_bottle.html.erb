@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h3 class="modal-title"><%= "Show Bottle" %><br/>
+        <small><%= @bottle.barcode %></small>
+        <small> |</small>
+        <small><%= @bottle.cas %></small>
+      </h3>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-12">
+        <h4>Bottle Info</h4>
+        <%= render partial: 'bottles/bottle_info',  :locals => {:bottle => @bottle} %>
+        <% unless @bottle.coa_summary.nil? %>
+        <hr>
+            <h4>Coa Summary Info</h4>
+            <%= render partial: 'coa_summaries/coa_summary_info', :locals => {:coa_summary => @bottle.coa_summary}%>
+        <%end%>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+

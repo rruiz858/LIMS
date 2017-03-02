@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  filename: MyString
+  file_url: MyString
+  file_kilobytes: 1
+  user_id: 1
+  user: superadmin #refence node
+  coa_summary: one #reference node
+#two:
+#  filename: MyString
+#  file_url: MyString
+#  file_kilobytes: 1
+#  user_id:
+#  bottle_id:

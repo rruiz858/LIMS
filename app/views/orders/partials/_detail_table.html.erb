@@ -1,0 +1,20 @@
+<table class=" table table-bordered .table-condensed">
+  <h3>Current Plate Details</h3>
+  <thead>
+  <tr>
+    <th nowrap>Plate Type</th>
+    <th nowrap>Empty</th>
+    <th nowrap>Solvent</th>
+    <th nowrap>Control</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td> <%= @order.order_plate_detail.plate_type.label %></td>
+    <td> <%= @order.order_plate_detail.empty %></td>
+    <td> <%= @order.order_plate_detail.solvent %></td>
+    <td> <%= @order.order_plate_detail.control %></td>
+  </tr>
+  </tbody>
+</table>
+<hr>

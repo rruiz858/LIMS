@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vendor: 'vendor1'
+  agreement: 'two'
+  name: Mystring
+  description: I got it from my momma
+  created_by: Hitler's good side
+
+two:
+  vendor: 'vendor2'
+  agreement: 'two'
+  name: Mystring
+  description: I got it from my maid
+  created_by: llamas
+
+three:
+  vendor: 'vendor3'
+  agreement: 'two'
+  name: Mystring
+  description: I got to tell you something
+  created_by: I have no belly button
+
+four:
+  vendor: 'vendor3'
+  agreement: 'two'
+  name: Mystring
+  description: Just kidding
+  created_by: I have 3 belly buttons
+
+five:
+  vendor: 'vendor2'
+  agreement: 'three'
+  name: Mystring
+  description: This is being used in integration test
+  created_by: I have 1 billion belly buttons

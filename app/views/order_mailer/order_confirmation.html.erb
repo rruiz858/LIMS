@@ -1,0 +1,19 @@
+Hello there <%= @chemadmin.username %>,
+<p> An order has been submitted for review by <%= @user.username %> </p>
+
+<p>To Review the context of this order click <%= link_to "HERE", order_overview_order_url(@order.id) %></p>
+<% if @order.rejected || !(@comments.blank?) %>
+<h3>Conversation History</h3>
+    <hr>
+    <% @comments.each do |comment| %>
+        <p>
+          <%= comment.body %>
+        </p>
+        <small>Comment added by <%= comment.created_by %></small>
+        <hr>
+    <% end %>
+<% end %>
+
+
+
+

@@ -1,0 +1,8 @@
+<% if activity.trackable %>
+<%= activity.created_at.strftime("%m/%d/%Y %l:%m%p" )   %>
+<%= activity.trackable_type %>
+updated by <%= activity.user.username %>
+using <%= link_to (activity.trackable.filename).byteslice(11,32), activity.trackable.file_url_url %>
+<%else%>
+    <%= activity.user.f_name %>  updated a comit which has since been removed
+<%end%>

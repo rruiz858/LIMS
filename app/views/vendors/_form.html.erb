@@ -1,0 +1,60 @@
+    <% if @vendor.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this vendor from being saved:</h2>
+
+          <ul>
+            <% @vendor.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class ="break_top">
+      <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Notice!</strong> Short name should not contain spaces or underscores. Please add full name of vendor in the label field
+      </div>
+    </div>
+    <div class="control-groups break_smaller">
+      <%= f.label :name, "Short Name" %><br>
+      <% if @clone %>
+          <%= f.text_field :name, :placeholder => "Vendor Name", :class => "form-control", :id => "VendorName", :value => ""  %>
+          <%= hidden_field_tag 'previos_vendor', "#{@old_vendor.id}"  %>
+      <% else %>
+          <%= f.text_field :name, :placeholder => "Vendor Name", :class => "form-control", :id => "VendorName" %>
+      <% end %>
+    </div>
+    <br>
+    <div class="btn-group radioButton break_smaller" data-toggle="button-radio">
+      <%= f.radio_button :mta_partner, "Contracted Vendor?", :id => "agreementVendor", :name=>"contractButton", :checked=> !(@vendor.mta_partner?) %>
+      <label for="contractVendor">Contracted Vendor?</label>
+      <%= f.radio_button :mta_partner, "MTA Partner?", :id => "mTA", :name=> "mTAButton", :checked=> @vendor.mta_partner?%>
+      <label for="mTA" >MTA Partner?</label>
+    </div>
+    <div class="control-groups break_smaller">
+      <%= f.label :label %><br>
+      <% if @clone %>
+          <%= f.text_field :label, :placeholder => "Label", :class => "form-control", :id => "VendorLabel", :value => ""  %>
+      <%else%>
+      <%= f.text_field :label, :placeholder => "Label", :class => "form-control", :id => "VendorLabel" %>
+          <% end %>
+    </div>
+    <div class="control-groups break_smaller">
+      <%= f.label :phone1, "Primary Phone" %><br>
+      <%= f.text_field :phone1, :placeholder => "Phone", :class => "form-control", :id => "VendorPhone" %>
+    </div>
+    <div class="control-groups">
+      <%= f.label :phone2, "Additional Phone" %><br>
+      <%= f.text_field :phone2, :placeholder => "Phone", :class => "form-control", :id => "VendorPhone2" %>
+    </div>
+    <div class="form-group break_smaller">
+      <%= f.label :other_details, "Order Details" %><br>
+      <%= f.text_area :other_details, class: 'form-control', :id => "VendorDetails" %>
+    </div>
+    <div class="actions">
+      <button type="submit" class="btn btn-success styleWhite submitButton" id="vendorSubmit" name="create_order">
+        <span class ="fa fa-plus"></span> <%=@button_text%>
+      </button>
+    </div>
+    <div class="loading_modal"></div>
+

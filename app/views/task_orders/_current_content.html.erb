@@ -1,0 +1,5 @@
+<p> <strong>Name:</strong> <%= @task_order.name %></p>
+<p><strong>Description:</strong> <%= @task_order.description %></p>
+<p><strong >Created At: </strong><span class="fa fa-clock-o"></span> <%= time_ago_in_words(@task_order.created_at)%></p>
+<p><strong>Updated At:</strong> <span class="fa fa-clock-o"></span> <%= time_ago_in_words(@task_order.updated_at)%></p>
+<p><strong>Created By:</strong> <%= @task_order.created_by %></p>

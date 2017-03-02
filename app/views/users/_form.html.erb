@@ -1,0 +1,47 @@
+
+    <div class="control-groups break_smaller">
+      <%= f.label :username, "Username" %><br>
+      <%= f.text_field :username, :placeholder => "Username", :class => "form-control" %>
+    </div>
+
+    <div class="control-groups break_smaller">
+      <%= f.label :f_name, "First Name" %><br>
+      <%= f.text_field :f_name, :placeholder => "First Name", :class => "form-control" %>
+    </div>
+
+    <div class="control-groups break_smaller">
+      <%= f.label :l_name, "Last Name" %><br>
+      <%= f.text_field :l_name, :placeholder => "Last Name", :class => "form-control" %>
+    </div>
+
+    <div class="control-groups break_smaller">
+      <%= f.label :email, "Email" %><br>
+      <%= f.text_field :email, :placeholder => "Email", :class => "form-control" %>
+    </div>
+
+    <div class="control-group break_smaller">
+      <%= f.label :role_id, 'Role', class: 'control-group' %>
+      <%= f.collection_select :role_id, Role.all, :id, :role_type, {prompt: "Select a Role"}, {class: "form-control", id: "cor-input"} %>
+    </div>
+
+    <div class="control-group break_smaller" id="cor-names">
+      <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <strong>Note!</strong> PostDoc must be associated with one or many CORs. To select multiple, hold down the
+        control key and select.
+      </div>
+      <% if !(@user.new_record?) %>
+          <% if postdoc? %>
+          <%= render 'assigned_cors' %>
+          <% end %>
+      <% end %>
+      <%= f.label 'Select COR:', class: 'control-group' %>
+      <%= select_tag "cor_ids", options_from_collection_for_select(User.joins(:role).where('roles.role_type = "cor"'), :id, :full_name), :multiple => true, class: "form-control", id: "cor-options" %>
+    </div>
+    <div class="actions">
+      <%= link_to users_path, class: 'btn btn-primary default-color ' do %>
+          All Users <span class="fa fa-arrow-circle-left"></span>
+      <% end %>
+      <%= f.submit class: "btn btn-success", id: "submitUserButton" %>
+    </div>

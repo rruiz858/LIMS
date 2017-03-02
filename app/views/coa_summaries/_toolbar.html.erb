@@ -1,0 +1,37 @@
+<div class="divide-nav">
+  <div class="navbar navbar-default navbar-static-top coa-navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse main-nav">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#" id='coa-summary-files' class='show' data-toggle="tab">COA Summary Files
+            <span class="sr-only"></span></a></li>
+          <li><a href="#" id='curated-coa-summaries' class="show" data-toggle="tab">Curated Records
+            <span class="sr-only"></span></a></li>
+          <% if can? :manage, CoaSummary %>
+              <% unless @uncurated.count <= 0 %>
+                  <%= render 'coa_summaries/uncurated_drop_down' %>
+              <% end %>
+          <% end %>
+        </ul>
+        <div class="nav navbar-nav navbar-right">
+          <% if can? :create, CoaSummaryFile %>
+              <a href="<%= new_coa_summary_file_path %>">
+                <button class="btn btn-success upload-coasummary" id='new-coa-summary-file' style='color:white'>Upload
+                  File
+                  <i class="fa fa-upload"></i>
+                </button>
+              </a>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

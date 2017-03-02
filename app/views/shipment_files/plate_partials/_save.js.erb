@@ -1,0 +1,35 @@
+<% if @results_hash[:record].errors.any? %>
+$(document).ready(function () {
+    $(function () {
+        new PNotify({
+            title: 'Error',
+            text: "Record was not updated",
+            type: 'error',
+            animation: 'show',
+            hide: false,
+            buttons: {
+                sticker: false
+            }
+
+        });
+    });
+});
+<%else%>
+$(".shipment-bottles-class").html("<%= escape_javascript(render 'shipment_files/plate_partials/table', :object => @results_hash) %>");
+$("#record-modal").modal("hide");
+$(document).ready(function () {
+    $(function () {
+        new PNotify({
+            title: 'Success',
+            text: "Record was successfully updated",
+            type: 'success',
+            animation: 'show',
+            hide: false,
+            buttons: {
+                sticker: false
+            }
+
+        });
+    });
+});
+<%end%>

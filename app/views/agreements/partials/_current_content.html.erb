@@ -1,0 +1,11 @@
+<p> <strong>Name:</strong> <%= @agreement.name %></p>
+<p><strong>Status:</strong> <%= @agreement.agreement_status.status %></p>
+<p> <strong>Active:</strong> <%=human_boolean(@agreement.active) %> </p>
+<p><strong>Description:</strong> <%= @agreement.description %></p>
+<p><strong>Created At:</strong> <%= @agreement.created_at %></p>
+<p><strong>Created By:</strong> <%= @agreement.created_by %></p>
+<p><strong>COR:</strong> <%= @agreement.user.full_name %></p>
+<p><strong>Expiration Date: </strong> <%= @agreement.expiration_date %></p>
+<%if @agreement.agreement_status.status == "Revoked"%>
+    <p><strong>Revoked Reason:</strong> <%= @agreement.revoke_reason %></p>
+<%end%>

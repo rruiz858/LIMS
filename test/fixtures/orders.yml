@@ -1,0 +1,112 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 'superadmin'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 100
+  order_status: 'one'
+  address: 'fox_hunt'
+  order_concentration: 'two'
+  dried_down: 1
+
+two:
+  user: 'superadmin'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 100
+  order_status: 'two'
+  address: 'arapaho'
+  order_concentration: 'two'
+  dried_down: 0
+
+three:
+  user: 'superadmin'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 10000
+  order_status: 'three'
+  address: 'arapaho'
+  order_concentration: 'two'
+  dried_down: 1
+
+four:
+  user: 'cor'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 20
+  order_status: 'three'
+  address: 'fox_hunt'
+  order_concentration: 'two'
+  dried_down: 0
+
+five:
+  user: 'cor2'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 100
+  order_status: 'one'
+  address: 'fox_hunt'
+  order_concentration: 'three'
+  dried_down: 0
+
+six:
+  user: 'cor'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 20
+  order_status: 'four'
+  address: 'fox_hunt'
+  order_concentration: 'two'
+  dried_down: 0
+
+seven:
+  user: 'cor'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 20
+  order_status: 'three'
+  address: 'fox_hunt'
+  order_concentration: 'two'
+  dried_down: 0
+
+eight:
+  user: 'cor'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 20
+  order_status: 'four'
+  address: 'fox_hunt'
+  order_concentration: 'two'
+  dried_down: 0
+
+nine:
+  user: 'cor3'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 10000
+  order_status: 'three'
+  address: 'arapaho'
+  order_concentration: 'two'
+  order_status: 'three'
+  rejected: 1
+  dried_down: 0
+
+ten:
+  user: 'cor'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 6
+  order_status: 'five'
+  address: 'arapaho'
+  order_concentration: 'three'
+  dried_down: 0
+
+eleven:
+  user: 'superadmin'
+  vendor: 'vendor1'
+  task_order: 'one'
+  amount: 0
+  order_status: 'three'
+  address: 'arapaho'
+  order_concentration: 'two'

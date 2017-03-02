@@ -1,0 +1,74 @@
+<div class="top-page container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <h2 class="break_top">Insert Bottles</h2>
+
+  <div class="break"><%= render 'shipment_files/status_step_bar' %></div>
+  <%= form_tag({controller: "shipment_files", action: "add_bottles"}, method: "post", :remote => true, id: 'addBottles', class: 'stepClass') do %>
+      <div class="row">
+        <div class="col-md-8">
+          <p>
+            <%= "Insert comma separated valid barcodes" %>
+            <br>
+            Example
+            <br>
+            TX000001,TX000002, TX000003
+            <br>
+          </p>
+          <%= text_area_tag :barcodes, nil, :class => "input-large shipmentForm", :id => "addBarcodesBox", :size => "80x20", :placeholder => "barcode, barcode, barcode," %>
+          <div>
+            <button type="submit" class="btn btn-success style" , name="add_barcodes" , id="addBarcodesSubmit">
+              <i class="fa fa-plus-circle"></i> Add Barcodes
+            </button>
+            <%= link_to show_plate_shipment_file_path(@shipment_file), {:style => 'color:white', class: "btn btn-primary"} do %>
+                <span class="fa fa-arrow-circle-right"></span> Edit Plate
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="break_smaller "></div>
+          <div class="list-of-bottles-class">
+            <%= render "shipment_files/plate_partials/list_of_bottles" %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<script>
+    $('.stepClass').each(function () {
+        var currentDot = "";
+        var currentClass = ($(this).attr('class'));
+        if ($(this).is(":visible")) {
+            currentDot = $(this).attr("id");
+        }
+        var formId = currentDot;
+        $('.bs-wizard-step').each(function () {
+            var dotId = $(this).find(".bs-wizard-dot").attr("id");
+            var combinedId = formId + "Dot";
+            if (combinedId == dotId) {
+                $(this).removeClass("disabled").addClass("active");
+                $('#wizard-step-1').removeClass("active").addClass("complete");
+            }
+        });
+    });
+    $(document).ready(function () {
+        $("#addBarcodesSubmit").attr("disabled", "true");
+        $('#addBarcodesBox').bind('blur', function () {
+            if (textFilled()) {
+                $('#addBarcodesSubmit').removeAttr("disabled");
+            } else {
+                $("#addBarcodesSubmit").attr("disabled", "true");
+            }
+
+        });
+        function textFilled() {
+            var filled = true;
+            $(".shipmentForm").each(function () {
+                if ($(this).val() == "") {
+                    filled = false;
+                }
+            });
+            return filled;
+        }
+    });
+
+</script>

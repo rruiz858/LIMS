@@ -1,0 +1,25 @@
+<%= form_for @comit, :html => {:multipart => true} do |f| %>
+
+    <div class="form-group">
+      <label class="btn btn-primary" for="comit_file_url">
+        <%= f.file_field :file_url, style: 'display: none' %>
+        <i class="btn btn-success"> Upload</i>
+      </label>
+      <p class="help-block" >Must be .xls file</p>
+    </div>
+
+
+
+  <div class="actions">
+    <%= f.submit "Create COMIT", :class => "btn btn-primary btn",style: "color:white"%>
+  </div>
+
+    <%= link_to comits_path, :title => 'Back',
+                :rel => 'tooltip',
+                type: 'button',
+                class: 'btn btn-primary',
+                style: 'color:white' do %>
+        <i class="fa fa-arrow-circle-left"> Back</i>
+    <% end %>
+<% end %>
+

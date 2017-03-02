@@ -1,0 +1,83 @@
+<div class="row">
+  <% if @order.errors.any? %>
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h3><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h3>
+        <ul>
+          <% @order.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-md-5">
+
+    <div class="control-group break_smaller">
+      <%= f.label :vendor_id, 'Select Vendor' %>
+      <%= f.select(:vendor_id, options_from_collection_for_select(@vendors, :id, :name), {:prompt => "Select Vendor"}, {:class => "form-control", :id => "vendor_id"}) %>
+    </div>
+
+    <div class="control-group break_smaller">
+      <%= f.label :task_order_id, 'Select Task Order' %>
+      <%= f.select(:task_order_id, options_from_collection_for_select([], "id", "id"), {:prompt => "Select Task Order"},
+                   {"data-option-dependent" => true,
+                    "data-option-observed" => "vendor_id",
+                    "data-option-url" => "#{tasks_path(':vendor_id:')}",
+                    "data-option-key-method" => :id,
+                    "data-option-value-method" => :id, :class => "form-control"}) %>
+    </div>
+
+    <div class="control-group break_smaller">
+      <%= f.label :address_id, 'Select Address' %>
+      <%= f.select(:address_id, options_from_collection_for_select([], "address_1", "id"), {:prompt => "Select Address"},
+                   {"data-option-dependent" => true,
+                    "data-option-observed" => "vendor_id",
+                    "data-option-url" => "#{addresses_path(':vendor_id:')}",
+                    "data-option-key-method" => :id,
+                    "data-option-value-method" => :address1, class: "form-control"}) %>
+    </div>
+
+    <div class="control-group break_smaller">
+      <%= f.label :order_concentration_id, 'Target Concentration' %>
+      <%= f.select( :order_concentration_id, options_for_select([["Neat", @neat], ["20 mM", @twenty], ["100 mM", @onehundred]], :selected => f.object.order_concentration_id), {:prompt => "Select a Concentration"}, {:class => "form-control", :id => "order_concentration_id"}) %>
+    </div>
+
+    <div class="checkbox break_smaller" id="driedDownDiv">
+      <%= f.label :dried_down do %>
+          <%= f.check_box :dried_down, id: "driedDownCheck" %>
+          Dried Down?
+      <% end %>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :amount, 'Amount', class: 'control-group', id: "amount" %>
+      <%= f.input :amount, input_html: {min: '0', step: 'any'}, prompt: "Amount", id: "amount", label: false, required: false %>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn btn-success styleWhite submitButton" id="create-order" name="create_order">
+        <i class="fa fa-plus-circle"></i> Save Order
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+    $(document).ready(function (){
+        $("#order_concentration_id").change(function() {
+            if ($(this).val() === '1') {
+                $("#amount").text('Amount (mg)');
+                $("#driedDownDiv").hide();
+                $("#driedDownCheck").prop('checked', false).attr('checked',false);
+            }else{
+                $("#amount").text('Amount (ul)');
+                $("#driedDownDiv").show();
+            }
+        }).trigger('change');
+    });
+</script>

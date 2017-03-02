@@ -1,0 +1,46 @@
+<% if can? :new, Agreement %>
+    <div align="right" class="break_smaller">
+      <a title='Add New Agreement' :rel='tooltip' , href="<%= new_vendor_agreement_path(@vendor) %>">
+        <button class="btn btn-success" id='newAgreement' style='color:white'>Add Agreement
+          <i class="fa fa-plus-circle"></i>
+        </button>
+      </a>
+    </div>
+<% end %>
+<table id="agreements" class="table table-bordered table-condensed table-hover" cellspacing="0" width="100%">
+  <caption>Agreements:</caption>
+  <thead>
+  <th>Status</th>
+  <th>Name</th>
+  <th>Created By</th>
+  <th>Manage</th>
+  <th>Details</th>
+  <% if can? :destroy, Agreement %>
+      <th></th>
+  <% end %>
+  </thead>
+
+  <% @vendor.agreements.each do |agreement| %>
+      <tr>
+        <td><%= agreement.agreement_status.status %></td>
+        <td><%= agreement.name %></td>
+        <td><%= agreement.created_by %></td>
+        <td>
+          <%= if_finalized?(@vendor, agreement) %>
+        </td>
+        <td>
+          <%= link_to vendor_agreement_path(vendor_id: @vendor.id, id: agreement.id), remote: true, class: "btn btn-primary btn-xs" do %>
+              Show <span class="fa fa-eye"></span>
+          <% end %>
+        </td>
+        <% if can? :destroy, Agreement %>
+            <td> <%= link_to [@vendor, agreement], method: :delete, data: {confirm: 'Are you sure?'} do %>
+                  <button class="btn btn-danger btn-xs" style='color:white'>Delete
+                    <i class=" fa fa-trash-o"></i></button>
+              <% end %>
+            </td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+

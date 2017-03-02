@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 'superadmin'
+  action: create
+  trackable_id: 1
+  trackable_type: Comit
+
+two:
+  user: 'chemadmin'
+  action: create
+  trackable_id: 2
+  trackable_type: Comit

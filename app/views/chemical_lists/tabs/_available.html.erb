@@ -1,0 +1,56 @@
+<div class='row'>
+  <h4 class="pull-left">Available</h4>
+  <button type="button" class="btn btn-default pull-right break_smaller" id="standardControl">
+    <span>
+    <%=@order.using_standard_replicates ? 'Remove Standard Controls' : 'Add Standard Controls'%>
+    </span>
+  </button>
+</div>
+<div class="row list">
+  <table id="available-table" class="table display table-condensed table-hover table-striped table-bordered" cellspacing = "0" width = "100%">
+    <thead>
+    <tr>
+      <th></th>
+      <th nowrap>Source Substance ID</th>
+      <th nowrap>Mapped GSID</th>
+      <th nowrap>CASRN</th>
+      <th nowrap>Name</th>
+      <th nowrap>DTXSID</th>
+      <th nowrap>Control</th>
+      <th nowrap>Mutliple GSIDS</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @available_results.each do |ss| %>
+        <tr id="row-<%=ss.attributes["id"]%>">
+          <td></td>
+          <td class="ss-id"> <%= ss.attributes["id"] %></td>
+          <td><%= ss.attributes["gsid"] %></td>
+          <td><%= ss.attributes["cas"] %></td>
+          <td><%= ss.attributes["name"] %></td>
+          <td><%= ss.attributes["dtxsid"] %></td>
+          <td>
+            <input id= <%=ss.attributes["id"]%> , type= "checkbox"  class= "source-substance-checkbox <%= 'replicate' if ss.attributes["replicate"] == 1%>" name="source-substance-checkbox"  value= <%= ss.attributes["control"] %> >
+          </td>
+          <td>
+            <% if ss.attributes["multiple"] == "1" %>
+                <%= link_to "Curate", show_gsids_source_substance_path(ss.attributes["id"]), type: 'button', class: 'btn btn-info btn-xs manage-chemicals', style: 'color:white', id: "multiple-gsids" %>
+            <% else %>
+                <%= ss.attributes["multiple"] %>
+            <% end %>
+          </td>
+
+          <td align="center">
+          <%= link_to source_substance_path(ss.attributes["id"]), method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button class="btn btn-danger btn-xs <%= 'replicate' if ss.attributes["replicate"] == 1%>" style='color:white' id="delete-<%= ss.attributes["id"]%>-button">Delete
+                <span class="fa fa-trash"></span></button>
+          <% end %>
+        </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+

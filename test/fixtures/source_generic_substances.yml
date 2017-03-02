@@ -1,0 +1,100 @@
+
+one:
+  source_substance: 'three'
+  generic_substance: 'one'
+
+two:
+  source_substance: 'two'
+  generic_substance: 'two'
+
+
+three:
+  source_substance: 'five'
+  generic_substance: 'five'
+
+four:
+  source_substance: 'six'
+  generic_substance: 'six'
+
+five:
+  source_substance: 'seven'
+  generic_substance: 'six'
+  connection_reason: 'Multiple GSIDS'
+
+six:
+   source_substance: 'eight'
+   connection_reason: 'MATCHED CASRN, NAME MATCHED OTHER'
+   generic_substance: 'six'
+   curator_validated:
+
+seven:
+   source_substance: 'nine'
+   connection_reason: 'MATCHED CASRN, NAME MATCHED OTHER'
+   generic_substance: 'six'
+   curator_validated:
+
+eight:
+   source_substance: 'ten'
+   connection_reason: 'MATCHED CASRN, NAME MATCHED OTHER'
+   generic_substance: 'six'
+   curator_validated:
+
+nine:
+ source_substance: 'no_hits'
+ connection_reason: 'no hits'
+ curator_validated:
+
+ten:
+ source_substance: 'eleven'
+ connection_reason: 'ChemTrack Standard Chemical'
+ curator_validated:
+ generic_substance: 'one'
+
+
+eleven:
+ source_substance: 'twelve'
+ connection_reason: 'ChemTrack Standard Chemical'
+ curator_validated:
+ generic_substance: 'two'
+
+twelve:
+ source_substance: 'thirteen'
+ connection_reason: 'ChemTrack Standard Chemical'
+ curator_validated:
+ generic_substance: 'three'
+
+thirteen:
+ source_substance: 'fourteen'
+ connection_reason: 'ChemTrack Standard Chemical'
+ curator_validated:
+ generic_substance: 'four'
+
+fourteen:
+ source_substance: 'fiftteen'
+ connection_reason: 'ChemTrack Standard Chemical'
+ curator_validated:
+ generic_substance: 'five'
+
+fiftteen:
+ source_substance: 'sixteen'
+ connection_reason: 'ChemTrack Standard Chemical'
+ curator_validated:
+ generic_substance: 'six'
+
+sixteen:
+ source_substance: 'seventeen'
+ connection_reason: 'ChemTrack Standard Chemical'
+ curator_validated:
+ generic_substance: 'seven'
+
+seventeen:
+ source_substance: 'eightteen'
+ connection_reason: 'ChemTrack Standard Chemical'
+ curator_validated:
+ generic_substance: 'eight'
+
+eightteen:
+ source_substance: 'nineteen'
+ connection_reason: 'ChemTrack Standard Chemical'
+ curator_validated:
+ generic_substance: 'nine'

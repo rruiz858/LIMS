@@ -1,0 +1,348 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  barcode: VVVV1
+  compound_name: salt
+  cas: 80-5
+  qty_available_mg: 2
+  coa_summary: 'one'
+  units: mg
+  stripped_barcode: V1
+  qty_available_mg_ul: 2
+  lot_number: 7895
+  cid: 9097
+  cpd: 787897
+  comment: MyString
+  freeze_thaw_count: 4
+  smiles: 'MyString'
+  can_plate: 1
+
+two:
+  barcode: V40TX016151
+  cas: 70-00-6
+  qty_available_mg: 9.99
+  stripped_barcode: TX016151
+  compound_name: somethingdangerous
+  coa_summary: 'five'
+  qty_available_mg_ul: 9.99
+  can_plate: 0
+  comment: MyString
+  freeze_thaw_count: 4
+  smiles: 'MyString'
+
+three:
+  barcode: TX77788
+  barcode_parent: V40TX016151
+  qty_available_mg: 9.99
+  stripped_barcode: 7788
+  qty_available_mg_ul: 9.99
+  comment: MyString
+  freeze_thaw_count: 4
+  smiles: 'MyString'
+
+
+four:
+  barcode: TX66666
+  qty_available_mg: 9.99
+  lot_number: 1
+  vendor: 1
+  cpd: 1
+  stripped_barcode: 6666
+  qty_available_mg_ul: 9.99
+  comment: MyString
+  freeze_thaw_count: 4
+  smiles: 'MyString'
+
+five:
+  barcode: TX77777
+  qty_available_ul: 9.99
+  lot_number: 1
+  vendor: 1
+  cpd: 1
+  stripped_barcode: 7777
+  qty_available_mg_ul: 9.99
+  comment: MyString
+  freeze_thaw_count: 4
+  smiles: 'MyString'
+
+six:
+  barcode: TX88888
+  qty_available_mg: 9.99
+  vendor: 2
+  cpd: 2
+  sam: 2
+  stripped_barcode: 8888
+  qty_available_mg_ul: 9.99
+  units: mg
+  comment: MyString
+  freeze_thaw_count: 4
+  smiles: 'MyString'
+
+
+seven:
+   barcode: TX99999
+   qty_available_ul: 9.99
+   vendor: 2
+   cpd: 2
+   sam: 2
+   stripped_barcode: 9999
+   qty_available_mg_ul: 9.99
+   comment: MyString
+   freeze_thaw_count: 4
+   smiles: 'MyString'
+
+eight:
+    barcode: TX015880
+    qty_available_ul: 9.99
+    vendor: 2
+    cpd: 2
+    sam: 2
+    coa_summary: 'four'
+    stripped_barcode: TX015880
+    qty_available_mg_ul: 9.99
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+nine:
+    barcode: 23llamas
+    qty_available_ul: 0
+    vendor: 2
+    cpd: 2
+    sam: 2
+    coa_summary: 'three'
+    stripped_barcode: llamas
+    qty_available_mg_ul: 0
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+ten:
+    barcode: 700ChemicalXY
+    qty_available_ul: 0
+    vendor: 9
+    cpd: 7
+    sam: 7
+    stripped_barcode: ChemicalXY
+    qty_available_mg_ul: 0
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+eleven:
+    barcode: 800ChlorineYC
+    qty_available_ul: 0
+    compound_name: ChorineYC
+    cas: 89-67-23
+    vendor: 10
+    cpd: 4
+    sam: 7
+    stripped_barcode: ChlorineYC
+    qty_available_mg_ul: 0
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+twelve:
+    barcode: 900Chlorsomething
+    barcode_parent: 800ChlorineYC
+    qty_available_ul: 0
+    compound_name: Chor
+    vendor: Sam's Club
+    cpd: 4
+    sam: 7
+    stripped_barcode: Chlorsomething
+    qty_available_mg_ul: 0
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+thirteen:
+    barcode: V407483290233
+    barcode_parent:
+    qty_available_ul: 0
+    compound_name: Zika
+    vendor: Sam's Club
+    cpd: 4
+    sam: 7
+    stripped_barcode: 7483290233
+    qty_available_mg_ul: 0
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+fourteen:
+    barcode: TX77788
+    barcode_parent:
+    qty_available_ul: 0
+    compound_name: Zika
+    vendor: Sam's Club
+    cpd: 6
+    sam: 90
+    stripped_barcode: TX77788
+    qty_available_mg_ul: 0
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+fifteen:
+    barcode: TX0THISAVAILABLE
+    barcode_parent:
+    qty_available_ul: 70
+    compound_name: Zikabola
+    vendor: Cosco
+    cpd: 8943
+    sam: 9043
+    stripped_barcode: TX0THISAVAILABLE
+    qty_available_mg_ul: 700
+    concentration_mm: 20
+    coa_summary: 'seven'
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+sixteen:
+    barcode: V40TX0THISGROSS
+    barcode_parent:
+    qty_available_ul: 50
+    compound_name: Zikabolaids
+    vendor: Cosco
+    cpd: 8943
+    sam: 9043
+    stripped_barcode: TX0THISGROSS
+    qty_available_mg_ul: 50
+    concentration_mm: 20
+    coa_summary: 'eight'
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+seventeen:
+    barcode: V40TXNAMEOTHER
+    barcode_parent:
+    qty_available_ul: 50
+    compound_name:
+    vendor: Cosco
+    cpd: 8943
+    sam: 9043
+    stripped_barcode: TXNAMEOTHER
+    qty_available_mg_ul: 50
+    concentration_mm: 20
+    comment: MyString
+    freeze_thaw_count: 4
+    smiles: 'MyString'
+
+eighteen:
+    barcode: V40TXNAMEMATCHED
+    barcode_parent:
+    qty_available_ul: 50
+    compound_name:
+    vendor: Cosco
+    cpd: 8943
+    sam: 9043
+    stripped_barcode: TXNAMEMATCHED
+    qty_available_mg_ul: 50
+    concentration_mm: 20
+    comment: MyString
+
+nineteen:
+    barcode: V40TXCASRNMATCHED
+    barcode_parent:
+    qty_available_ul: 50
+    compound_name:
+    vendor: Cosco
+    cpd: 8943
+    sam: 9043
+    stripped_barcode: TXCASERNMATCHED
+    qty_available_mg_ul: 50
+    concentration_mm: 20
+    comment: MyString
+
+twenty:
+    barcode: V40TXNOHITS
+    barcode_parent:
+    qty_available_ul: 50
+    compound_name:
+    vendor: Cosco
+    cpd: 8943
+    sam: 9043
+    stripped_barcode: TXNOHITS
+    qty_available_mg_ul: 50
+    concentration_mm: 20
+    comment: MyString
+
+
+twentyone:
+    barcode: V40TXCASRNAMEMATCHED
+    barcode_parent:
+    qty_available_ul: 50
+    compound_name:
+    vendor: Cosco
+    cpd: 8943
+    sam: 9043
+    stripped_barcode: TXCASRNAMEMATCHED
+    qty_available_mg_ul: 50
+    concentration_mm: 20
+    comment: MyString
+
+twentytwo:
+    barcode: V40TXASPIRIN
+    barcode_parent:
+    qty_available_ul: 50
+    compound_name:
+    vendor: Dsstox
+    cpd: 5645654
+    sam: 654654654
+    units: ul
+    stripped_barcode: TXASPIRIN
+    qty_available_mg_ul: 50
+    concentration_mm: 20
+    coa_summary: 'nine'
+    comment: MyString
+
+twentythree:
+    barcode: EX000010
+    barcode_parent:
+    qty_available_ul: 50
+    compound_name:
+    vendor: Dsstox
+    cpd: 5645654
+    sam: 654654654
+    units: ul
+    stripped_barcode:  EX000010
+    qty_available_mg_ul: 50
+    concentration_mm: 20
+    coa_summary: 'nine'
+    comment: MyString
+    external_bottle: 1
+
+
+twentyfour:
+    barcode: V400TX000010
+    barcode_parent:
+    qty_available_ul: 50
+    compound_name:
+    vendor: Dsstox
+    cpd: 5645654
+    sam: 654654654
+    units: ul
+    stripped_barcode: '01000010'
+    qty_available_mg_ul: 50
+    concentration_mm: 20
+    coa_summary: 'nine'
+    comment: MyString
+    external_bottle: 1
+
+twentyfive:
+  barcode: TX7654454
+  vendor: 2
+  cpd: 2
+  sam: 2
+  compound_name: 'ChemicalX'
+  stripped_barcode: 7654454
+  qty_available_mg_ul: 9.99
+  units: mg
+  comment: MyString
+  freeze_thaw_count: 4
+  smiles: 'MyString'
+  coa_summary: 'ten'

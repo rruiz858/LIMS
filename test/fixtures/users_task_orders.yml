@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 'cor'
+  task_order: 'one'
+
+two:
+  user: 'cor'
+  task_order: 'two'
+
+three:
+   user: 'cor2'
+   task_order: 'three'
+
+four:
+   user: 'cor2'
+   task_order: 'four'

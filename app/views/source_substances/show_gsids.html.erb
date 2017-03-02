@@ -1,0 +1,54 @@
+<div class="container-fluid top-page">
+<%= form_tag(show_gsids_source_substance_path, :method => 'get') do %>
+    <h4>Current Source Substance</h4>
+    <table class="table table-condensed table-hover table-striped table-bordered" id ="current_source_substance">
+      <thead>
+      <tr>
+        <th nowrap>Source Substance ID</th>
+        <th nowrap>Chemical List </th>
+        <th nowrap>Mapped GSID</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @source_substance.id%></td>
+        <td><%= @source_substance.chemical_list.list_name%></td>
+        <td class = "y_n"><%= SourceSubstance.gsid(@source_substance) %></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class=" table table-bordered .table-condensed">
+      <br>
+      <h3>GSIDS Found</h3>
+      <th nowrap>GSID</th>
+      <th nowrap>CASRN</th>
+      <th nowrap>Preferred Name</th>
+      <th nowrap>Substance Type</th>
+      </thead>
+      <tbody>
+      <% @gsid_array.each do |gsid| %>
+          <tr>
+            <td> <%= gsid[:gsid] %></td>
+            <td> <%= gsid[:casrn] %></td>
+            <td> <%= gsid[:preferred_name] %></td>
+            <td> <%= gsid[:substance_type] %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+<%= form_tag(update_gsid_source_substance_path, :method => 'post') do %>
+    <div>
+      <%= label_tag :gsid, 'Select GSID', class: 'control-group'%>
+      <%= select_tag :gsid, options_for_select(@gsid_array.collect { |g| [g[:gsid], g[:gsid]] }, "#{@source_substance.source_generic_substance.fk_generic_substance_id}"), class: "form-control" , id: 'select-gsid'  %>
+    </div>
+    <br>
+    <%= submit_tag "Change GSID", :name => 'change_gsid', id: 'submit-gsid', class: "btn btn-success" %>
+<% end %>
+<br>
+<a href="<%= order_chemical_list_path(@order, @source_substance.chemical_list) %>" class="btn btn-primary" style='color:white' title="Back" id="back-to-chemicals">
+  <span class="fa fa-arrow-circle-left"></span> Back
+</a>
+</div>

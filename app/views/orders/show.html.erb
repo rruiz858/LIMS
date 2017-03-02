@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @order.user.f_name %>
+</p>
+
+<p>
+  <strong>Vendor:</strong>
+  <%= @order.vendor.name %>
+</p>
+
+<p>
+  <strong>Task order:</strong>
+  <%= @order.task_order.id %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @order.amount %>
+</p>
+
+<%= link_to 'Back', orders_path %>

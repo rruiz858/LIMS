@@ -1,0 +1,9 @@
+
+one:
+  dsstox_compound_id: Mystring
+  smiles: HiThereImASmiles
+  inchi: HiThereImAInchi
+  mol_formula:
+  mol_weight:
+  created_by: User1
+  updated_by: User2

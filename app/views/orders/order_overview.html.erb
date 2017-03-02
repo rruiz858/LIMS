@@ -1,0 +1,148 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <% if in_progress? %>
+      <div class="stepClass" id="orderStep4"></div>
+  <% elsif in_review? %>
+      <div class="stepClass inReview" id="orderStep4"></div>
+  <% elsif submitted? %>
+      <div class="stepClass submittedOrder" id="orderStep5"></div>
+  <% end %>
+  <div class="orderStepBar top-page break">
+    <%= render 'orders/partials/order_step_bar' %>
+  </div>
+  <div class="row" id="orderOptions">
+    <%= render 'orders/partials/order_options' %>
+  </div>
+  <hr>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Shipping</h4></div>
+          <div class="panel-body panel-order">
+            <% unless (@order.address.country == "United States") || (@order.address.country == "USA") %>
+                <div class="alert alert-info alert-dismissible" role="alert">
+                  <button id="international" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <strong>Note!</strong> The vendor assigned to this order has an international address and thus an
+                  international shipment is required
+                </div>
+            <% end %>
+            <p><strong>Vendor </strong><%= @order.vendor.label %></p>
+
+            <p><strong>Task Order Number </strong><%= @order.task_order_id %></p>
+
+            <p><strong>Address </strong><%= @order.address.address1 %></p>
+
+            <p><strong>Country </strong><%= @order.address.country %> </p>
+
+            <p><strong>State </strong><%= @order.address.state %></p>
+
+            <p><strong>City </strong><%= @order.address.city %></p>
+
+          </div>
+          <div class="panel-footer panel-order-footer">
+            <% if can_edit_order? %>
+                <div class="pull-right order-link">
+                  <%= link_to 'Edit', edit_order_path(@order) %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Plate Info.</h4></div>
+          <div class="panel-body panel-order">
+            <p><strong>Plate Type </strong><%= @order.order_plate_detail.plate_type.label %></p>
+            <hr>
+            <p><strong>Empty </strong><%= @order.order_plate_detail.empty %></p>
+            <hr>
+            <p><strong>Solvent </strong><%= @order.order_plate_detail.solvent %> </p>
+            <hr>
+            <p><strong>Control </strong><%= @order.order_plate_detail.control %></p>
+          </div>
+          <div class="panel-footer panel-order-footer">
+            <% if can_edit_order? %>
+                <div class="pull-right order-link">
+                  <%= link_to 'Edit', show_plate_order_path(@order) %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Order Summmary</h4></div>
+          <div class="panel-body panel-order">
+            <ul>
+              <li id="platesNeeded"><strong>Plates Needed: </strong><%= @order.plates_needed %></li>
+              <hr>
+              <li id="procurementsNeeded"><strong>Procurements Needed: </strong><%= @order.procurements %></li>
+              <hr>
+              <li id="dilutionsNeeded"><strong>Dilutions Needed: </strong><%= @order.dilutions %></li>
+              <hr>
+              <li id="solubilizationsNeeded"><strong>Solubilizations Needed: </strong><%= @order.solubilization %></li>
+            </ul>
+          </div>
+          <div class="panel-footer panel-order-footer">
+            <% if can? :manage, Order %>
+            <span class="pull-right">
+              <%= link_to export_order_file_order_path(order_id: @order.id, :download => true), :method => :post, class: 'btn btn-default excelFile exportOrder',
+                          'data-toggle' => "popover",
+                          "data-content" => "Export method creates two worksheets within the workbook. The first worksheet contains all chemicals requested while the second worksheet contains information regarding the order",
+                          'data-trigger' => "hover", 'data-placement' => "bottom" do %>
+                         <span class="fa fa-download"></span> Export Details
+                        <% end %>
+            </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>Chemicals</h4></div>
+      <div class="panel-body">
+        <h4>Chemicals</h4>
+        <table class="defaultTable table table-bordered .table-condensed">
+          <thead>
+          <tr>
+            <th>Mapped GSID</th>
+            <th>Name</th>
+            <th>CAS</th>
+            <th>DTXSID</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @available_results.each do |ss| %>
+              <tr>
+                <td><%= ss.attributes["gsid"] %></td>
+                <td><%= ss.attributes["name"] %></td>
+                <td><%= ss.attributes["cas"] %></td>
+                <td><%= ss.attributes["dtxsid"] %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <% if in_progress? %>
+        <div class="break_smaller">
+          <%= link_to show_plate_order_path(@order), {:style => 'color:white', class: "btn btn-primary"} do %>
+              <span class="fa fa-arrow-circle-left"></span> Plate Details
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="loading_modal"></div>
+<div id="order-return-modal-div"></div>
+
+

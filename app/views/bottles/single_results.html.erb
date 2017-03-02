@@ -1,0 +1,10 @@
+<div class="top-page">
+  <% case @type %>
+  <% when 1 %>
+      <%= render 'bottles/results/results_found' %>
+  <% when 0 %>
+      <%= render 'bottles/results/database_not_working' %>
+  <% when -2..-1 %>
+      <%= render 'bottles/results/no_results' %>
+  <% end %>
+</div>

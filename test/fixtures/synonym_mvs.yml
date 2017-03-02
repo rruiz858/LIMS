@@ -1,0 +1,45 @@
+
+one:
+  generic_substance: 'seven'
+  identifier: '69-69-699'
+  synonym_type: 'CAS-RN'
+  rank: 5
+
+two:
+  generic_substance: 'seven'
+  identifier: 'NAME1'
+  synonym_type: 'Preferred Name'
+  rank: 11
+
+
+three:
+  generic_substance: 'eight'
+  identifier: '79-79-799'
+  synonym_type: 'CAS-RN'
+  rank: 5
+
+four:
+  generic_substance: 'nine'
+  identifier: 'NAME3'
+  synonym_type: 'Preferred Name'
+  rank: 11
+
+six:
+  generic_substance: 'eleven'
+  identifier: '67-32-543'
+  synonym_type: 'CAS-RN'
+  rank: 5
+
+seven:
+  generic_substance: 'twelve'
+  identifier: 'NAME2'
+  synonym_type: 'Preferred Name'
+  rank: 11
+
+
+
+eight:
+  generic_substance: 'four'
+  identifier: 'ChemicalX'
+  synonym_type: 'Preferred Name'
+  rank: 11

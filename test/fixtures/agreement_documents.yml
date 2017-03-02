@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  agreement_id:
+  file_size: 1
+  file_name: MyString
+  created_by: MyString
+  file_url: MyString
+
+two:
+  agreement_id:
+  file_size: 1
+  file_name: MyString
+  created_by: MyString
+  file_url: MyString

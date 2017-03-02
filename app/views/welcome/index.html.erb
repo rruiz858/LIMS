@@ -1,0 +1,13 @@
+<div class=" container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12 top-page">
+  <div class ="jumbotron">
+    <h1>Welcome to ChemTrack</h1>
+    <p>There are <%= number_with_precision(@total_bottles, :precision =>0, :delimiter => ',') %> samples in the chemical inventory and <%= number_with_precision(@total_unique_compounds,:precision =>0, :delimiter => ',')%> distinct chemicals.</p>
+    <p>The inventory was last updated <%=@last_updated%></p>
+    <a href="<%= bottles_multiple_results_path %>">
+      <button class="btn btn-success" id='multipleBottleSearch' style='color:white'>Multiple Chemical Search
+        <i class="fa fa-rocket"></i>
+      </button>
+    </a>
+  </div>
+</div>
+

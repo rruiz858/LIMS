@@ -1,0 +1,28 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: "created"
+  step_number: 1
+
+two:
+  name: "adding_chemicals"
+  step_number: 2
+
+three:
+  name: "plate_details"
+  step_number: 3
+
+four:
+  name: "review"
+  step_number: 4
+
+five:
+   name: "submitted"
+   step_number: 5
+
+six:
+  name: "canceled"
+  step_number: 6
+
+
+

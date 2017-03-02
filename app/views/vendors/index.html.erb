@@ -1,0 +1,62 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div align="right">
+    <% if can? :create, Vendor %>
+        <a title='Add New Vendor' :rel='tooltip' , href="<%= new_vendor_path %>">
+          <button class="btn btn-success" id='new-order-vendor' style='color:white'>Add New Vendor
+            <i class="fa fa-plus-circle"></i>
+          </button>
+        </a>
+    <% end %>
+  </div>
+  <h1>Vendors</h1>
+  <br>
+  <table class="vendors table table-bordered table-condensed table-hover table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Label</th>
+      <th>Phone1</th>
+      <th>Phone2</th>
+      <th>Partner Type</th>
+      <th>Details</th>
+      <% if can? :manage, Vendor %>
+          <th>Plates</th>
+          <th>Clone</th>
+      <% end %>
+      <th>Details</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @vendors.each do |vendor| %>
+        <tr>
+          <td><%= vendor.name %></td>
+          <td><%= vendor.label %></td>
+          <td><%= vendor.phone1 %></td>
+          <td><%= vendor.phone2 %></td>
+          <td><%= vendor.partner_type %></td>
+          <td><%= vendor.other_details %></td>
+          <% if can? :manage, Vendor %>
+              <td>
+                <%= link_to view_shipments_path(vendor_id: vendor.id) do %>
+                    <span class="btn btn-info btn-xs manage-chemicals'">Plates</span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to new_clone_vendor_path(vendor.id) do %>
+                    <span class="btn btn-default btn-xs manage-chemicals'">Clone</span>
+                <% end %>
+              </td>
+          <%end%>
+          <td>
+            <%= link_to 'Show', vendor, type: 'button', class: 'btn btn-primary btn-xs', style: 'color:white' %>
+          </td>
+
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="loading_modal"></div>
+</div>
+

@@ -1,0 +1,34 @@
+<% if @error.blank? %>
+    $(function () {
+        new PNotify({
+            title: 'Success',
+            text: "Order has been submitted",
+            type: 'success',
+            animation: 'show',
+            hide: false,
+            buttons: {
+                sticker: false
+            }
+
+        });
+        $('.stepClass').removeClass('inReview').addClass('submittedOrder');
+        $('.stepClass')[0].id = 'orderStep5';
+        $(".orderStepBar").html("<%= escape_javascript(render 'orders/partials/order_step_bar') %>");
+        $("#submitOrderButton").attr('disabled',true);
+        $("#callReturnModal").attr('disabled',true);
+    });
+<%else%>
+    $(function () {
+        new PNotify({
+            title: 'Error',
+            text: "Order was not submitted",
+            type: 'success',
+            animation: 'show',
+            hide: false,
+            buttons: {
+                sticker: false
+            }
+
+        });
+    });
+<%end%>

@@ -1,0 +1,59 @@
+// Place all the styles related to the activities controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//.activity{
+//  border-bottom: solid 1px #CCC;
+//  padding: 16px 0;
+//}
+//
+
+.fixed-panel-height{
+  height: 55px;
+}
+.accordion-content {
+  height: 330px;
+  overflow-y: scroll;
+}
+
+.iconBlack{
+  color: #bfbfbf;
+}
+
+.largeFont{
+  font-size: 140%;
+  color: #333;
+}
+
+.fontBlack{
+  color: #333;
+}
+
+.center-title{
+  text-align: center;
+  vertical-align: middle;
+  line-height: 240px;
+}
+
+.saved-query-panel{
+  height: 435px;
+}
+
+.query-panel-body{
+  height: 338px;
+}
+
+.query-content{
+  height: 320px;
+  overflow-y: auto;
+}
+
+#epa-main-image{
+  top: 0; /* or whatever */
+  left: 0; /* or whatever, position according to taste */
+  opacity: 0.3; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+  filter:alpha(opacity=50);
+}
+
+.inner{
+  margin-top: -20px;
+}

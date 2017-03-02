@@ -1,0 +1,25 @@
+<table class="table table-bordered table-condensed table-hover" cellspacing="0" width="100%">
+  <thead>
+  <th>Name</th>
+  <th>Status</th>
+  <th>Created By</th>
+  <th>Created At</th>
+  <th></th>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @agreement.name %></td>
+    <td><%= @agreement.agreement_status.status %></td>
+    <td><%= @agreement.created_by %></td>
+    <td><%= @agreement.created_at %></td>
+    <td>
+      <button type='button' class='btn btn-info btn-sm' , type='button' , style='color:white' ,
+              data-toggle="modal" data-target='#show-agreement-modal'>show
+        <span class="fa fa-eye"></span>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+

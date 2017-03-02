@@ -1,0 +1,38 @@
+<table class=" table table-bordered .table-condensed">
+  <thead>
+  <tr>
+    <th nowrap>Name</th>
+    <th nowrap>Label</th>
+    <th nowrap>Primary Phone</th>
+    <th nowrap>Other Phone</th>
+    <th nowrap>Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>  <%= @vendor.name %></td>
+    <td>  <%= @vendor.label %></td>
+    <td>   <%= @vendor.phone1 %></td>
+    <td>  <%= @vendor.phone2 %></td>
+    <td> <%= @vendor.other_details %></td>
+  </tr>
+  </tbody>
+</table>
+<% if can? :create, Vendor %>
+<%= link_to edit_vendor_path(@vendor), :title => 'Edit Vendor',
+            :rel => 'tooltip',
+            type: 'button',
+            class: 'btn btn-primary',
+            id: 'editVendor',
+            style: 'color:white' do %>
+    <i class="fa fa-pencil"> Edit</i>
+<% end %>
+&nbsp;
+<% end %>
+<%= link_to vendors_path, :title => 'Back to Vendors',
+            :rel => 'tooltip',
+            type: 'button',
+            class: 'btn btn-primary',
+            style: 'color:white' do %>
+    <i class="fa fa-arrow-circle-left"> View Vendors</i>
+<% end %>

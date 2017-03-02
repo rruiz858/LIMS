@@ -1,0 +1,64 @@
+superadmin:
+  email: superadmin@yahoo.com
+  f_name: SpongeBob
+  l_name: SquarePants
+  role: 'one'
+  username: 'bobsponge'
+  picture: raymond_veve.png
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+chemadmin:
+  email: ruiz-veve.raymond@epa.gov
+  f_name: Hellen
+  l_name: Keller
+  role: 'two'
+  username: Hkeller
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+chemcurator:
+  email: test3@test.com
+  f_name: Sally
+  l_name: Keller
+  role: 'three'
+  username: Skeller
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+cor:
+  email: cor1@test.com
+  f_name: cor
+  l_name: cor
+  role: 'four'
+  username: rruizvev
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+cor2:
+  email: cor2@test.com
+  f_name: cor2
+  l_name: cor2
+  role: 'four'
+  username: cor2
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+cor3:
+  email: cor3@test.com
+  f_name: cor3
+  l_name: cor3
+  role: 'four'
+  username: cor3
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+postdoc:
+  email: postdoc@test.com
+  f_name: postdoc
+  l_name: postdoc
+  role: 'five'
+  username: postdoc
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+contract_admin:
+  email: contract_admin@test.com
+  f_name: contract_admin
+  l_name: contract_admin
+  role: 'six'
+  username: contract_admin
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>

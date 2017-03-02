@@ -1,0 +1,22 @@
+<%= render 'vendors/manage_vendors/toolbar' %>
+<div class=" col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <h1><%= @vendor.name %><br/>
+    <small><%= @vendor.partner_type %></small>
+    <small> |</small>
+    <small><%= @vendor.phone1 %></small>
+  </h1>
+  <hr>
+  <%= render 'vendors/manage_vendors/tab_contents' %>
+</div>
+
+
+<div id="show-modal" class="modal fade"></div>
+<div id="show-modal-address" class="modal fade"></div>
+
+<script>
+    $(document).ready(function () {
+        $('a[disabled=disabled]').click(function (event) {
+            event.preventDefault(); // Prevent link from following its href
+        });
+    });
+</script>

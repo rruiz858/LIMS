@@ -1,0 +1,13 @@
+<%= simple_form_for(@agreement, :url => add_documents_vendor_agreement_path, :method => :post, :remote => true,  :authenticity_token => true ) do |f| %>
+        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+          <div class="form-control" data-trigger="fileinput"><i class="fa fa-file-excel-o fileinput-exists"></i>
+            <span class="fileinput-filename"></span></div>
+          <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span> <%= f.file_field :file_url, class: "file-input" %></span>
+          <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+        </div>
+        <p class="help-block">Must be .xls/xlsx/csv file</p>
+    <%= f.hidden_field :vendor_id, :value => @vendor.id %>
+    <%= button_tag(type: 'submit', class: "btn btn-success",  name: "AddAttachment", id: "upload-btn" ) do %>
+        <i class=" fa fa-plus-circle"></i> Add Attachments
+    <%end%>
+<% end %>

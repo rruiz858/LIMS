@@ -1,0 +1,14 @@
+<%= render 'shipment_files/toolbar' %>
+<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="tab-content">
+  <div id="all-shipment-files-form" class="tab-pane fade in active" role="tabpanel">
+    <h3>Raw Shipment Files</h3>
+    <%= render "shipment_files/toolbar_tables/shipment_files" %>
+  </div>
+  <div id="external-shipments-form" class="tab-pane fade" role="tabpanel">
+    <h3>External Shipments</h3>
+    <%= render "shipment_files/toolbar_tables/external_shipments" %>
+  </div>
+  </div>
+</div>
+

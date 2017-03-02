@@ -1,0 +1,58 @@
+<div class="bs-wizard">
+  <div class="col-xs-2 bs-wizard-step active" id="step-1-order-<%= order.id %>-<%= order.order_status.step_number %>">
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+    <% if (in_progress? || chemadmin?) && !(@order.id.blank?) %>
+        <a href="<%= edit_order_path(@order) %>" class="bs-wizard-dot-order" id='orderStep1Dot'></a>
+    <% else %>
+        <a href="#" class="bs-wizard-dot-order" id='createOrderDot'></a>
+    <% end%>
+    <div class="text-center statusText">Order Basics</div>
+  </div>
+
+  <div class="col-xs-2 bs-wizard-step disabled" id="step-2-order-<%= order.id %>-<%= order.order_status.step_number %>">
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+    <% if (in_progress? || chemadmin?) && !(@order.id.blank?) && @order.order_chemical_list%>
+        <a href="<%= order_chemical_list_path(@order, @order.order_chemical_list.chemical_list_id) %>" class="bs-wizard-dot-order manage-chemicals" id='chemicalList-<%=@order.id%>'></a>
+    <% else %>
+        <a href="#" class="bs-wizard-dot-order" id='staticButton2'></a>
+    <% end%>
+    <div class="text-center statusText"> Add Chemicals</div>
+  </div>
+
+  <div class="col-xs-2 bs-wizard-step disabled" id="step-3-order-<%= order.id %>-<%= order.order_status.step_number %>">
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+    <% if (in_progress? || chemadmin?) && !(@order.id.blank?) %>
+        <a href="<%= show_plate_order_path(@order) %>" class="bs-wizard-dot-order" id='orderPlate-<%=@order.id%>'></a>
+    <% else %>
+        <a href="#" class="bs-wizard-dot-order" id='staticButton3'></a>
+    <% end%>
+    <div class="text-center statusText">Plate Info</div>
+  </div>
+
+  <div class="col-xs-2 bs-wizard-step disabled" id="step-4-order-<%= order.id %>-<%= order.order_status.step_number %>">
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+    <a href="<%= order_overview_order_path(@order) %>" class="bs-wizard-dot-order" id="orderStep4Dot"></a>
+    <div class="text-center statusText">Review</div>
+  </div>
+
+  <div class="col-xs-2 bs-wizard-step disabled" id="step-5-order-<%= order.id %>-<%= order.order_status.step_number %>">
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+    <a href="<%= order_overview_order_path(@order) %>" class="bs-wizard-dot-order" id="orderStep5Dot"></a>
+    <div class="text-center statusText">Submitted</div>
+  </div>
+</div>
+
+<div class="loading_modal"></div>
+
+
+

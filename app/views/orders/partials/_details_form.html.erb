@@ -1,0 +1,138 @@
+<div class="containter">
+  <h3> Plate Details</h3>
+  <div class="col-md-5">
+    <div>
+      <%= form_tag order_plate_detail_order_path(@order), :method => :post, remote: true do %>
+          <div class="row", id="plateMap">
+            <div class="break_smaller">
+              <div class="control-group">
+                <%= label_tag :plate_detail, 'Select Plate/Vial', class: 'control-group' %>
+                <%= select_tag :plate_detail, options_from_collection_for_select(@plate_types, 'id', 'label', @plate_type.id ), class: "form-control", id: "plate-input"%>
+              </div>
+            </div>
+          </div>
+          <% array_id = ["empty", "solvent", "control"] %>
+          <% array_id.each do |i| %>
+              <div class="row">
+                <div class="break_smaller">
+                  <div class="control-group">
+                    <%= label_tag i.to_sym, "#{i}", class: 'control-group' %>
+                    <%= text_area_tag i.to_sym, "#{@order_plate_detail.public_send i.to_sym}", :class => "input-large", :placeholder => "#{i} wells", :id => "#{i}", :rows => "7", style: 'width:100%' %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <div class="row">
+            <div class="break_smaller">
+              <%= submit_tag "Save", :name => "#{@button_param}", class: "btn btn-success", id: "saveDetail" %>
+            </div>
+          </div>
+      <% end %>
+      <div class="row">
+        <% if plate_details? %>
+        <div class="break_smaller">
+          <%= link_to order_overview_order_path(@order), {:style => 'color:white', class: "btn btn-primary", id: 'orderOverview'} do %>
+              <span class="fa fa-arrow-circle-right"></span> Order Review
+          <% end %>
+        </div>
+        <%end%>
+        <div>
+          <%= link_to order_chemical_list_path(@order, @order.order_chemical_list.chemical_list_id), {:style => 'color:white', class: "btn btn-primary manage-chemicals"}, data: {disable_with: "Loading Chemicals.."} do %>
+              <span class="fa fa-arrow-circle-left"></span> Add Chemicals
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-md-offset-1">
+    <div class="row">
+      <div class="pull-right break">
+        <div class="row" , style='display:none' , id="96well">
+          <%= image_tag("96well.gif") %>
+        </div>
+        <div class="row" , style='display:none' , id="384well">
+          <%= image_tag("384well.gif") %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h4>List of Controls</h4>
+      <table id="list-controls-table" class="table table-bordered table-condensed table-hover table-striped">
+        <thead>
+        <tr>
+          <th nowrap>Identifier</th>
+          <th nowrap>Chemical Name</th>
+          <th nowrap>Casrn</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @controls.each do |control| %>
+            <tr>
+              <td id='rowControl'><%=control.identifier %></td>
+              <td><%=control.preferred_name %></td>
+              <td><%=control.casrn %></td>
+            </tr>
+        <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="loading_modal"></div>
+</div>
+
+<script>
+  var vials =  '<%=escape_javascript @plate_kinds[:vials]%>';
+  var ninetySix=  '<%=escape_javascript  @plate_kinds[:plate_96]%>';
+  var threeHundred= '<%=escape_javascript @plate_kinds[:plate_384]%>';
+
+    $(document).ready( function (){
+        $('#plate-input').click(function () {
+            for (i = 0; i < attributes.length; i++) {
+                if (document.getElementById('plate-input').value === vials) {
+                    document.getElementById(attributes[i]).readOnly = true;
+                    document.getElementById(attributes[i]).disabled = true;
+                    document.getElementById(attributes[i]).value = "";
+                }
+                else {
+                    document.getElementById(attributes[i]).readOnly = false;
+                    document.getElementById(attributes[i]).disabled = false;
+                }
+            }
+        });
+        array_id = ["empty", "solvent", "control"];
+        var empty = array_id[0];
+        var solvent = array_id[1];
+        var control = array_id[2];
+        var attributes = [empty, solvent, control];
+
+        $('#list-controls-table').DataTable({
+            "paging": true
+        });
+        for (i = 0; i < attributes.length; i++) {
+            if (document.getElementById('plate-input').value === vials) {
+                document.getElementById(attributes[i]).disabled = true;
+            }
+            else{
+                document.getElementById(attributes[i]).disabled = false;
+            }
+        }
+//Image changes on selection
+        $('#plate-input').bind('change', function () {
+
+            if (this.value === ninetySix) {
+                $("#96well").show();
+                $("#384well").hide();
+            }
+            else if (this.value === threeHundred) {
+                $("#384well").show();
+                $("#96well").hide();
+            }
+            else {
+                $("#384well").hide();
+                $("#96well").hide();
+            }
+        }).trigger('change');
+    });
+</script>
+
+

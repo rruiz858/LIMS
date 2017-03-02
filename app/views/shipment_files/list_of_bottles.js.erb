@@ -1,0 +1,30 @@
+$(".list-of-bottles-class").html("<%= escape_javascript(render 'shipment_files/plate_partials/list_of_bottles', :object => @results_hash) %>");
+<% if @results_hash[:messages][0] %>
+$(function () {
+    new PNotify({
+        title: 'Success',
+        text: "<%=@results_hash[:messages][1] %>",
+        type: 'success',
+        animation: 'show',
+        hide: false,
+        buttons: {
+            sticker: false
+        }
+
+    });
+});
+<%else%>
+$(function () {
+    new PNotify({
+        title: 'Error',
+        text: "<%=@results_hash[:messages][1] %>",
+        type: 'error',
+        animation: 'show',
+        hide: false,
+        buttons: {
+            sticker: false
+        }
+
+    });
+});
+<%end%>

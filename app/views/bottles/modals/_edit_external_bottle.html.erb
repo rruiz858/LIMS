@@ -1,0 +1,40 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for(:bottle, :url => url_for(:controller => 'bottles', :action => 'edit_external_bottle'), :remote => true) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title"><%= "Edit External Bottle" %><br/>
+            <small><%= @external_bottle.barcode %></small>
+            <small> |</small>
+            <small><%= @external_bottle.cas %></small>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-8">
+            <% tmp_arry_attributes = %w(status compound_name cas qty_available_mg_ul units concentration_mm form qty_available_umols structure_real_amw vendor vendor_part_number po_number cid cpd lot_number) %>
+            <% tmp_arry_attributes.each do |attribute| %>
+                <div class="control-groups break_smaller">
+                  <%= f.label attribute.to_sym, "#{attribute}" %><br>
+                  <%= f.text_field attribute.to_sym, :placeholder => "#{@external_bottle.send(attribute)}", :class => "form-control" %>
+                </div>
+            <% end %>
+            <div class="checkbox break_smaller">
+              <%= f.label :can_plate do %>
+                  <%= f.check_box :can_plate %>
+                  Plateable?
+              <% end %>
+            </div>
+            <div class="control-groups break_smaller ">
+              <%= f.label "Comment" %>
+              <%= f.text_area :comment, class: 'form-control' %>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+            <%= f.submit class: "btn btn-success", name: 'update_external' %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    <% end %>
+  </div>
+</div>

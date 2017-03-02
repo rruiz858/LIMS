@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipment_file: 'external_shipment'
+  plate_barcode: MyString
+  concentration: 1
+  concentration_unit: MyString
+  amount: 1
+  amount_unit: MyString
+
+two:
+  shipment_file: 'external_shipment'
+  plate_barcode: MyString
+  concentration: 1
+  concentration_unit: MyString
+  amount: 1
+  amount_unit: MyString

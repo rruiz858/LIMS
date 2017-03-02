@@ -1,0 +1,55 @@
+<div id="show-comments-modal-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">Comments</h3>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-file-text "></i> Current Info
+          </div>
+          <div class="panel-body">
+            <small>Order Updated at <%= time_ago_in_words(@order.updated_at) %> ago</small>
+            <h3>Comments</h3>
+            <%= form_for [@order, OrderComment.new] do |f| %>
+                <%= f.text_area :body, placeholder: "Add a comment" %><br/>
+                <%= f.submit "Add Comment" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

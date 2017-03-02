@@ -1,0 +1,115 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <h1><%= @vendor.name %><br/>
+    <small><%= @vendor.label %></small>
+    <small> |</small>
+    <small><%= @vendor.shipment_files.count %> shipments found</small>
+  </h1>
+
+  <div class='row'>
+    <% unless @vendor.shipment_files.empty? %>
+        <hr>
+        <h4> Plates in <%= "#{@vendor.name}" %>:</h4>
+        <table id="vendors_shipment_file_id" class="table table-condensed table-hover table-striped">
+          <caption>Plates at this Location:</caption>
+          <thead>
+          <th id="plate_barcode" , nowrap>Plate Barcode</th>
+          <th nowrap>Well_ID</th>
+          <th nowrap>Source Barcode</th>
+          <th nowrap>ISM</th>
+          <th nowrap>Sample_ID</th>
+          <th nowrap>Structure_ID</th>
+          <th nowrap>Conc.</th>
+          <th nowrap>CAS_REGNO</th>
+          <th nowrap>Supplier Sample ID</th>
+          <th nowrap>File Name</th>
+          </thead>
+
+          <% @vendor.shipment_files.each do |file| %>
+              <% file.plate_details.each do |shipment| %>
+                  <tr>
+                    <td><%= shipment.aliquot_plate_barcode %></td>
+                    <td><%= shipment.aliquot_well_id %></td>
+                    <td><%= shipment.source_barcode %></td>
+                    <td><%= shipment.ism %></td>
+                    <td><%= shipment.sample_id %></td>
+                    <td><%= shipment.structure_id %></td>
+                    <td><%= shipment.aliquot_conc %></td>
+                    <td><%= shipment.cas_regno %></td>
+                    <td><%= shipment.supplier_sample_id %></td>
+                    <td><%= shipment.shipment_file.filename %></td>
+                  </tr>
+              <% end %>
+          <% end %>
+        </table>
+    <% end %>
+  </div>
+  <hr>
+  <% if !@vendor.shipment_files.empty? %>
+      <div class='row'>
+        <div class="col-xs-6 break_smaller">
+          <h4>Update Location of Shipments:</h4>
+          <br>
+          <%= form_tag move_vendors_path, multipart: true do %>
+              <%= select_tag :shipment_file, options_from_collection_for_select(@vendor.shipment_files, "filename", "filename"), class: "form-control" %>
+              <br>
+              <%= select_tag :send_to, options_from_collection_for_select(Vendor.all, "id", "name"), class: "form-control" %>
+              <br>
+              <%= submit_tag "Move Shipment", class: 'btn btn-success', style: 'color:white' %>
+          <% end %>
+        </div>
+      </div>
+  <% else %>
+      <div class='row'>
+        <div class="col-xs-6 break_smaller">
+          No Shipments
+        </div>
+      </div>
+  <% end %>
+  <%= link_to vendors_path, :title => 'Back to Vendors',
+              :rel => 'tooltip',
+              type: 'button',
+              class: 'btn btn-primary',
+              style: 'color:white' do %>
+      <i class="fa fa-arrow-circle-left"> Back</i>
+  <% end %>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#vendors_shipment_file_id').DataTable({
+            "paging": true,
+            "scrollY": 400,
+            "columnDefs": [{
+                "targets": 0,
+                "width": "15%"
+            }, {
+                "targets": 1,
+                "width": "15%"
+            }, {
+                "targets": 2,
+                "width": "10%"
+            }, {
+                "targets": 3,
+                "width": "10%"
+            }, {
+                "targets": 4,
+                "width": "10%"
+            }, {
+                "targets": 5,
+                "width": "10%"
+            }, {
+                "targets": 6,
+                "width": "10%"
+            }, {
+                "targets": 7,
+                "width": "10%"
+            }, {
+                "targets": 8,
+                "width": "10%"
+            }, {
+                "targets": 9,
+                "width": "10%"
+            }]
+        });
+    });
+</script>

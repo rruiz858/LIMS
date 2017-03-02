@@ -1,0 +1,89 @@
+<%= form_for(@coa_summary, remote: false) do |f| %>
+    <p>
+      <strong>Bottle barcode:</strong>
+      <%= @coa_summary.bottle_barcode %>
+    </p>
+
+    <p>
+      <strong>Coa product no:</strong>
+      <%= @coa_summary.coa_product_no %>
+    </p>
+
+    <p>
+      <strong>Coa lot number:</strong>
+      <%= @coa_summary.coa_lot_number %>
+    </p>
+
+    <p>
+      <strong>Coa chemical name:</strong>
+      <%= @coa_summary.coa_chemical_name %>
+    </p>
+
+    <p>
+      <strong>Coa casrn:</strong>
+      <%= @coa_summary.coa_casrn %>
+    </p>
+
+    <p>
+      <strong>Coa molecular weight:</strong>
+      <%= @coa_summary.coa_molecular_weight %>
+    </p>
+    <p>
+      <strong>Coa purity %:</strong>
+      <%= @coa_summary.coa_purity_percentage %>
+    </p>
+
+    <p>
+      <strong>Coa methods:</strong>
+      <%= @coa_summary.coa_methods %>
+    </p>
+
+    <p>
+      <strong>Coa test date:</strong>
+      <%= @coa_summary.coa_test_date %>
+    </p>
+
+    <p>
+      <strong>Coa expiration date:</strong>
+      <%= @coa_summary.coa_expiration_date %>
+    </p>
+
+    <p>
+      <strong>Msds cautions:</strong>
+      <%= @coa_summary.msds_cautions %>
+    </p>
+
+    <% unless @coa_summary.coa.nil? %>
+        <p>
+          <strong> COA:</strong>
+              <%= link_to @coa_summary.coa.filename[34, 70], @coa_summary.coa.filename %>
+        </p>
+    <% end %>
+    <% unless @coa_summary.msd.nil? %>
+        <p>
+          <strong> MSDS:</strong>
+          <%= link_to @coa_summary.msd.filename[34, 70], @coa_summary.msd.filename %>
+        </p>
+    <% end %>
+
+    <% unless @coa_summary.gsid.nil? %>
+        <p>
+          <strong>Dsstox gsid:</strong>
+          <%= @coa_summary.gsid %>
+        </p>
+
+        <p>
+          <strong>Coa review notes:</strong>
+          <%= @coa_summary.coa_review_notes %>
+        </p>
+
+        <p>
+          <% unless @coa_summary.user.nil? %>
+              <strong>Reviewer:</strong>
+              <%= @coa_summary.user.f_name %>
+
+          <% end %>
+        </p>
+
+    <% end %>
+<%end%>

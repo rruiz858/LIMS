@@ -1,0 +1,17 @@
+<h3>All Documents</h3>
+<table id="listDocuments" class="table table-bordered table-condensed table-hover" cellspacing="0" width="100%">
+  <thead>
+  <th>Document</th>
+  <th>Created at</th>
+  <th>Created_by</th>
+  </thead>
+  <tbody>
+  <% documents.each do |i| %>
+      <tr>
+        <td><i class="fa fa-download"></i> <%= link_to i.filename, i.file_url_url %></td>
+        <td><%= i.created_at %></td>
+        <td><%= i.created_by %></td>
+      </tr>
+  <% end %>
+  <tbody>
+  </table>

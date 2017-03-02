@@ -1,0 +1,83 @@
+<div class="top-page container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="stepClass" id="orderStep2"></div>
+  <div class="top-page"><%= render 'orders/partials/order_step_bar' %></div>
+  <% if in_progress? || current_user.role.role_type == "chemadmin" %>
+      <h1>Select Chemicals</h1>
+      <br>
+      <table class="table table-bordered .table-condensed">
+        <h4>Order Specs</h4>
+        <thead>
+        <tr>
+          <th>Vendor</th>
+          <th>Task Order</th>
+          <th>Concentration (mM)</th>
+          <th>Amount</th>
+          <th>Amount Unit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td> <%= @order.vendor.name %></td>
+          <td> <%= @order.task_order.id %></td>
+          <td> <%= @order.order_concentration.concentration %></td>
+          <td>  <%= @order.amount %></td>
+          <td> <%= @order.order_concentration.unit %></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <hr>
+      <div class="accordion-one">
+        <!--starting accourdion -->
+        <div class="panel-group" id="accordion1">
+          <div class="panel panel-primary">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#1-collapseOne">
+              <h4 class="panel-title accordion-toggle">
+                Find List
+              </h4>
+            </div>
+            <div id="1-collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <%= render 'chemical_lists/searches/list_search' %>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#1-collapseTwo" , id="title-find-chemical">
+              <h4 class="panel-title accordion-toggle">
+                Find Chemicals
+              </h4>
+            </div>
+            <div id="1-collapseTwo" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%= render 'chemical_lists/searches/text_search' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="loading_modal"></div>
+      <!--end of starting accourdion-->
+
+      <hr>
+      <div class= "row">
+      <div id="chemical-list">
+        <%= render :partial => 'chemical_lists/tables', :object => [@available_results = @results_hash["available"], @not_available_results = @results_hash["not_available"], @duplicate_results = @results_hash["duplicates"], @no_hits = @results_hash["no_hits"]] %>
+      </div>
+
+      <div class="break_smaller" id="texts">
+      <% if @available.present?&&@no_hits.empty?%>
+        <%= link_to show_plate_order_path(@order), {:style => 'color:white', class: "btn btn-primary", id: "proceed-to-plates"} do %>
+            <span class="fa fa-arrow-circle-right"></span> Plate Details
+        <% end %>
+      <% end %>
+      </div>
+      <div>
+        <%= link_to edit_order_path(@order), {:style => 'color:white', class: "btn btn-primary"} do %>
+            <span class="fa fa-arrow-circle-left"></span> Order Basics
+        <% end %>
+      </div>
+      </div>
+  <% end %>
+</div>
+

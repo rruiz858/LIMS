@@ -1,0 +1,25 @@
+
+<h2>Submitted List</h2>
+<table id="line_items_cart_submitted_id" class="table table-condensed table-hover table-striped table-bordered">
+  <thead>
+  <tr>
+    <th nowrap>CASRN</th>
+    <th nowrap>Name</th>
+    <th nowrap>Sample ID</th>
+    <th nowrap>Bottle ID</th>
+    <th nowrap>DTXSID</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @chemical_list.source_substances.each do |source_substance| %>
+      <tr>
+        <td><%= source_substance.casrn %></td>
+        <td><%= source_substance.name %></td>
+        <td><%= source_substance.sample_id %></td>
+        <td><%= source_substance.bottle_id %></td>
+        <td><%= source_substance.dtxid %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

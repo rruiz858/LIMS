@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+fox_hunt:
+  address1: 7114 Fox Hunt Ln
+  address2: Suite 1
+  country: United States
+  state: Trenton
+  city: City
+  zip: 27519
+  other_details: My other_details Text
+  contact: 'one'
+
+
+arapaho:
+  address1: 2021 Arapaho Dr
+  address2: Suite 1
+  country: Canada
+  state: Toronto
+  city: City
+  zip: 27519
+  other_details: My other_details Text
+  contact: 'two'
+

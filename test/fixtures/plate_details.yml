@@ -1,0 +1,106 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ism: MyString
+  sample_id: MyString
+  structure_id: MyString
+  structure_real_amw: MyString
+  sample_supplier: MyString
+  supplier_structure_id: MyString
+  aliquot_plate_barcode: Alpha
+  aliquot_well_id: MyString
+  aliquot_solvent: MyString
+  aliquot_conc: 1
+  aliquot_conc_unit: mM
+  aliquot_volume: MyString
+  aliquot_volume_unit: uL
+  sample_appearance: MyString
+  structure_name: MyString
+  cas_regno: MyString
+  supplier_sample_id: MyString
+  aliquot_date: MyString
+  solubilized_barcode: MyString
+  lts_barcode: MyString
+  source_barcode: VVVV1
+  blinded_sample_id: EPA_Sample_ID_1
+  bottle: 'one'
+  shipment_file: 'one'  #reference node
+
+two:
+  ism: MyString
+  sample_id: MyString
+  structure_id: MyString
+  structure_real_amw: MyString
+  sample_supplier: MyString
+  supplier_structure_id: MyString
+  aliquot_plate_barcode: Bravo
+  aliquot_well_id: MyString
+  aliquot_solvent: MyString
+  aliquot_conc: 1
+  aliquot_conc_unit: mM
+  aliquot_volume: MyString
+  aliquot_volume_unit: uL
+  sample_appearance: MyString
+  structure_name: MyString
+  cas_regno: MyString
+  supplier_sample_id: MyString
+  aliquot_date: MyString
+  solubilized_barcode: MyString
+  lts_barcode: MyString
+  source_barcode: MyString
+  blinded_sample_id: MyString
+  bottle: 'one'
+  shipment_file: 'one'
+
+
+three:
+  ism: MyString
+  sample_id: MyString
+  structure_id: MyString
+  structure_real_amw: MyString
+  sample_supplier: MyString
+  supplier_structure_id: MyString
+  aliquot_plate_barcode: Charlie
+  aliquot_well_id: MyString
+  aliquot_solvent: MyString
+  aliquot_conc: 1
+  aliquot_conc_unit: mM
+  aliquot_volume: MyString
+  aliquot_volume_unit: uL
+  sample_appearance: MyString
+  structure_name: MyString
+  cas_regno: MyString
+  supplier_sample_id: MyString
+  aliquot_date: MyString
+  solubilized_barcode: MyString
+  lts_barcode: MyString
+  source_barcode: MyString
+  blinded_sample_id: EPA_Order89NA
+  bottle: 'fifteen'
+  shipment_file: 'mixture' #reference node to shipment file parent
+
+four:
+  ism: MyString
+  sample_id: MyString
+  structure_id: MyString
+  structure_real_amw: MyString
+  sample_supplier: MyString
+  supplier_structure_id: MyString
+  aliquot_plate_barcode: Delta
+  aliquot_well_id: A01
+  aliquot_solvent: MyString
+  aliquot_conc: 1
+  aliquot_conc_unit: mM
+  aliquot_volume: MyString
+  aliquot_volume_unit: uL
+  sample_appearance: MyString
+  structure_name: MyString
+  cas_regno: MyString
+  supplier_sample_id: MyString
+  aliquot_date: MyString
+  solubilized_barcode: MyString
+  lts_barcode: MyString
+  source_barcode: VVVV1
+  blinded_sample_id: EPA_Sample_ID_1
+  bottle: 'one'
+  shipment_file: 'one'  #reference node

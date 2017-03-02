@@ -1,0 +1,72 @@
+var tableId = $('table:visible:first').attr('id');
+<%if @errors.blank? %>
+    var typeRoute = $("#tables-url").data('matchtables');
+    var ssId = "<%=@coa_summary.source_substance_id %>";
+    var tableIdSelector = '#' + tableId;
+    var uncuratedTable = $(tableIdSelector).DataTable({
+        processing: true,
+        retrieve: true,
+        "paging": true,
+        "columnDefs": [{
+            "targets": [0, 2, 4, 5],
+            "width": "5%"
+        }, {
+            "targets": [7, 8], "visible": false
+        }],
+        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+            if (aData[7] !== '1') {
+                $('td:eq(1)', nRow).css('background-color', '#ffe6e6');
+            }
+            if (aData[8] !== '1') {
+                $('td:eq(2)', nRow).css('background-color', '#ffe6e6');
+            }
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: typeRoute,
+        data: {kind: tableId},
+        dataType: "json"
+    }).done(function (result) {
+        uncuratedTable.clear().draw();
+        uncuratedTable.rows.add($(result.html)).draw();
+        updateTotalUncuratedCount();
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+    });
+  $("#overrideModal").modal('hide');
+  $(function () {
+      new PNotify({
+          title: 'Success',
+          text: "Record was successfully curated",
+          type: 'success',
+          animation: 'show',
+          buttons: {
+              sticker: false
+          }
+      });
+  });
+
+  function updateTotalUncuratedCount(){
+      var totalCountRoute = $("#totalCountDiv").data('totalcountroute');
+      $.ajax({
+          type: 'GET',
+          url: totalCountRoute,
+          success: function(data,status,xhr){
+              if (data.uncurated_count >= 1 ) {
+                  $('#uncuratedMainCount').html(data.uncurated_count);
+              } else {
+                  $('#uncuratedDropDown').hide();
+                  $('#curated-coa-summaries').click();
+              }
+          },
+          error: function(xhr,status,error){
+              console.log(xhr);
+          }
+      });
+}
+<%else%>
+$("#overrideDiv").html("<%= escape_javascript(render 'coa_summaries/modals/override_panel', :coa_summary => @coa_summary) %>");
+  var error = "<%= @errors %>";
+  $("#gsidOverride").addClass('errorComment errorClass');
+  $("#gsidErrorMessage").append('<p>' + error + '</p>');
+<%end%>

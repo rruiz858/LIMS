@@ -1,0 +1,405 @@
+<div class='row'>
+  <h3> Chemicals</h3>
+  <ul class="nav nav-tabs tabs" id="chemicalTabs">
+  <li role="presentation" class="active">
+    <a href="#available" aria-controls="Available" role="tab" data-toggle="tab">Available <span class="badge" id="orderAvailableCount"><%= @available_results.count %></span></a>
+  </li>
+    <li role="presentation">
+      <a href="#notavailable" aria-controls="NotAvailable" role="tab" data-toggle="tab">Not Available
+        <span class="badge"><%= @not_available_results.count %></span></a>
+    </li>
+    <li role="presentation">
+      <a href="#duplicates" aria-controls="Duplicates" role="tab" data-toggle="tab">Duplicates
+        <span class="badge"><%= @duplicate_results.count %></span></a>
+    </li>
+    <li role="presentation">
+      <a href="#no_hits" aria-controls="Duplicates" role="tab" data-toggle="tab">No Hits
+        <span class="badge"><%= @no_hits.count %></span></a>
+    </li>
+  </ul>
+</div>
+<div class="tab-content" id="show-identifiers" data-identifiers="<%= show_identifiers_url %>">
+  <div role="tabpanel" class="tab-pane fade in active break-smaller" id="available" data-controls="<%= update_control_url %>"><%= render 'chemical_lists/tabs/available' %></div>
+  <div role="tabpanel" class="tab-pane fade break-smaller" id="notavailable"><%= render 'chemical_lists/tabs/not_available' %></div>
+  <div role="tabpanel" class="tab-pane fade break-smaller" id="duplicates"><%= render 'chemical_lists/tabs/duplicates' %></div>
+  <div role="tabpanel" class="tab-pane fade break-smaller" id="no_hits"><%= render 'chemical_lists/tabs/no_hits' %></div>
+</div>
+<div id="orderId" data-order="<%= @order.id %>"></div>
+<div id="dDiv" data-controls></div>
+<div id="standardReplicatesDiv" data-replicateroute="<%= standard_replicates_source_substances_path %>"></div>
+
+
+<script>
+
+    $(document).ready(function () {
+        var currentOrder = $("#orderId").data('order');
+        $("#standardControl").on("click", function () {
+            var buttonId = '#' + $(this).attr('id');
+            var standardControlsRoute = $("#standardReplicatesDiv").data('replicateroute');
+            var totalCount = $("#orderAvailableCount").html();
+            var totalNumber = Number(totalCount.replace(/[^0-9\.]+/g,""));
+            $.ajax({
+                type: "GET",
+                url: standardControlsRoute,
+                data: {order_id: currentOrder},
+                dataType: "json",
+                success: function (data) {
+                    var possibleErrors = data.error;
+                    if (possibleErrors === false) {
+                        var usingReplicates = data.boolean;
+                        if (usingReplicates === true) {
+                            //user is adding elements
+                            for (var i = 0; i < data.non_existing.length; i++) {
+                                var item = data.non_existing[i];
+                                var html = "<tr id= 'row-" + item.id + "' >" + '<td></td>' + "<td class ='ss-id'>" + item.id + '</td><td>' + item.gsid + '</td><td>' + item.cas + '</td><td>' + item.name + '</td><td>' + item.dtxsid + '</td><td>' +
+                                    "<input id ='" + item.id + "' type= 'checkbox' disabled='disabled' " + "class = 'source-substance-checkbox replicate' value=" + 1 + " 'name= 'source-substance-checkbox'>" +
+                                    "</td><td></td><td align='center'>" + "<button class='btn btn-danger btn-xs replicate disabled'> Delete <span class='fa fa-trash'></span></button>" +
+                                    "</td></tr>";
+                                availableTable.row.add($(html)).draw();
+                            }
+                            for (var z = 0; z < data.existing.length; z++) {
+                                var existingItem = data.existing[z];
+                                $(' input:checkbox[' + "id=" + existingItem + "]").prop("disabled", true).attr("disabled", true);
+                                $('#delete-' + existingItem + '-button').prop('disabled', true).attr('disabled', true)
+                            }
+                            var addedUpdatedCount = totalNumber + (data.existing.length + data.non_existing.length);
+                            $("#orderAvailableCount").html(addedUpdatedCount);
+                            $(buttonId).html('Remove Standard Controls')
+                        } else {
+                            //user is removing controls
+                            var nonExistingIds = [];
+                            for (var j = 0; j < data.existing.length; j++) {
+                                //user is adding controls
+                                var existingElement = data.existing[j];
+                                $(' input:checkbox[' + "id=" + existingElement + "]").attr('checked', false).prop('checked', false).prop("disabled", false).attr("disabled", false).removeClass('replicate');
+                                $('#delete-' + existingElement + '-button').prop('disabled', false).attr('disabled', false).removeClass('replicate');
+
+                            }
+                            for (var k = 0; k < data.non_existing.length; k++) {
+                                var element = data.non_existing[k];
+                                var id = '#row-' + element;
+                                nonExistingIds.push(id);
+                            }
+                            if (nonExistingIds.length > 0) {
+                                var rows = availableTable.rows(nonExistingIds);
+                                rows.remove().draw();
+                            }
+                            var minusUpdatedCount = totalNumber - (data.existing.length + data.non_existing.length);
+                            $("#orderAvailableCount").html(minusUpdatedCount);
+                            $(buttonId).html('Add Standard Controls')
+                        }
+                    } else {
+                        $(function () {
+                            new PNotify({
+                                title: 'Error',
+                                text: "Standard Controls were not succesfully added",
+                                type: 'error',
+                                animation: 'show',
+                                buttons: {
+                                    sticker: false
+                                }
+                            });
+                        });
+                    }
+
+                },
+                error: function (status) {
+                    console.log(status);
+                }
+            });
+
+        });
+        $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+            $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+        } );
+
+        var availableTable = $('#available-table').DataTable({
+            "paging": true,
+            "processing": true,
+            "ordering": true,
+             responsive: {
+                details: {
+                    type: 'column',
+                    target: 'tr'
+                }
+            },
+            columnDefs: [{
+                "className": 'details-control',
+                "orderable": false,
+                "targets": 0
+            }],
+            "order": [[2, "desc"]],
+            "fnRowCallback": function(nRow, aData, iDisplayIndex) {
+                //var test = aData[6];
+                var checkbox= $(nRow).find('input').val();
+                if(checkbox == 1) {
+                    var row = $('td:eq(6)',nRow).find('.source-substance-checkbox');
+                    var id = row.attr('id');
+                    $("input" + ":checkbox[id=" + id + "]" ).prop('checked',true).attr('checked',true);
+                    if ($('#'+id).hasClass('replicate')) {
+                        $(' input:checkbox[' + "id=" + id + "]").prop("disabled", true).attr("disabled", true);
+                        $('#delete-'+ id + '-button').prop('disabled', true).attr('disabled', true)
+                    }
+                }
+            }
+        });
+
+        availableTable.on('draw', function () {
+            $(".source-substance-checkbox").each(function () {
+                var checkbox = $(this).val();
+                var ssId = this.id;
+                if (checkbox == 1) {
+                     //should probably make this a function
+                    $("input" + ":checkbox[id=" + ssId + "]").prop('checked', true).attr('checked', true);
+                    if ($('#'+ssId).hasClass('replicate')) {
+                        $(' input:checkbox[' + "id=" + ssId + "]").prop("disabled", true).attr("disabled", true);
+                        $('#delete-'+ ssId + '-button').prop('disabled', true).attr('disabled', true)
+                    }
+                }
+            })
+        });
+
+        var notAvailableTable = $('#not-available-table').DataTable({
+            "paging": true,
+            "processing": true,
+             responsive: {
+                details: {
+                    type: 'column',
+                    target: 'tr'
+                }
+            },
+            columnDefs: [{
+                "className": 'details-control',
+                "orderable": false,
+                "targets": 0
+            }],
+            "order": [[1, "desc"]]
+        });
+        var noHitsTable = $('#no-hits-table').DataTable({
+            "paging": true,
+            "processing": true,
+             responsive: {
+                details: {
+                    type: 'column',
+                    target: 'tr'
+                }
+            },
+            columnDefs: [{
+                "className": 'details-control',
+                "orderable": false,
+                "targets": 0
+            }],
+            "order": [[1, "desc"]]
+        });
+
+
+        $('#duplicate-chemicals').DataTable({
+            "paging": true,
+            "ScrollY": true,
+            "ScrollX": true
+        });
+
+        var identiferRoute = $("#show-identifiers").data('identifiers');
+        var controlRoute = $("#available").data('controls');
+
+        $('#available-table tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).parents('tr');
+            var row = availableTable.row(tr);
+            var ssId =  $(this).closest('tr').find('.ss-id').text();
+            $.ajax({
+                type: "GET",
+                url: identiferRoute,
+                data: {id: ssId},
+                dataType: "json",
+                success: function(data){
+                    if (row.child.isShown()) {
+                        // This row is already open - close it
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    }
+                    else {
+                        row.child(data.html).show();
+                        tr.addClass('shown');
+                    }
+                },
+                error: function(status) {
+                    console.log(status);
+                }
+            });
+
+        });
+
+        $('#not-available-table tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).parents('tr');
+            var row =  notAvailableTable.row(tr);
+            var ssId =  $(this).closest('tr').find('.ss-id').text();
+            $.ajax({
+                type: "GET",
+                url: identiferRoute,
+                data: {id: ssId},
+                dataType: "json",
+                success: function(data){
+                    if (row.child.isShown()) {
+                        // This row is already open - close it
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    }
+                    else {
+                        // Open this row
+                        row.child(data.html).show();
+                        tr.addClass('shown');
+                    }
+                },
+                error: function(status) {
+                    console.log(status);
+                }
+            });
+        });
+
+        $('#no-hits-table tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).parents('tr');
+            var row =  noHitsTable.row(tr);
+            var ssId =  $(this).closest('tr').find('.ss-id').text();
+            $.ajax({
+                type: "GET",
+                url: identiferRoute,
+                data: {id: ssId},
+                dataType: "json",
+                success: function(data){
+                    if (row.child.isShown()) {
+                        // This row is already open - close it
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    }
+                    else {
+                        // Open this row
+                        row.child(data.html).show();
+                        tr.addClass('shown');
+                    }
+                },
+                error: function(status) {
+                    console.log(status);
+                }
+
+            });
+
+        });
+
+        $('#available-table').on("change", ".source-substance-checkbox", function (event) {
+            var sourceSubstanceId = $(this).attr('id');
+            console.log(currentOrder);
+            if ($(this).is(":checked")) {
+                $.ajax({
+                    url: controlRoute,
+                    type: 'POST',
+                    data: {id: sourceSubstanceId, order: currentOrder, state: "1" },
+                    success: function (data) {
+                        $(function () {
+                            new PNotify({
+                                title: 'Success',
+                                text: 'Successfully added control',
+                                type: 'success',
+                                animation: 'show',
+                                hide: false,
+                                buttons: {
+                                    sticker: false
+                                }
+                            });
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log(xhr.responseText);
+                        $(function () {
+                            new PNotify({
+                                title: 'Error',
+                                text: "Control was not succesfully added",
+                                type: 'error',
+                                animation: 'show',
+                                buttons: {
+                                    sticker: false
+                                }
+                            });
+                        });
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: controlRoute,
+                    type: 'POST',
+                    data: {id: sourceSubstanceId, order: currentOrder, state: "0"},
+                    success: function (data) {
+                        $(function () {
+                            new PNotify({
+                                title: 'Success',
+                                text: 'Successfully removed control',
+                                type: 'success',
+                                animation: 'show',
+                                hide: false,
+                                buttons: {
+                                    sticker: false
+                                }
+                            });
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log(xhr.responseText);
+                        $(function () {
+                            new PNotify({
+                                title: 'Error',
+                                text: "Control was not succesfully updated",
+                                type: 'error',
+                                animation: 'show',
+                                buttons: {
+                                    sticker: false
+                                }
+                            });
+                        });
+                    }
+                });
+            }
+
+        });
+
+        highlight();
+        $('#available-table').on('order.dt', function () {
+            if ($("thead th:nth-child(3)").hasClass("sorting_desc") || $("thead th:nth-child(3)").hasClass("sorting_asc")) {
+                highlight();
+            } else {
+                $("#available-table").DataTable().$("td").removeClass("info");
+                $("#available-table").DataTable().$("td").css("border-bottom", "");
+            }
+        });
+
+        function highlight() {
+            var duplicate = false;
+            var rows = $("#available-table").DataTable().rows({ search: 'applied' }).nodes();
+            $.each(rows, function (index, value) {
+                var $current = $(this).children(":nth-child(3)");
+                var $next = (index !== rows.length)
+                        ? $(rows[index + 1]).children(":nth-child(3)")
+                        : $('<td/>');
+
+                if ($current.text() === $next.text() && !duplicate) {
+                    duplicate = true;
+                    $current.parent().children().addClass("info");
+                    if(index > 0){
+                        $(rows[index-1]).children().css("border-bottom", "1px solid #333");
+                    }
+                } else if ($current.text() === $next.text() && duplicate) {
+                    $current.parent().children().addClass("info");
+                } else if ($current.text() !== $next.text() && duplicate) {
+                    $current.parent().children().addClass("info");
+                    $current.parent().children().css("border-bottom", "1px solid #333");
+                    duplicate = false;
+                } else {
+                    $current.parent().children().removeClass("info");
+                    $current.parent().children().css("border-bottom", "");
+                }
+            });
+        }
+
+
+    });
+</script>
+
+

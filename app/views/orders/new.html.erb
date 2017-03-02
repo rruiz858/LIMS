@@ -1,0 +1,8 @@
+<div class="top-page container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="top-page"><%= render 'orders/partials/order_step_bar' %></div>
+  <%= simple_form_for @order do |f| %>
+      <h2>Create Order</h2>
+      <%= render 'orders/partials/form', :f => f %>
+      <% end %>
+  <div class="loading_modal"></div>
+</div>

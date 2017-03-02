@@ -1,0 +1,18 @@
+$("#multipleResults").html("<%= escape_javascript(render 'bottles/multiple_results_partials/mutliple_results_table' ) %>");
+$("#findChemicalModal").modal('hide');
+<%unless @result_hash[0] %>
+var error_message = '<%=escape_javascript @result_hash[1]%>';
+$(document).ready(function () {
+    $(function () {
+        new PNotify({
+            title: 'Error',
+            text: error_message,
+            type: 'error',
+            animation: 'show',
+            buttons: {
+                sticker: false
+            }
+        });
+    });
+});
+<%end%>

@@ -1,0 +1,32 @@
+<h3>Task Orders</h3>
+<table id="allTasks" class="table vendors table-bordered table-condensed table-hover" cellspacing="0" width="100%">
+  <thead>
+  <th nowrap>Name</th>
+  <th nowrap>Added By</th>
+  <th nowrap>Created At</th>
+  <th></th>
+  </thead>
+  <tbody>
+  <% @task_orders.each do |i| %>
+      <tr>
+        <td><%= i.name %></td>
+        <td><%= i.created_by %></td>
+        <td><%= time_ago_in_words(i.created_at) %> </td>
+        <td>
+          <%= link_to(edit_vendor_agreement_task_order_path(@vendor, @agreement, i)) do %>
+              <button class='btn btn-primary btn-xs' style='color:white'>Manage
+                <i class='fa fa-pencil'></i>
+              </button>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  <tbody>
+  </table>
+
+
+<script>
+    $('#allTasks').DataTable({
+        "paging": true
+    })
+</script>

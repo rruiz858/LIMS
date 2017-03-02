@@ -1,0 +1,49 @@
+<%= render 'bottles/toolbar' %>
+<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+
+  <div class="tab-content" id="bottleTabs">
+    <%= render 'bottles/tab_contents' %>
+  </div>
+  <div id="new-external-bottle" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title"><%= "New External Bottle" %></h3>
+        </div>
+        <div class="modal-body">
+          <%= render :file => '/bottles/new' %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if can? :create, CoaSummaryFile %>
+      <% if @bottles_no_coa.count > 0 %>
+          <div class="alert alert-info alert-dismissible col-xs-3 col-sm-offset-9" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <strong>Note!</strong> Some bottles in the inventory are not matched to a coa summary id. Click
+            <a title='Upload file' :rel='tooltip' , href="<%= new_coa_summary_file_path %>">
+              <button class="btn btn-xs btn-success" id='upload_coa_summary' style='color:white'>here
+                <i class="fa fa-plus-circle"></i>
+              </button>
+            </a>to upload a coa summary file.
+          </div>
+      <% end %>
+  <% end %>
+  <div class="loading_modal"></div>
+  <div id="edit-external-bottle-modal" class="modal fade"></div>
+  <div id="edit-bottle-modal" class="modal fade"></div>
+  <div id="show-bottle-modal" class="modal fade"></div>
+  <div id="show-coa-summary-modal" class="modal fade"></div>
+</div>
+
+<script>
+    function closeModal() {
+        $('#new-external-bottle').modal('hide');
+        $('body').addClass("loading");
+    }
+</script>

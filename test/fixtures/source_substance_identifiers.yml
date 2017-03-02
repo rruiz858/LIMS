@@ -1,0 +1,273 @@
+one:
+  source_substance: "two"
+  identifier: TX87439
+  identifier_type: BOTTLE_ID
+  fk_source_substance_identifier_parent:
+  created_by: julio
+  updated_by: julio
+
+two:
+  source_substance: "two"
+  identifier: DTXSID7020639
+  identifier_type: DTXSID
+  fk_source_substance_identifier_parent:
+  created_by: Alfredo
+  updated_by: Alfredo
+
+three:
+  source_substance: "two"
+  identifier: TX7382326
+  identifier_type: SAMPLE_ID
+  fk_source_substance_identifier_parent:
+  created_by: Ramon
+  updated_by: Ramon
+
+four:
+  source_substance: "two"
+  identifier: 70-00-6
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: Humberto
+  updated_by: Humberto
+
+five:
+  source_substance: "seven"
+  identifier: TX87439
+  identifier_type: BOTTLE_ID
+  fk_source_substance_identifier_parent:
+  created_by: julio
+  updated_by: julio
+
+six:
+  source_substance: "seven"
+  identifier: DTXSID7020639
+  identifier_type: DTXSID
+  fk_source_substance_identifier_parent:
+  created_by: Alfredo
+  updated_by: Alfredo
+
+seven:
+  source_substance: "seven"
+  identifier: TX7382326
+  identifier_type: SAMPLE_ID
+  fk_source_substance_identifier_parent:
+  created_by: Ramon
+  updated_by: Ramon
+
+eight:
+  source_substance: "seven"
+  identifier: 70-00-6
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: Humberto
+  updated_by: Humberto
+
+nine:
+  source_substance: "eight"
+  identifier: Mom
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: jpearc03
+  updated_by: jpearc03
+
+ten:
+  source_substance: "eight"
+  identifier: Llamas
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: jpearc03
+  updated_by: jpearc03
+
+eleven:
+  source_substance: "nine"
+  identifier: Mom
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: jsmith09
+  updated_by: jsmith09
+
+twelve:
+  source_substance: "nine"
+  identifier: Llamas
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: jsmith09
+  updated_by: jsmith09
+
+thirteen:
+  source_substance: "ten"
+  identifier: Mom
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+fourteen:
+  source_substance: "ten"
+  identifier: Llamas
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+fiftteen:
+  source_substance: "eleven"
+  identifier: 120-32-1
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+sixteen:
+  source_substance: "eleven"
+  identifier: Clorophene
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+seventeen:
+  source_substance: "twelve"
+  identifier: 19044-88-3
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+eightteen:
+  source_substance: "twelve"
+  identifier: Oryzalin
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+
+nineteen:
+  source_substance: "thirteen"
+  identifier: 584-79-2
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+twenty:
+  source_substance: "thirteen"
+  identifier: Allethrin
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+twenty:
+  source_substance: "fourteen"
+  identifier: 8018-01-7
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+twentyone:
+  source_substance: "fourteen"
+  identifier: Mancozeb
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+twentytwo:
+  source_substance: "fiftteen"
+  identifier: 80-05-7
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+twentythree:
+  source_substance: "fiftteen"
+  identifier: Bisphenol A
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+twentyfour:
+  source_substance: "sixteen"
+  identifier: 3380-34-5
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+twentyfive:
+  source_substance: "sixteen"
+  identifier: Triclosan
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+twentysix:
+  source_substance: "seventeen"
+  identifier: 1763-23-1
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+twentyseven:
+  source_substance: "seventeen"
+  identifier: PFOS
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+twentyeight:
+  source_substance: "eightteen"
+  identifier: 55219-65-3
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+twentynine:
+  source_substance: "eightteen"
+  identifier: Triadimenol
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+
+thirty:
+  source_substance: "nineteen"
+  identifier: 131860-33-8
+  identifier_type: CASRN
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev
+
+
+thirtyone:
+  source_substance: "nineteen"
+  identifier: Azoxystrobin
+  identifier_type: NAME
+  fk_source_substance_identifier_parent:
+  created_by: rruizvev
+  updated_by: rruizvev

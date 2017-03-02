@@ -1,0 +1,30 @@
+<div class="top-page col-md-offset-1"><%= render 'orders/order_step_bar' %></div>
+<table class = " table table-bordered .table-condensed">
+  <br>
+  <h3>Submitted Plate Details</h3>
+  <thead>
+  <tr>
+    <th nowrap>Plate Type</th>
+    <th nowrap>Empty</th>
+    <th nowrap>Solvent</th>
+    <th nowrap>Control</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td> <%= @order.order_plate_detail.plate_type %></td>
+    <td> <%= @order.order_plate_detail.empty %></td>
+    <td> <%= @order.order_plate_detail.solvent %></td>
+    <td> <%= @order.order_plate_detail.control %></td>
+  </tr>
+  </tbody>
+</table>
+
+<%= link_to orders_path, :title => 'Back',
+            :rel => 'tooltip',
+            type: 'button',
+            class: 'btn btn-primary',
+            style: 'color:white' do %>
+    <i class="fa fa-arrow-circle-left"> Back</i>
+<% end %>
+

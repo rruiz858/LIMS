@@ -1,0 +1,12 @@
+<div class="timeline-heading">
+  <h5 class="timeline-title">Document was added</h5>
+  <p><small class="text-muted"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(activity.created_at) %> </small>
+  </p>
+</div>
+<div class="timeline-body">
+  <i class = "fa fa-download"></i>
+  <%= activity.created_at.strftime("%m/%d/%Y %l:%m%p" )   %>
+  File was
+  created by <%= activity.user.username %> -
+  <%= link_to activity.trackable.filename, "#{root_url}uploads/agreement_document/file_url/#{activity.trackable.file_url.file.filename}" %>
+</div>

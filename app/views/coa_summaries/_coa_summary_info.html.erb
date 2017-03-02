@@ -1,0 +1,15 @@
+<% tmp_arry_attributes = %w(id bottle_barcode coa_table_entry inventory_source coa_product_no coa_lot_number coa_chemical_name
+                                    coa_casrn coa_molecular_weight coa_density coa_purity_percentage coa_methods coa_test_date coa_expiration_date
+                                    msds_cautions coa_review_notes reviewer_initials commercial_source gsid date_record_added date_record_modified
+                                    source_substance_id chemical_list_id) %>
+<ul>
+  <% tmp_arry_attributes.each do |attribute| %>
+      <li>
+        <strong><%= attribute %>:</strong>
+        <%= coa_summary.send(attribute.to_sym) %>
+      </li>
+  <% end %>
+</ul>
+<% pdfs = %w(coa msd) %>
+<%= get_pdf(pdfs, coa_summary) %>
+

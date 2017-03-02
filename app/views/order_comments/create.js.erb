@@ -1,0 +1,21 @@
+<%if @errors.nil? %>
+    $("#all-comments-modal").modal('hide');
+    var message = "<%=@message %>";
+    $(function () {
+        new PNotify({
+            title: 'Success',
+            text: 'comment: ' + message +' was successfully added' ,
+            type: 'success',
+            animation: 'show',
+            buttons: {
+                sticker: false
+            }
+        });
+    });
+<%else%>
+    var modal = "<%= escape_javascript(render 'order_comments/all_comments_modal') %>";
+    var error = "<%= @errors.inspect %>";
+    $("#all-comments-modal").html($(modal).html());
+    $("#commentBody").addClass('errorComment errorClass');
+    $("#commentErrorMessage").append('<p>' + error + '</p>');
+<%end%>

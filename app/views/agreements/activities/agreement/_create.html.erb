@@ -1,0 +1,11 @@
+<div class="timeline-heading">
+  <h5 class="timeline-title">Agreement was created</h5>
+  <p><small class="text-muted"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(activity.created_at) %> </small>
+  </p>
+</div>
+<div class="timeline-body">
+  <i class = "fa fa-star"></i>
+  <%= activity.created_at.strftime("%m/%d/%Y %l:%m%p" )   %>
+  Agreement was
+  initiated by <%= activity.user.username %>
+</div>

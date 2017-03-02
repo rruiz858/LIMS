@@ -1,0 +1,40 @@
+<div id="all-comments-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">Comments</h3>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-commenting-o"></i> Comment History
+          </div>
+          <div class="panel-body">
+            <hr>
+            <% @order.order_comments.each do |comment| %>
+                <p>
+                  <%=comment.body%>
+                </p>
+                <small>Comment added <%= time_ago_in_words(comment.updated_at) %> ago by <%= comment.created_by%></small>
+                <hr>
+            <%end%>
+            <%= form_tag order_order_comments_path(@order), method: :post, remote: true do %>
+                <div class="break_smaller" id="reviewRejectedOrder">
+                  <%= text_area_tag :body, nil, class: "form-control" ,id:"commentBody", placeholder: "Add Comment", rows: 10 %>
+                  <div id="commentErrorMessage"></div>
+                </div>
+                <%= button_tag(type: "submit", class: "btn btn-success", name: nil) do %>
+                    <span class='fa fa-envelope' aria-hidden="true"></span> Submit Comment
+                <% end %>
+            <% end %>
+            <div id="commentErrorMessage"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

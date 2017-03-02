@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: 'This comment is for the the 3rd order within the order fixture'
+  commentable: three (Order)
+
+two:
+  body: MyText
+  commentable_id: 1
+  commentable_type: MyString

@@ -1,0 +1,28 @@
+<div class="divide-nav">
+  <div class="navbar navbar-default navbar-static-top bottle-navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse main-nav">
+        <ul class="nav navbar-nav" role="tablist">
+          <li role="presentation" class="active"><a href="#vendor-info-form"  class='show' data-toggle="tab">Vendor Details
+            <span class="sr-only"></span></a>
+          </li>
+          <% if can? :manage, Agreement %>
+          <li role="presentation"><a href="#vendor-agreement-form"  class="show" data-toggle="tab">Agreements
+            <span class="sr-only"></span></a>
+          <% end %>
+          </li>
+          <li role="presentation"><a href="#vendor-contact-form"  class="show" data-toggle="tab">Contacts
+            <span class="sr-only"></span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

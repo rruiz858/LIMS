@@ -1,0 +1,24 @@
+<div class="break_top">
+  <table id="curated-coas" class="table-bordered table-striped table-condensed table-hover" cellspacing="0" width="100%" data-source="<%= coa_summaries_url(format: "json") %>">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>GSID</th>
+      <th>Bottle barcode</th>
+      <th>Name</th>
+      <th>CAS</th>
+      <th>purity %</th>
+      <th>Methods</th>
+      <th>Test Date</th>
+      <th>expiration date</th>
+      <th>updated at</th>
+      <th>COA <span class="fa fa-file-pdf-o"></span></th>
+      <th>MSDS <span class="fa fa-file-pdf-o"></span></th>
+      <th>Show</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id=content></tr>
+    </tbody>
+  </table>
+</div>

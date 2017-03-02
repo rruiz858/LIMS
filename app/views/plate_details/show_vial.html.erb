@@ -1,0 +1,155 @@
+<div class="top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="col-xs-6">
+    <h1><%= "Vial Detail" %><br/>
+      <small><%= @vial_detail.blinded_sample_id %></small>
+      <small> |</small>
+      <small><%= @vial_detail.aliquot_well_id %></small>
+    </h1>
+    <p>
+      <strong>ISM:</strong>
+      <%= @vial_detail.ism %>
+    </p>
+
+    <p>
+      <strong>Blinded Sample ID:</strong>
+      <%= @vial_detail.blinded_sample_id %>
+    </p>
+
+    <p>
+      <strong>Sample ID:</strong>
+      <%= @vial_detail.sample_id %>
+    </p>
+
+    <p>
+      <strong>Structure ID:</strong>
+      <%= @vial_detail.structure_id %>
+    </p>
+
+    <p>
+
+    <p>
+      <strong>Structure Real AMW:</strong>
+      <%= @vial_detail.structure_real_amw %>
+    </p>
+
+    <p>
+      <strong>Sample Supplier:</strong>
+      <%= @vial_detail.sample_supplier %>
+    </p>
+
+    <p>
+      <strong>Supplier Structure ID:</strong>
+      <%= @vial_detail.supplier_structure_id %>
+    </p>
+
+    <p>
+      <strong>Aliquot Plate Barcode:</strong>
+      <%= @vial_detail.aliquot_plate_barcode %>
+    </p>
+
+    <p>
+      <strong>Aliquot Well ID:</strong>
+      <%= @vial_detail.aliquot_well_id %>
+    </p>
+
+    <p>
+      <strong>Aliquot Vial Barcode:</strong>
+      <%= @vial_detail.aliquot_vial_barcode %>
+    </p>
+
+    <p>
+      <strong>Aliquot Amount:</strong>
+      <%= @vial_detail.aliquot_amount %>
+    </p>
+
+    <p>
+      <strong>Aliquot Amount Unit:</strong>
+      <%= @vial_detail.aliquot_amount_unit %>
+    </p>
+
+    <p>
+      <strong>Sample Appearance:</strong>
+      <%= @vial_detail.sample_appearance %>
+    </p>
+
+    <p>
+      <strong>Structure Name:</strong>
+      <%= @vial_detail.structure_name %>
+    </p>
+
+    <p>
+      <strong>CAS Regno:</strong>
+      <%= @vial_detail.cas_regno %>
+    </p>
+
+    <p>
+      <strong>Supplier Sample ID:</strong>
+      <%= @vial_detail.supplier_sample_id %>
+    </p>
+
+    <p>
+      <strong>Aliquot Date:</strong>
+      <%= @vial_detail.aliquot_date %>
+    </p>
+
+    <p>
+      <strong>Solubilized Barcode:</strong>
+      <%= @vial_detail.solubilized_barcode %>
+    </p>
+
+    <p>
+      <strong>Purity:</strong>
+      <%= @vial_detail.purity %>
+    </p>
+
+    <p>
+      <strong>Purity Method:</strong>
+      <%= @vial_detail.purity_method %>
+    </p>
+
+
+    <p>
+      <strong>Source Barcode:</strong>
+      <%= @vial_detail.source_barcode %>
+    </p>
+
+    <% unless @vial_detail.bottle.blank? %>
+        <p>
+          <strong>Mapped Bottle Name:</strong>
+          <%= @vial_detail.bottle.compound_name %>
+        </p>
+
+        <p>
+          <strong>GSID:</strong>
+          <%= @generic_substance.id %>
+        </p>
+
+        <p>
+          <strong>CASRN:</strong>
+          <%= @generic_substance.casrn %>
+        </p>
+
+        <p>
+          <strong>Preferred Name:</strong>
+          <%= @generic_substance.preferred_name %>
+        </p>
+
+        <% @generic_substance.compounds.each do |a| %>
+            <p>
+              <strong>SMILES:</strong>
+              <%= a.smiles %>
+            </p>
+
+            <p>
+              <strong>Molecular Weight:</strong>
+              <%= a.mol_weight %>
+            </p>
+
+        <% end %>
+    <% end %>
+
+    <a href="<%= shipment_file_path(@vial_detail.shipment_file) %>" class="btn btn-primary" style='color:white' title="Back">
+      <span class="fa fa-arrow-circle-left"></span> Back
+    </a>
+  </div>
+</div>

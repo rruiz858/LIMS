@@ -1,0 +1,162 @@
+
+one:
+  dsstox_substance_id: DTXSID7020638
+  casrn: 1-1-1
+  preferred_name: ChemicalX
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by:
+
+two:
+  dsstox_substance_id: DTXSID7020639
+  casrn: 50-00-0
+  preferred_name:
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by:
+
+
+three:
+  dsstox_substance_id: DTXSID7020640
+  casrn: 70-00-6
+  preferred_name: somethingdangerous
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by:
+
+four:
+  dsstox_substance_id: DTXSID7020641
+  casrn: 70-00-73
+  preferred_name: somethingmoredangerous
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by:
+
+
+five:
+  dsstox_substance_id: DTXSID7020646
+  casrn: 70-00-74
+  preferred_name: somethingcrazydangerous
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by:
+
+six:
+  dsstox_substance_id: DTXSID7020649
+  casrn: 79-43-232
+  preferred_name: jacobwastestingthewrongthing
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by:
+
+seven:
+  dsstox_substance_id: DTXSID70206678
+  casrn: 69-69-699
+  preferred_name: NAME1
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by: rruizvev
+
+
+eight:
+  dsstox_substance_id: DTXSID70206678
+  casrn: 79-79-799
+  preferred_name:
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by: rruizvev
+
+nine:
+  dsstox_substance_id: DTXSID70206678
+  casrn:
+  preferred_name: NAME3
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by: rruizvev
+
+eleven:
+  dsstox_substance_id: DTXSID70206678
+  casrn: 67-32-543
+  preferred_name:
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by: rruizvev
+
+
+twelve:
+  dsstox_substance_id: DTXSID70206678
+  casrn:
+  preferred_name: NAME2
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by: rruizvev
+
+thirteen:
+#  id: 20108
+  dsstox_substance_id: DTXSID5020108
+  casrn: 50-78-2
+  preferred_name: Aspirin
+  substance_type:
+  qc_level:
+  qc_notes:
+  qc_notes_private:
+  source:
+  created_by:
+  updated_by: rruizvev
+
+fourteen:
+# id: 20001
+ dsstox_substance_id: DTXSID101
+ casrn: 26148-68-5
+ preferred_name: A-alpha-C
+ substance_type:
+ qc_level:
+ qc_notes:
+ qc_notes_private:
+ source:
+ created_by:
+ updated_by: rruizvev

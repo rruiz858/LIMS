@@ -1,0 +1,98 @@
+<div class="top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div align="right">
+    <button type='button' class='btn btn-success btn-lg' , type='button' , style='color:white' ,
+            data-toggle="modal" data-target='#finalize-agreement-modal'>Finalize
+      <span class="fa fa-check-circle"></span>
+    </button>
+  </div>
+  <%= render 'agreements/partials/header' %>
+  <hr>
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-industry"></i> Current Agreement
+            <div class="pull-right">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                  Actions
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                  <li>  <%= link_to [:edit, @vendor, @agreement] do %>
+                        <button class="btn btn-primary btn-xs" style='color:white'>Update
+                          <i class=" fa fa-pencil"></i></button>
+                    <% end %>
+                  </li>
+                  <li><%= link_to [:generate_pdf, @vendor, @agreement, :format => :pdf] do %>
+                        <button class="btn btn-primary btn-xs" style='color:white'>Download PDF
+                          <i class=" fa fa-download"></i></button>
+                    <% end %>
+                  </li>
+                  <li class="divider"></li>
+                  <li><%= link_to [@vendor, @agreement], method: :delete, data: {confirm: 'Are you sure you want to delete this agreement along with its documents?'} do %>
+                        <button class="btn btn-danger btn-xs" style='color:white'>Delete
+                          <i class=" fa fa-trash-o"></i></button>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <h3>Information</h3>
+            <%= render "agreements/partials/current_agreement" %>
+          </div>
+          <!-- /.panel-body -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-file-text "></i> Current Documents
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <div id="list-of-attachments">
+              <%= render partial: 'agreements/partials/list_of_documents', locals: {documents: @agreement.agreement_documents} %>
+            </div>
+          </div>
+          <!-- /.panel-body -->
+        </div>
+
+      </div>
+    </div>
+    <a href="javascript:history.back()" class="btn btn-primary" style="color:white">
+      <i class=" fa fa-arrow-circle-left"></i> Back
+    </a>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa fa-upload"></i> Add Document
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <h3>Add Documents</h3>
+            <%= render 'agreements/partials/add_attachments' %>
+          </div>
+          <!-- /.panel-body -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render "agreements/partials/timeline" %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'agreements/partials/show_agreement_modal' %>
+<%= render 'agreements/partials/finalize_agreement_modal' %>

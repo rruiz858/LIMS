@@ -1,0 +1,15 @@
+<div class=" top-page col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
+  <div class="col-xs-6">
+    <h1>Edit User</h1>
+    <%= form_for(@user) do |f| %>
+        <%= render 'users/form', :f => f %>
+    <% end %>
+  </div>
+</div>
+
+<% if postdoc? %>
+    <script>
+        var corArray = <%= raw @cor_array%>;
+        $('#cor-options').val(corArray);
+    </script>
+<% end %>

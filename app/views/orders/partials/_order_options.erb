@@ -1,0 +1,34 @@
+<h3 class="reviewOrder">Order Review </h3>
+<% if plate_details? %>
+    <% if can? :review_order, Order %>
+        <div class="break_smaller" id="reviewOrderDiv">
+          <%= render 'orders/partials/review_order_button' %>
+        </div>
+    <% end %>
+<% elsif in_review? %>
+    <% if can? :submit_order, Order %>
+        <div class="btn-group pull-right" id='optionPulldown'>
+          <button type="button" class="btn btn-default dropdown-toggle reviewOrder" id="orderButtonOptions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Actions <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <%= form_tag submit_order_order_path(@order), :method => :patch, :remote => true do %>
+                  <%= button_tag(type: 'submit', class: 'form-control btn btn-link reviewOrder', id: 'submitOrderButton', name: nil, 'data-toggle' => "popover",
+                                 'data-content' => 'This will submit the order..(Nothing really happens).Once submitted no edits can be made',
+                                 'data-trigger' => 'hover', 'data-placement' => 'left') do %>
+                      <span class='fa fa-envelope' aria-hidden="true"></span> Submit Order
+                  <% end %>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to order_comments_show_order_path(@order), remote: true, method: :get, class: "form-control btn btn-link", id:'callReturnModal', 'data-toggle' => "popover",
+                            'data-content' => 'This action will change the status of order back to plate details. The owner of this order will recieve an email with added comments',
+                            'data-trigger' => 'hover', 'data-placement' => 'left' do %>
+                  <span class='fa fa-envelope' aria-hidden="true"></span> Order Return
+              <% end %>
+            </li>
+          </ul>
+        </div>
+    <% end %>
+<% end %>

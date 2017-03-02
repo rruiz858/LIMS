@@ -1,0 +1,13 @@
+<div class="center">
+  <h1>Search Results</h1>
+  <% if @type == -1 %>
+      <p class="center-aligned"><i class="fa fa-question-circle fa-lg"></i> '<%= @search_term %>' was found in the DssTox database. No bottles associated with '<%= @search_term %>' </p>
+
+   <% elsif @type == -2 %>
+      <p class="center-aligned"><i class="fa fa-question-circle fa-lg"></i> '<%= @search_term %>' was not found in the DssTox database. </p>
+
+  <% elsif @type == -3 %>
+      <p class="center-aligned"><i class="fa fa-question-circle fa-lg"></i> '<%= @search_term %>' was not found due to an internal problem. Please try again shortly </p>
+  <% end %>
+</div>
+

@@ -1,0 +1,26 @@
+// Place all the styles related to the shipments_activities controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//div#content{
+//float: left;
+//  width: 900px;
+//  padding: 10px;
+//}
+
+div#header{
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+ul#record {
+  list-style-type: circle;
+  padding-left:0;
+}
+
+ul#record li {
+
+  border-bottom: solid 1px #CCC;
+  padding: 16px 0;
+}

@@ -1,0 +1,27 @@
+<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12" id="modal-bottle">
+  <%= form_for(:bottle, :remote => false) do |f| %>
+      <% tmp_arry_attributes = %w(compound_name cas qty_available_mg_ul units concentration_mm vendor cid cpd lot_number) %>
+      <% tmp_arr_labels = %w(Name CAS Qty_Available Units Concentration Vendor CID CPD Lot ) %>
+      <% tmp_arry_attributes.zip(tmp_arr_labels).each do |attribute, label| %>
+          <div class="control-groups break_smaller">
+            <%= f.label attribute.to_sym, "#{label}" %><br>
+            <%= f.text_field attribute.to_sym, :placeholder => "#{label}", :class => "form-control" %>
+          </div>
+      <% end %>
+
+      <div class="checkbox break_smaller">
+        <%= f.label :can_plate do %>
+            <%= f.check_box :can_plate %>
+            Plateable?
+        <% end %>
+      </div>
+      <div class="form-group ">
+        <label for="comment">Comment</label>
+        <%= f.text_area :comment, class: 'form-control' %>
+      </div>
+
+      <div class="actions break_smaller">
+        <%= f.submit class: "btn btn-success", id: 'create-external-bottle', onclick: "closeModal();" %>
+      </div>
+  <% end %>
+</div>

@@ -1,0 +1,35 @@
+<%= simple_form_for(@agreement, :url => finalize_agreement_vendor_agreement_path, :method => :post) do |f| %>
+    <div class="alert alert-info alert-dismissible fade in break_top" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Heads Up!</strong> Please select an expiration date in order to finalize this agreement. No additional
+      changes can be done after agreement is finalized.
+    </div>
+    <div class="control-group break_top break">
+      <%= f.label :description, "Notes" %>
+      <%= f.input :description, as: :text, required: false, label: false %>
+      <%= f.label :experation_date, "Experation Date" %>
+      <div class="input-group date data-datepicker" data-date-format="mm-dd-yyyy">
+        <%= f.text_field :expiration_date, 'data-behaviour' => 'datepicker', :class => "form-control" %>
+        <div class="input-group-addon">
+          <span class="fa fa-bars"></span>
+        </div>
+      </div>
+    </div>
+    <%= f.hidden_field :vendor_id, :value => @vendor.id %>
+    <%= f.hidden_field :agreement_id, :value => @agreement.id %>
+    <%= f.hidden_field :agreement_status_id, :value => @final_status.id %>
+    <%= f.hidden_field :active, :value => "1" %>
+    <%= button_tag(type: 'submit', class: "btn btn-success", id: "finalizeAgreement") do %>
+        <i class="fa fa-check-circle"></i> Finalize Agreement
+    <% end %>
+<% end %>
+
+<script>
+
+    $(document).ready(function ($) {
+        $(".data-datepicker").datepicker(
+                "setDate", new Date());
+    });
+</script>

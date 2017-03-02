@@ -1,0 +1,28 @@
+<div class="container-fluid top-page">
+  <div id="content">
+    <div id="header">
+      <h1>Shipment File History</h1>
+    </div>
+    <ul id="record">
+      <% @activities.each do |record| %>
+          <li> <%= record.created_at.strftime("%m/%d/%Y %l:%m%p") %>
+            <%= record.user.f_name %>
+            moved <%= link_to record.trackable.filename, record.trackable.file_url_url %>
+            (order ID of <%= record.order_number %>)
+            from  <%= link_to record.location_a, vendor_url(find_vendor(record.location_a)) %>
+            to   <%= link_to record.location_b, vendor_url(find_vendor(record.location_b)) %>
+          </li>
+
+      <% end %>
+    </ul>
+    <br>
+    <%= link_to new_shipment_file_path, :title => 'Add New PlateDetail File',
+                :rel => 'tooltip',
+                type: 'button',
+                class: 'btn btn-primary',
+                style: 'color:white' do %>
+        <i class="fa fa-plus-circle"> New Shipment File</i>
+    <% end %>
+    <%= will_paginate @activities %>
+  </div>
+</div>

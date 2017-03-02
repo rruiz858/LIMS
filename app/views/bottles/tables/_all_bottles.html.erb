@@ -1,0 +1,26 @@
+<table id="bottles" class="table-bordered table-condensed table-hover table-striped" cellspacing="0" width="100%" data-source="<%= bottles_url(format: "json") %>">
+  <thead>
+  <tr>
+    <th>Barcode</th>
+    <% if can? :update, @bottle %>
+        <th>COA Summary</th>
+    <% end %>
+    <th>Compound Name</th>
+    <th>CAS</th>
+    <th>QTY Available</th>
+    <th>Units</th>
+    <th>Vendor</th>
+    <th>SAM</th>
+    <th>CPD</th>
+    <% if can? :update, @bottle %>
+        <th >Can Plate?</th>
+        <th>Comment</th>
+        <th></th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr id=content></tr>
+  </tbody>
+</table>

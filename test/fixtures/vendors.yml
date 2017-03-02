@@ -1,0 +1,34 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+vendor1:
+  name: MyVendor1Name
+  label: MyVendor1Label
+  phone1: HereIsAQuarter
+  phone2: CallSomeoneWhoCares
+  other_details: My other_details Text for fixture vendor1
+  mta_partner: 0
+
+vendor2:
+  name: MyVendor2Name
+  label: MyVendor2Label
+  phone1: HereIsAQuarter
+  phone2: CallSomeoneWhoCares
+  other_details: My other_details Text for fixture vendor2
+  mta_partner: 0
+
+vendor3:
+  name: MyVendor3Name
+  label: MyVendor3Label
+  phone1: HereIsAQuarter
+  phone2: CallSomeoneWhoCares
+  other_details: My other_details Text for fixture vendor3
+  mta_partner: 0
+
+vendor4:
+  name: MyVendor4Name
+  label: MyVendor4Label
+  phone1: HereIsAQuarter564
+  phone2: CallSomeoneWhoCares4
+  other_details: My other_details Text for fixture vendor4
+  mta_partner: 1
+

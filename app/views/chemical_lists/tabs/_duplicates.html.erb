@@ -1,0 +1,32 @@
+<div class='row'>
+<h4>Duplicate Records</h4>
+<table id="duplicate-chemicals" class="table display table-condensed table-hover table-striped table-bordered " cellspacing="0" width="100%">
+  <thead>
+  <tr>
+    <th nowrap>Source Substance ID</th>
+    <th nowrap>Created By</th>
+    <th nowrap>DTXSID</th>
+    <th nowrap>GSID</th>
+    <th nowrap>Duplicate</th>
+    <th nowrap></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @duplicate_results.each do |ss| %>
+      <tr>
+        <td><%= ss.attributes["id"] %></td>
+        <td><%= ss.attributes["created_by"] %></td>
+        <td><%= ss.attributes["dsstox_record_id"] %></td>
+        <td><%= ss.attributes["gsid"] %></td>
+        <td><%= ss.attributes["count"] %></td>
+        <td align="center">
+          <%= link_to source_substance_path(ss.attributes["id"]), method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button class="btn btn-danger btn-xs btn-sty">Delete
+                <i class="fa fa-trash"></i></button>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>

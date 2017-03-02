@@ -1,0 +1,16 @@
+one:
+  order: 'one'
+  source_substance: 'five'
+  controls: 1
+  identifier: 'CTRL1'
+
+two:
+  order: 'one'
+  source_substance: 'six'
+  controls: 0
+
+three:
+  order: 'four'
+  source_substance: 'seven'
+  controls: 0
+  identifier: 'CTRL1'

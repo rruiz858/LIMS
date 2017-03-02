@@ -1,0 +1,35 @@
+<table id="shipment-bottles-table" class="table table-bordered table-condensed table-hover table-striped">
+  <thead>
+  <tr>
+    <th nowrap>Barcode</th>
+    <th nowrap>Well_ID</th>
+    <th nowrap>Amount</th>
+    <th nowrap>Amount Unit</th>
+    <th nowrap>Concentration (mM)</th>
+    <th nowrap>Concentration Unit</th>
+    <th>Edit</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @results_hash[:shipment_bottles].each do |record| %>
+      <tr>
+        <td><%= record.barcode %></td>
+        <td><%= record.well_id %></td>
+        <td><%= record.amount %></td>
+        <td><%= record.amount_unit %></td>
+        <td><%= record.concentration %></td>
+        <td><%= record.concentration_unit %></td>
+        <td><%= link_to edit_record_path(shipment_file_id: @shipment_file.id, record_id: record.id), remote: true, class: "btn btn-primary btn-sm" do %>
+              <i class="fa fa-pencil-square-o">Edit</i>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+    $('#shipment-bottles-table').DataTable({
+        "paging": true
+    })
+</script>

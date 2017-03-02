@@ -1,0 +1,74 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 'superadmin'
+  filename: MyString.xls
+  file_url: MyString
+  file_kilobytes: 1
+  comment: 'My String'
+  vendor: 'vendor1'  #This is the same as location
+  order_number: 'My String'
+  evotech_order_num: 2345
+  original_filename: legacy_2345
+  evotech_shipment_num: 45436
+  external: 0
+  order: 'one'
+
+two:
+  user: 'chemadmin'
+  filename: MyString.xls
+  file_url: MyString
+  file_kilobytes: 1
+  comment: 'My String'
+  vendor: 'vendor1'  #This is the same as location
+  order_number: 'My String'
+  evotech_order_num: 2345
+  original_filename: legacy_2345
+  evotech_shipment_num: 45436
+  external: 0
+  order: 'one'
+
+vial:
+  user: 'superadmin'
+  filename: MyString.xls
+  file_url: MyString
+  file_kilobytes: 1
+  comment: 'My String'
+  vendor: 'vendor2'  #This is the same as location
+  order_number: 'My String'
+  evotech_order_num: 234556
+  evotech_shipment_num: 454367654
+  original_filename: 'legacy_234556'
+
+
+external_shipment:
+    user: 'superadmin'
+    filename: MyString.xls
+    file_url: MyString
+    file_kilobytes: 1
+    comment: 'My String'
+    vendor: 'vendor2'  #This is the same as location
+    order_number: 'My String'
+    address: 'arapaho'
+    task_order: 'two'
+    external: 1
+    status: "In Progress"
+    order_concentration: 'two'
+    plate_detail: 96
+    amount: 20
+    amount_unit: ul
+    evotech_order_num: 234556765
+    evotech_shipment_num: 454367654765
+
+mixture:
+  user: 'superadmin'
+  filename: MyString.xls
+  file_url: MyString
+  file_kilobytes: 1
+  comment: 'My String'
+  vendor: 'vendor2'  #This is the same as location
+  order_number: 'My String'
+  evotech_order_num: 23455676
+  evotech_shipment_num: 45436765476
+  original_filename: 'legacy_23455676'
+  mixture: 1

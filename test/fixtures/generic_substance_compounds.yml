@@ -1,0 +1,7 @@
+
+one:
+  generic_substance: 'four'
+  compound: 'one'
+  relationship: Mystring
+  created_by: user1
+  updated_by: user2

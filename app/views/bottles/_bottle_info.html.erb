@@ -1,0 +1,10 @@
+<% tmp_arry_attributes = %w(barcode barcode_parent stripped_barcode status compound_name cas qty_available_mg_ul units concentration_mm
+                                    form qty_available_umols structure_real_amw vendor vendor_part_number po_number cid cpd lot_number can_plate comment) %>
+<ul>
+  <% tmp_arry_attributes.each do |attribute| %>
+      <li>
+        <strong><%= attribute %>:</strong>
+        <%= bottle.send(attribute.to_sym) %>
+      </li>
+  <% end %>
+</ul>

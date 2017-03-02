@@ -1,0 +1,29 @@
+<%= form_tag({controller: "source_substances", action: "new"}, method: "post", :remote =>true, class: 'add-to-list')   do  %>
+
+    <h3>Insert List</h3>
+    <p>
+     <%= "First row must include all headers"%>
+     <br>
+      <%= "casrn, sample_id, bottle_id, dtxsid" %>
+     <br>
+     <%= "Next rows must contain content including commas to line up with headers" %>
+     <br>
+     <%= "Examples:" %>
+     <br>
+     <%=  " 50-00-0, 789343, TX87439, DTXSID7020637" %>
+     <br>
+      <%= "60-35-5,,, DTXSID2020008"%>
+     <br>
+     <%= "89-23-3,,TX78921," %>
+     <br>
+      <%= ",,,DTXSID7020637" %>
+    </p>
+    <%= text_area_tag :chemical, nil, :class => "input-large", :id => "each-chemical", :size => "90x20", :placeholder =>  "casrn, sample_id, bottle_id, dtxsid"%>
+
+    <%= hidden_field_tag "fk_chemical_list_id", @chemical_list.id %>
+    <br><br>
+    <%= submit_tag "Save", :name => 'add_text', data: {disable_with: "Processing..."}, id: 'text-chemicals', class: "btn btn-success" %>
+    <br><br>
+<%end%>
+
+
